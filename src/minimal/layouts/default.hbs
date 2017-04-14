@@ -22,10 +22,10 @@
 
 <div class="container container-main">
     <div class="content-wrap">
-    	{{#if model.readme}}
-			<div class="tsd-panel tsd-typography">
-				{{#markdown}}{{{model.readme}}}{{/markdown}}
-			</div>
+        {{#if model.readme}}
+                <div class="tsd-panel tsd-typography">
+                        {{#markdown}}{{{model.readme}}}{{/markdown}}
+                </div>
         {{/if}}
 
         {{{contents}}}
