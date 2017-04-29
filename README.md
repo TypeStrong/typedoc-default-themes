@@ -1,5 +1,7 @@
 # Default themes for TypeDoc
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/TypeStrong/typedoc-default-themes.svg)](https://greenkeeper.io/)
+
 This module contains the default themes of TypeDoc.
 Visit http://typedoc.org/ to learn more about TypeDoc.
 
