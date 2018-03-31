@@ -5,7 +5,18 @@ module.exports = function(grunt)
         ts: {
             themeDefault: {
                 tsconfig: './tsconfig.json'
-            }
+            },
+            themeDefaultHelpers: {
+                options: {
+                    sourceMap: false,
+                    module: 'commonjs',
+                    declaration: false
+                },
+                src: [
+                    'src/default/helpers/*.ts',
+                ],
+                outDir: 'bin/default/helpers'
+            },
         },
         uglify: {
             themeDefault: {
@@ -98,6 +109,11 @@ module.exports = function(grunt)
                     cwd: 'src/default/partials',
                     src: ['**/*.hbs'],
                     dest: 'bin/minimal/partials'
+                }, {
+                    expand: true,
+                    cwd: 'bin/default/helpers',
+                    src: ['**/*.js'],
+                    dest: 'bin/minimal/helpers',
                 }]
             },
             themeMinimal: {
@@ -143,6 +159,6 @@ module.exports = function(grunt)
     grunt.loadNpmTasks('grunt-ts');
 
     grunt.registerTask('css', ['sass', 'autoprefixer']);
-    grunt.registerTask('js', ['ts:themeDefault', 'uglify']);
-    grunt.registerTask('default', ['copy', 'css', 'js', 'string-replace']);
+    grunt.registerTask('js', ['ts:themeDefault', 'uglify', 'ts:themeDefaultHelpers']);
+    grunt.registerTask('default', ['copy', 'css', 'js', 'copy:themeDefault2Minimal', 'string-replace']);
 };

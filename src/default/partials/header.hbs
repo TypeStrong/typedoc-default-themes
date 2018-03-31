@@ -55,16 +55,19 @@
                 {{#with model}}{{> breadcrumb}}{{/with}}
             </ul>
             <h1>{{#compact}}
-                {{model.kindString}}&nbsp;
-                {{model.name}}
-                {{#if model.typeParameters}}
-                    &lt;
-                    {{#each model.typeParameters}}
-                        {{#if @index}},&nbsp;{{/if}}
-                        {{name}}
-                    {{/each}}
-                    &gt;
-                {{/if}}
+                {{#with model}}
+                    {{#if (hasRelevantFlag "Export")}}{{> flag useForClass="Export" useForName="Export"}}&nbsp;{{/if}}
+                    {{kindString}}&nbsp;
+                    {{name}}
+                    {{#if typeParameters}}
+                        &lt;
+                        {{#each typeParameters}}
+                            {{#if @index}},&nbsp;{{/if}}
+                            {{name}}
+                        {{/each}}
+                        &gt;
+                    {{/if}}
+                {{/with}}
             {{/compact}}</h1>
         </div>
     </div>

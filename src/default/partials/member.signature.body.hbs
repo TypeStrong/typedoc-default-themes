@@ -15,9 +15,7 @@
         {{#each parameters}}
             <li>
                 <h5>{{#compact}}
-                    {{#each flags}}
-                        <span class="tsd-flag ts-flag{{this}}">{{this}}</span>&nbsp;
-                    {{/each}}
+                    {{#each (relevantFlags)}}{{> flag}}&nbsp;{{/each}}
                     {{#if flags.isRest}}<span class="tsd-signature-symbol">...</span>{{/if}}
                     {{name}}:&nbsp;
                     {{#with type}}{{>type}}{{/with}}

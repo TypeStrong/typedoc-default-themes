@@ -1,6 +1,10 @@
 {{#if groups}}
 <section class="tsd-panel-group tsd-index-group">
-    <h2>Index</h2>
+    {{#if settings.excludeNotExported}}
+        <h2>Index of Exported Symbols</h2>
+    {{else}}
+        <h2>Index</h2>
+    {{/if}}
     <section class="tsd-panel tsd-index-panel">
         <div class="tsd-index-content">
             {{#each groups}}
@@ -10,7 +14,7 @@
                             <h3>{{#if title}}{{title}} {{/if}}{{../title}}</h3>
                             <ul class="tsd-index-list">
                                 {{#each children}}
-                                    <li class="{{cssClasses}}"><a href="{{relativeURL url}}" class="tsd-kind-icon">{{#if name}}{{{wbr name}}}{{else}}<em>{{{wbr kindString}}}</em>{{/if}}</a></li>
+                                    <li class="{{cssClasses}}"><a href="{{relativeURL url}}" class="tsd-kind-icon">{{#if (hasRelevantFlag "Export")}}{{> flag useForClass="Export" useForName="x"}}&nbsp;{{/if}}{{#if name}}{{{wbr name}}}{{else}}<em>{{{wbr kindString}}}</em>{{/if}}</a></li>
                                 {{/each}}
                             </ul>
                         {{/each}}
@@ -18,7 +22,7 @@
                         <h3>{{title}}</h3>
                         <ul class="tsd-index-list">
                             {{#each children}}
-                                <li class="{{cssClasses}}"><a href="{{relativeURL url}}" class="tsd-kind-icon">{{#if name}}{{{wbr name}}}{{else}}<em>{{{wbr kindString}}}</em>{{/if}}</a></li>
+                                <li class="{{cssClasses}}"><a href="{{relativeURL url}}" class="tsd-kind-icon">{{#if (hasRelevantFlag "Export")}}{{> flag useForClass="Export" useForName="x"}}&nbsp;{{/if}}{{#if name}}{{{wbr name}}}{{else}}<em>{{{wbr kindString}}}</em>{{/if}}</a></li>
                             {{/each}}
                         </ul>
                     {{/if}}
