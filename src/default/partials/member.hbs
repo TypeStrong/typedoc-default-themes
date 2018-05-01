@@ -1,9 +1,9 @@
 <section class="tsd-panel tsd-member {{cssClasses}}">
-    <a name="{{anchor}}" class="tsd-anchor"></a>
-    {{#if name}}
-        <h3>{{#compact}}{{#each (relevantFlags)}}{{> flag}}&nbsp;{{/each}}{{/compact}}{{{wbr name}}}</h3>
-    {{/if}}
-
+  <a name="{{anchor}}" class="tsd-anchor"></a>
+  <h3>{{#compact}}{{#each (relevantFlags)}}{{> flag}}&nbsp;{{/each}}{{/compact}}{{{wbr name}}}</h3>
+  {{#if renames}}
+    Renames {{#with (getReflection renames)}}<a href="{{relativeURL url}}">{{{wbr name}}}</a>{{/with}}
+  {{else}}
     {{#if signatures}}
         {{> member.signatures}}
     {{else}}{{#if hasGetterOrSetter}}
@@ -11,12 +11,12 @@
     {{else}}
         {{> member.declaration}}
     {{/if}}{{/if}}
-
-    {{#each groups}}
+     {{#each groups}}
         {{#each children}}
             {{#unless hasOwnDocument}}
                 {{> member}}
             {{/unless}}
         {{/each}}
     {{/each}}
+  {{/if}}
 </section>
