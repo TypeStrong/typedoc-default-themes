@@ -395,19 +395,20 @@ var typedoc;
         var preventPress = false;
         var index;
         function createIndex() {
-            index = new lunr.Index();
-            index.pipeline.add(lunr.trimmer);
-            index.field('name', { boost: 10 });
-            index.field('parent');
-            index.ref('id');
+            var builder = new lunr.Builder();
+            builder.pipeline.add(lunr.trimmer);
+            builder.field('name', { boost: 10 });
+            builder.field('parent');
+            builder.ref('id');
             var rows = search.data.rows;
             var pos = 0;
             var length = rows.length;
             function batch() {
                 var cycles = 0;
                 while (cycles++ < 100) {
-                    index.add(rows[pos]);
+                    builder.add(rows[pos]);
                     if (++pos == length) {
+                        index = builder.build();
                         return setLoadingState(SearchLoadingState.Ready);
                     }
                 }

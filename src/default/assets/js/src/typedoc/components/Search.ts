@@ -79,14 +79,14 @@ module typedoc.search
      * Instantiate the lunr index.
      */
     function createIndex() {
-        index = new lunr.Index();
-        index.pipeline.add(
+        var builder = new lunr.Builder();
+        builder.pipeline.add(
             lunr.trimmer
         );
 
-        index.field('name', {boost:10});
-        index.field('parent');
-        index.ref('id');
+        builder.field('name', {boost:10});
+        builder.field('parent');
+        builder.ref('id');
 
         var rows   = data.rows;
         var pos    = 0;
@@ -94,8 +94,9 @@ module typedoc.search
         function batch() {
             var cycles = 0;
             while (cycles++ < 100) {
-                index.add(rows[pos]);
+                builder.add(rows[pos]);
                 if (++pos == length) {
+                    index = builder.build();
                     return setLoadingState(SearchLoadingState.Ready);
                 }
             }
