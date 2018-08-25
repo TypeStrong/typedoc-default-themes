@@ -74,6 +74,12 @@ module typedoc.search
      */
     var index:lunr.Index;
 
+    /**
+     * Has a search result been clicked?
+     * Used to stop the results hiding before a user can fully click on a result.
+     */
+    var resultClicked:boolean = false;
+
 
     /**
      * Instantiate the lunr index.
@@ -223,6 +229,19 @@ module typedoc.search
         }
     }
 
+    /**
+     * Intercept mousedown and mouseup events so we can correctly
+     * handle clicking on search results
+     */
+    $results
+    .on('mousedown', () => {
+        resultClicked = true;
+    })
+    .on('mouseup', () => {
+        resultClicked = false;
+        setHasFocus(false);
+    });
+
 
     /**
      * Bind all required events on the input field.
@@ -231,6 +250,14 @@ module typedoc.search
         setHasFocus(true);
         loadIndex();
     }).on('focusout', () => {
+        // If the user just clicked on a search result, then
+        // don't lose the focus straight away, as this prevents
+        // them from clicking the result and following the link
+        if(resultClicked) {
+            resultClicked = false;
+            return;
+        }
+
         setTimeout(() => setHasFocus(false), 100);
     }).on('input', () => {
         setQuery($.trim($field.val()));
