@@ -394,6 +394,7 @@ var typedoc;
         var hasFocus = false;
         var preventPress = false;
         var index;
+        var resultClicked = false;
         function createIndex() {
             index = new lunr.Index();
             index.pipeline.add(lunr.trimmer);
@@ -499,10 +500,22 @@ var typedoc;
                 $field.blur();
             }
         }
+        $results
+            .on('mousedown', function () {
+            resultClicked = true;
+        })
+            .on('mouseup', function () {
+            resultClicked = false;
+            setHasFocus(false);
+        });
         $field.on('focusin', function () {
             setHasFocus(true);
             loadIndex();
         }).on('focusout', function () {
+            if (resultClicked) {
+                resultClicked = false;
+                return;
+            }
             setTimeout(function () { return setHasFocus(false); }, 100);
         }).on('input', function () {
             setQuery($.trim($field.val()));
