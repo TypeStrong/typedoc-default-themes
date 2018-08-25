@@ -438,15 +438,23 @@ var typedoc;
             }
         }
         function updateResults() {
-            if (loadingState != SearchLoadingState.Ready)
-                return;
             $results.empty();
-            var res = index.search(query);
+            if (loadingState != SearchLoadingState.Ready || !query)
+                return;
+            var res = index.search("*" + query + "*");
+            if (res.length === 0) {
+                res = index.search("*" + query + "~1*");
+            }
             for (var i = 0, c = Math.min(10, res.length); i < c; i++) {
                 var row = search.data.rows[res[i].ref];
-                var name = row.name;
-                if (row.parent)
-                    name = '<span class="parent">' + row.parent + '.</span>' + name;
+                var name = row.name.replace(new RegExp(query, 'i'), function (match) { return "<b>" + match + "</b>"; });
+                var parent = row.parent || '';
+                parent = parent.replace(new RegExp(query, 'i'), function (match) { return "<b>" + match + "</b>"; });
+                'teSt'.replace(/s/i, function (match) {
+                    return '<b>' + match + '</b>';
+                });
+                if (parent)
+                    name = '<span class="parent">' + parent + '.</span>' + name;
                 $results.append('<li class="' + row.classes + '"><a href="' + base + row.url + '" class="tsd-kind-icon">' + name + '</li>');
             }
         }
