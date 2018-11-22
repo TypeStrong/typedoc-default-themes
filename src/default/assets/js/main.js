@@ -450,9 +450,6 @@ var typedoc;
                 var name = row.name.replace(new RegExp(query, 'i'), function (match) { return "<b>" + match + "</b>"; });
                 var parent = row.parent || '';
                 parent = parent.replace(new RegExp(query, 'i'), function (match) { return "<b>" + match + "</b>"; });
-                'teSt'.replace(/s/i, function (match) {
-                    return '<b>' + match + '</b>';
-                });
                 if (parent)
                     name = '<span class="parent">' + parent + '.</span>' + name;
                 $results.append('<li class="' + row.classes + '"><a href="' + base + row.url + '" class="tsd-kind-icon">' + name + '</li>');
