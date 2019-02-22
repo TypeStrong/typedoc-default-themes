@@ -85,14 +85,14 @@ module typedoc.search
      * Instantiate the lunr index.
      */
     function createIndex() {
-        index = new lunr.Index();
-        index.pipeline.add(
+        var builder = new lunr.Builder();
+        builder.pipeline.add(
             lunr.trimmer
         );
 
-        index.field('name', {boost:10});
-        index.field('parent');
-        index.ref('id');
+        builder.field('name', {boost:10});
+        builder.field('parent');
+        builder.ref('id');
 
         var rows   = data.rows;
         var pos    = 0;
@@ -100,8 +100,9 @@ module typedoc.search
         function batch() {
             var cycles = 0;
             while (cycles++ < 100) {
-                index.add(rows[pos]);
+                builder.add(rows[pos]);
                 if (++pos == length) {
+                    index = builder.build();
                     return setLoadingState(SearchLoadingState.Ready);
                 }
             }
@@ -141,14 +142,26 @@ module typedoc.search
      * Update the visible state of the search control.
      */
     function updateResults() {
-        if (loadingState != SearchLoadingState.Ready) return;
         $results.empty();
+        if (loadingState != SearchLoadingState.Ready || !query) return;
 
-        var res = index.search(query);
+        // Perform a wildcard search
+        var res = index.search(`*${query}*`);
+
+        // If still no results, try a fuzzy match search
+        if(res.length === 0) {
+            res = index.search(`*${query}~1*`);
+        }
+
         for (var i = 0, c = Math.min(10, res.length); i < c; i++) {
             var row = data.rows[res[i].ref];
-            var name = row.name;
-            if (row.parent) name = '<span class="parent">' + row.parent + '.</span>' + name;
+
+            // Bold the matched part of the query in the search results
+            var name = row.name.replace(new RegExp(query, 'i'), (match) => `<b>${match}</b>`);
+            var parent = row.parent || '';
+            parent = parent.replace(new RegExp(query, 'i'), (match) => `<b>${match}</b>`);
+
+            if (parent) name = '<span class="parent">' + parent + '.</span>' + name;
             $results.append('<li class="' + row.classes + '"><a href="' + base + row.url + '" class="tsd-kind-icon">' + name + '</li>');
         }
     }

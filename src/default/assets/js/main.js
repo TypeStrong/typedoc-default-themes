@@ -396,19 +396,20 @@ var typedoc;
         var index;
         var resultClicked = false;
         function createIndex() {
-            index = new lunr.Index();
-            index.pipeline.add(lunr.trimmer);
-            index.field('name', { boost: 10 });
-            index.field('parent');
-            index.ref('id');
+            var builder = new lunr.Builder();
+            builder.pipeline.add(lunr.trimmer);
+            builder.field('name', { boost: 10 });
+            builder.field('parent');
+            builder.ref('id');
             var rows = search.data.rows;
             var pos = 0;
             var length = rows.length;
             function batch() {
                 var cycles = 0;
                 while (cycles++ < 100) {
-                    index.add(rows[pos]);
+                    builder.add(rows[pos]);
                     if (++pos == length) {
+                        index = builder.build();
                         return setLoadingState(SearchLoadingState.Ready);
                     }
                 }
@@ -438,15 +439,20 @@ var typedoc;
             }
         }
         function updateResults() {
-            if (loadingState != SearchLoadingState.Ready)
-                return;
             $results.empty();
-            var res = index.search(query);
+            if (loadingState != SearchLoadingState.Ready || !query)
+                return;
+            var res = index.search("*" + query + "*");
+            if (res.length === 0) {
+                res = index.search("*" + query + "~1*");
+            }
             for (var i = 0, c = Math.min(10, res.length); i < c; i++) {
                 var row = search.data.rows[res[i].ref];
-                var name = row.name;
-                if (row.parent)
-                    name = '<span class="parent">' + row.parent + '.</span>' + name;
+                var name = row.name.replace(new RegExp(query, 'i'), function (match) { return "<b>" + match + "</b>"; });
+                var parent = row.parent || '';
+                parent = parent.replace(new RegExp(query, 'i'), function (match) { return "<b>" + match + "</b>"; });
+                if (parent)
+                    name = '<span class="parent">' + parent + '.</span>' + name;
                 $results.append('<li class="' + row.classes + '"><a href="' + base + row.url + '" class="tsd-kind-icon">' + name + '</li>');
             }
         }
