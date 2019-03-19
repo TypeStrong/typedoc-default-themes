@@ -1,4 +1,4 @@
-declare module typedoc.search
+declare namespace typedoc.search
 {
     interface IDocument {
         id:number;
@@ -18,7 +18,7 @@ declare module typedoc.search
 }
 
 
-module typedoc.search
+namespace typedoc.search
 {
     /**
      * Loading state definitions.
@@ -154,12 +154,12 @@ module typedoc.search
         }
 
         for (var i = 0, c = Math.min(10, res.length); i < c; i++) {
-            var row = data.rows[res[i].ref];
+            var row = data.rows[res[i].ref as any as number];
 
             // Bold the matched part of the query in the search results
-            var name = row.name.replace(new RegExp(query, 'i'), (match) => `<b>${match}</b>`);
+            var name = row.name.replace(new RegExp(query, 'i'), (match: string) => `<b>${match}</b>`);
             var parent = row.parent || '';
-            parent = parent.replace(new RegExp(query, 'i'), (match) => `<b>${match}</b>`);
+            parent = parent.replace(new RegExp(query, 'i'), (match: string) => `<b>${match}</b>`);
 
             if (parent) name = '<span class="parent">' + parent + '.</span>' + name;
             $results.append('<li class="' + row.classes + '"><a href="' + base + row.url + '" class="tsd-kind-icon">' + name + '</li>');

@@ -1,9 +1,12 @@
-declare module typedoc
+declare namespace typedoc
 {
-    class Events extends Backbone.Events { }
+    export interface Events extends Backbone.Events {
+        new (): Events
+    }
+    export var Events: Backbone.Events & { new (): Backbone.Events };
 }
 
-module typedoc
+namespace typedoc
 {
     export var $html = $('html');
 
@@ -93,7 +96,7 @@ module typedoc
      * Copy Backbone.Events to TypeScript class.
      */
     if (typeof Backbone != 'undefined') {
-        typedoc['Events'] = <any>(function() {
+        typedoc.Events = <any>(function() {
             var res = function() {};
             _.extend(res.prototype, Backbone.Events);
             return res;
@@ -123,7 +126,7 @@ module typedoc
         private createServices() {
             _(services).forEach((c) => {
                 c.instance = new c.constructor();
-                typedoc[c.name] = c.instance;
+                (typedoc as any)[c.name] = c.instance;
             });
         }
 
@@ -132,13 +135,13 @@ module typedoc
          * Create all components beneath the given jQuery element.
          */
         public createComponents($context:JQuery, namespace:string = 'default'):Backbone.View<any>[] {
-            var result = [];
+            var result: any[] = [];
             _(components).forEach((c) => {
                 if (c.namespace != namespace && c.namespace != '*') {
                     return;
                 }
 
-                $context.find(c.selector).each((m:number, el:HTMLElement) => {
+                $context.find(c.selector).each((m:number, el: Element) => {
                     var $el = $(el), instance;
                     if (instance = $el.data('component')) {
                         if (_(result).indexOf(instance) == -1) {

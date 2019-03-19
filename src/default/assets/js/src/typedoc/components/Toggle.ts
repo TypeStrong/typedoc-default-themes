@@ -1,13 +1,13 @@
-module typedoc
+namespace typedoc
 {
     /**
      * Enabled simple toggle buttons.
      */
     class Toggle extends Backbone.View<any>
     {
-        active:boolean;
+        active?: boolean;
 
-        className:string;
+        className!: string;
 
 
         constructor(options:Backbone.ViewOptions<any>) {

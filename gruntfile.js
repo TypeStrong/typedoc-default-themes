@@ -4,21 +4,7 @@ module.exports = function(grunt)
         pkg: grunt.file.readJSON('package.json'),
         ts: {
             themeDefault: {
-                options: {
-                    sourceMap: false,
-                    module: 'amd',
-                    basePath: 'themes',
-                    declaration: false
-                },
-                src: [
-                    'src/default/assets/js/src/lib/**/*.ts',
-                    'src/default/assets/js/src/typedoc/Application.ts',
-                    'src/default/assets/js/src/typedoc/components/**/*.ts',
-                    'src/default/assets/js/src/typedoc/services/**/*.ts',
-                    'src/default/assets/js/src/typedoc/utils/**/*.ts',
-                    'src/default/assets/js/src/~bootstrap.ts'
-                ],
-                out: 'src/default/assets/js/main.js'
+                tsconfig: './tsconfig.json'
             }
         },
         uglify: {
@@ -28,10 +14,10 @@ module.exports = function(grunt)
                 },
                 files: {
                     'bin/default/assets/js/main.js': [
-                        'src/default/assets/js/lib/jquery-2.1.1.min.js',
-                        'src/default/assets/js/lib/underscore-1.6.0.min.js',
-                        'src/default/assets/js/lib/backbone-1.1.2.min.js',
-                        'src/default/assets/js/lib/lunr.min.js',
+                        'node_modules/jquery/dist/jquery.min.js',
+                        'node_modules/underscore/underscore-min.js',
+                        'node_modules/backbone/backbone-min.js',
+                        'node_modules/lunr/lunr.min.js',
                         'src/default/assets/js/main.js'
                     ]
                 }

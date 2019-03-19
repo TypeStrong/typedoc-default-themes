@@ -1,6 +1,6 @@
 /// <reference path="./typedoc/Application.ts" />
 
-module typedoc
+namespace typedoc
 {
     export var app:Application = new Application();
 }
