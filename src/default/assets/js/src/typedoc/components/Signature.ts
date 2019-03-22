@@ -1,4 +1,4 @@
-module typedoc
+namespace typedoc
 {
     /**
      * Holds a signature and its description.
@@ -22,7 +22,7 @@ module typedoc
          * @param $signature    The target signature.
          * @param $description  The description for the signature.
          */
-        constructor($signature, $description) {
+        constructor($signature: JQuery, $description: JQuery) {
             this.$signature   = $signature;
             this.$description = $description;
         }
@@ -61,12 +61,12 @@ module typedoc
         /**
          * List of found signature groups.
          */
-        private groups:SignatureGroup[];
+        private groups: SignatureGroup[] = [];
 
         /**
          * The container holding all the descriptions.
          */
-        private $container:JQuery;
+        private $container!: JQuery;
 
         /**
          * The index of the currently displayed signature.

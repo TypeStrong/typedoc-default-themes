@@ -1,4 +1,4 @@
-module typedoc
+namespace typedoc
 {
     /**
      * Simple point interface.
@@ -65,13 +65,13 @@ module typedoc
     $document.on(pointerDown, (e:JQueryMouseEventObject) => {
         isPointerDown = true;
         hasPointerMoved = false;
-        var t = (pointerDown == 'touchstart' ? e.originalEvent['targetTouches'][0] : e);
+        var t = (pointerDown == 'touchstart' ? (e.originalEvent as TouchEvent).targetTouches[0] : e);
         pointerDownPosition.x = t.pageX;
         pointerDownPosition.y = t.pageY;
     }).on(pointerMove, (e:JQueryMouseEventObject) => {
         if (!isPointerDown) return;
         if (!hasPointerMoved) {
-            var t = (pointerDown == 'touchstart' ? e.originalEvent['targetTouches'][0] : e);
+            var t = (pointerDown == 'touchstart' ? (e.originalEvent as TouchEvent).targetTouches[0] : e);
             var x = pointerDownPosition.x - t.pageX;
             var y = pointerDownPosition.y - t.pageY;
             hasPointerMoved = (Math.sqrt(x*x + y*y) > 10);

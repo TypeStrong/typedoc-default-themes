@@ -1,4 +1,4 @@
-module typedoc
+namespace typedoc
 {
     var hasPositionSticky = $html.hasClass('csspositionsticky');
 
@@ -57,12 +57,12 @@ module typedoc
         /**
          * The threshold at which the menu is attached to the top.
          */
-        private stickyTop:number;
+        private stickyTop: number = 0;
 
         /**
          * The threshold at which the menu is attached to the bottom.
          */
-        private stickyBottom:number;
+        private stickyBottom: number = 0;
 
 
         /**
@@ -110,16 +110,16 @@ module typedoc
             this.stickyMode = StickyMode.None;
             this.setState('');
 
-            var containerTop    = this.$container.offset().top;
+            var containerTop    = this.$container.offset()!.top;
             var containerHeight = this.$container.height();
             var bottom          = containerTop + containerHeight;
             if (this.$navigation.height() < containerHeight) {
                 var elHeight = this.$el.height();
-                var elTop    = this.$el.offset().top;
+                var elTop    = this.$el.offset()!.top;
 
                 if (this.$current.length) {
                     var currentHeight = this.$current.height();
-                    var currentTop    = this.$current.offset().top;
+                    var currentTop    = this.$current.offset()!.top;
 
                     this.$navigation.css('top', containerTop - currentTop + 20);
                     if (currentHeight < height) {
@@ -138,7 +138,7 @@ module typedoc
             }
 
             if (!hasPositionSticky) {
-                this.$navigation.css('left', this.$navigation.offset().left);
+                this.$navigation.css('left', this.$navigation.offset()!.left);
                 this.onScroll(viewport.scrollTop);
             } else {
                 if (this.stickyMode == StickyMode.Current) {

@@ -1,4 +1,4 @@
-module typedoc
+namespace typedoc
 {
     /**
      * A global service that monitors the window size and scroll position.

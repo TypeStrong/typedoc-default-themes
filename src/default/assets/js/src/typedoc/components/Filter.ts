@@ -1,4 +1,4 @@
-module typedoc
+namespace typedoc
 {
     class FilterItem<T>
     {
@@ -52,7 +52,7 @@ module typedoc
 
     class FilterItemCheckbox extends FilterItem<boolean>
     {
-        private $checkbox:JQuery;
+        private $checkbox!:JQuery;
 
 
         protected initialize() {
@@ -82,7 +82,7 @@ module typedoc
 
     class FilterItemSelect extends FilterItem<string>
     {
-        private $select:JQuery;
+        private $select!:JQuery;
 
 
         protected initialize() {

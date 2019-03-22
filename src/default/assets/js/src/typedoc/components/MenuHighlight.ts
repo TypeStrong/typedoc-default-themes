@@ -1,4 +1,4 @@
-module typedoc
+namespace typedoc
 {
     /**
      * Stored element and position data of a single anchor.
@@ -31,7 +31,7 @@ module typedoc
         /**
          * List of all discovered anchors.
          */
-        private anchors:IAnchorInfo[];
+        private anchors:IAnchorInfo[] = [];
 
         /**
          * Index of the currently highlighted anchor.
@@ -68,8 +68,8 @@ module typedoc
                 base = base.substr(0, base.indexOf('#'));
             }
 
-            this.$el.find('a').each((index, el:HTMLAnchorElement) => {
-                var href = el.href;
+            this.$el.find('a').each((_index, el: Element) => {
+                var href = (el as HTMLAnchorElement).href;
                 if (href.indexOf('#') == -1) return;
                 if (href.substr(0, base.length) != base) return;
 
@@ -78,7 +78,7 @@ module typedoc
                 if ($anchor.length == 0) return;
 
                 this.anchors.push({
-                    $link:    $(el.parentNode),
+                    $link:    $(el.parentNode!),
                     $anchor:  $anchor,
                     position: 0
                 });
@@ -92,10 +92,10 @@ module typedoc
          * Triggered after the viewport was resized.
          */
         private onResize() {
-            var anchor;
+            var anchor: IAnchorInfo;
             for (var index = 1, count = this.anchors.length; index < count; index++) {
                 anchor = this.anchors[index];
-                anchor.position = anchor.$anchor.offset().top;
+                anchor.position = anchor.$anchor!.offset()!.top;
             }
 
             this.anchors.sort((a, b) => {
@@ -126,9 +126,9 @@ module typedoc
             }
 
             if (this.index != index) {
-                if (this.index > 0) this.anchors[this.index].$link.removeClass('focus');
+                if (this.index > 0) this.anchors[this.index].$link!.removeClass('focus');
                 this.index = index;
-                if (this.index > 0) this.anchors[this.index].$link.addClass('focus');
+                if (this.index > 0) this.anchors[this.index].$link!.addClass('focus');
             }
         }
     }
