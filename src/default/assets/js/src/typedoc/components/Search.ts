@@ -154,7 +154,7 @@ namespace typedoc.search
         }
 
         for (var i = 0, c = Math.min(10, res.length); i < c; i++) {
-            var row = data.rows[res[i].ref as any as number];
+            var row = data.rows[+res[i].ref];
 
             // Bold the matched part of the query in the search results
             var name = row.name.replace(new RegExp(query, 'i'), (match: string) => `<b>${match}</b>`);
@@ -273,7 +273,7 @@ namespace typedoc.search
 
         setTimeout(() => setHasFocus(false), 100);
     }).on('input', () => {
-        setQuery($.trim($field.val()));
+        setQuery($.trim(($field.val() || '').toString()));
     }).on('keydown', (e:JQueryKeyEventObject) => {
         if (e.keyCode == 13 || e.keyCode == 27 || e.keyCode == 38 || e.keyCode == 40) {
             preventPress = true;

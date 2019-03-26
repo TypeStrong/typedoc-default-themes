@@ -149,7 +149,7 @@ namespace typedoc
          *
          * @param e  The related jQuery event object.
          */
-        private onClick(e:JQueryMouseEventObject) {
+        private onClick(e: JQuery.ClickEvent | JQuery.TouchEventBase) {
             e.preventDefault();
             _(this.groups).forEach((group, index) => {
                 if (group.$signature.is(e.currentTarget)) {

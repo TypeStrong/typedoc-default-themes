@@ -3,25 +3,22 @@ namespace typedoc
     /**
      * Enabled simple toggle buttons.
      */
-    class Toggle extends Backbone.View<any>
-    {
+    class Toggle extends Backbone.View<any> {
         active?: boolean;
 
         className!: string;
 
-
-        constructor(options:Backbone.ViewOptions<any>) {
+        constructor(options: Backbone.ViewOptions<any>) {
             super(options);
 
-            this.className = this.$el.attr('data-toggle');
-            this.$el.on(pointerUp, (e) => this.onPointerUp(e));
-            this.$el.on('click', (e) => e.preventDefault());
-            $document.on(pointerDown, (e) => this.onDocumentPointerDown(e));
-            $document.on(pointerUp, (e) => this.onDocumentPointerUp(e));
+            this.className = this.$el.attr('data-toggle') || '';
+            this.$el.on(pointerUp, e => this.onPointerUp(e));
+            this.$el.on('click', e => e.preventDefault());
+            $document.on(pointerDown, e => this.onDocumentPointerDown(e));
+            $document.on(pointerUp, e => this.onDocumentPointerUp(e));
         }
 
-
-        setActive(value:boolean) {
+        setActive(value: boolean) {
             if (this.active == value) return;
             this.active = value;
 
@@ -33,17 +30,17 @@ namespace typedoc
             setTimeout(() => $html.removeClass(transition), 500);
         }
 
-
-        onPointerUp(event:JQueryMouseEventObject) {
+        onPointerUp(event: JQuery.TriggeredEvent) {
             if (hasPointerMoved) return;
             this.setActive(true);
             event.preventDefault();
         }
 
-
-        onDocumentPointerDown(e:JQueryMouseEventObject) {
+        onDocumentPointerDown(e: JQuery.TriggeredEvent) {
             if (this.active) {
-                var $path = $(e.target).parents().addBack();
+                var $path = $(e.target)
+                    .parents()
+                    .addBack();
                 if ($path.hasClass('col-menu')) {
                     return;
                 }
@@ -56,10 +53,12 @@ namespace typedoc
             }
         }
 
-        onDocumentPointerUp(e:JQueryMouseEventObject) {
+        onDocumentPointerUp(e: JQuery.TriggeredEvent) {
             if (hasPointerMoved) return;
             if (this.active) {
-                var $path = $(e.target).parents().addBack();
+                var $path = $(e.target)
+                    .parents()
+                    .addBack();
                 if ($path.hasClass('col-menu')) {
                     var $link = $path.filter('a');
                     if ($link.length) {

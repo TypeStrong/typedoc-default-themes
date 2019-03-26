@@ -111,14 +111,14 @@ namespace typedoc
             this.setState('');
 
             var containerTop    = this.$container.offset()!.top;
-            var containerHeight = this.$container.height();
+            var containerHeight = this.$container.height() || 0;
             var bottom          = containerTop + containerHeight;
-            if (this.$navigation.height() < containerHeight) {
-                var elHeight = this.$el.height();
+            if (this.$navigation.height()! < containerHeight) {
+                var elHeight = this.$el.height() || 0;
                 var elTop    = this.$el.offset()!.top;
 
                 if (this.$current.length) {
-                    var currentHeight = this.$current.height();
+                    var currentHeight = this.$current.height() || 0;
                     var currentTop    = this.$current.offset()!.top;
 
                     this.$navigation.css('top', containerTop - currentTop + 20);
