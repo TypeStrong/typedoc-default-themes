@@ -96,7 +96,8 @@ namespace typedoc
      * Copy Backbone.Events to TypeScript class.
      */
     if (typeof Backbone != 'undefined') {
-        typedoc.Events = _.extend(function () {}, Backbone.Events);
+        typedoc.Events = function () {} as any;
+        _.extend(typedoc.Events.prototype, Backbone.Events);
     }
 
 
