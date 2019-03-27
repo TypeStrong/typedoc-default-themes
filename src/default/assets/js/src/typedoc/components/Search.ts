@@ -154,7 +154,7 @@ namespace typedoc.search
         }
 
         for (var i = 0, c = Math.min(10, res.length); i < c; i++) {
-            var row = data.rows[+res[i].ref];
+            var row = data.rows[Number(res[i].ref)];
 
             // Bold the matched part of the query in the search results
             var name = row.name.replace(new RegExp(query, 'i'), (match: string) => `<b>${match}</b>`);

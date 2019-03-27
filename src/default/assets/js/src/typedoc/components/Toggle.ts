@@ -12,10 +12,10 @@ namespace typedoc
             super(options);
 
             this.className = this.$el.attr('data-toggle') || '';
-            this.$el.on(pointerUp, e => this.onPointerUp(e));
-            this.$el.on('click', e => e.preventDefault());
-            $document.on(pointerDown, e => this.onDocumentPointerDown(e));
-            $document.on(pointerUp, e => this.onDocumentPointerUp(e));
+            this.$el.on(pointerUp, (e) => this.onPointerUp(e));
+            this.$el.on('click', (e) => e.preventDefault());
+            $document.on(pointerDown, (e) => this.onDocumentPointerDown(e));
+            $document.on(pointerUp, (e) => this.onDocumentPointerUp(e));
         }
 
         setActive(value: boolean) {
