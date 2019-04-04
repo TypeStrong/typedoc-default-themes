@@ -7,15 +7,7 @@ module.exports = function(grunt)
                 tsconfig: './tsconfig.json'
             },
             themeDefaultHelpers: {
-                options: {
-                    sourceMap: false,
-                    module: 'commonjs',
-                    declaration: false
-                },
-                src: [
-                    'src/default/helpers/*.ts',
-                ],
-                outDir: 'bin/default/helpers'
+                tsconfig: 'src/default/helpers/tsconfig.json'
             },
         },
         uglify: {

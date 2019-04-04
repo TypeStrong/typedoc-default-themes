@@ -1,0 +1,12 @@
+{
+  "extends": "../../../tsconfig-common",
+  "compilerOptions": {
+    "sourceMap": false,
+    "module": "commonjs",
+    "declaration": false,
+    "outDir": "../../../bin/default/helpers"
+  },
+  "include": [
+    "*.ts"
+  ]
+}
