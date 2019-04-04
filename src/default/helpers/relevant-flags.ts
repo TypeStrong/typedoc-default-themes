@@ -32,7 +32,7 @@ const relevantFlagListWithExport =
  *
  * @returns The filtered array.
  */
-export function relevantFlags(options: any): string[] {
+export function relevantFlags(this: any, options: any): string[] {
 
     // When excludeNotExported is set, we don't want to produce labels
     // for "Exported" because everything is exported and thus the
@@ -60,6 +60,7 @@ export function relevantFlags(options: any): string[] {
  *
  * @returns Whether the flag is set.
  */
-export function hasRelevantFlag(name: string, options: any): boolean {
+export function hasRelevantFlag(this: any, name: string,
+                                options: any): boolean {
     return relevantFlags.call(this, options).indexOf(name) !== -1;
 }
