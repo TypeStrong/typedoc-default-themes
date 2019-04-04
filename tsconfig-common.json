@@ -1,0 +1,11 @@
+{
+  "compilerOptions": {
+    "target": "es5",
+    "module": "amd",
+    "declaration": false,
+    "skipLibCheck": true,
+    "allowJs": true,
+    "strict": true,
+    "esModuleInterop": true
+  }
+}

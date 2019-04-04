@@ -1,16 +1,10 @@
 {
+  "extends": "./tsconfig-common.json",
   "include": [
     "src/default/assets/js/src/**/*.ts",
     "src/default/assets/js/src/~bootstrap.ts"
   ],
   "compilerOptions": {
-    "target": "es5",
-    "module": "amd",
-    "declaration": false,
-    "skipLibCheck": true,
-    "allowJs": true,
-    "outFile": "./src/default/assets/js/main.js",
-    "strict": true,
-    "esModuleInterop": true
+    "outFile": "./src/default/assets/js/main.js"
   }
 }
