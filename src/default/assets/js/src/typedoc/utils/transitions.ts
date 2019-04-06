@@ -29,13 +29,13 @@ namespace typedoc {
 
 
     export function animateHeight($el: JQuery, callback:Function, success?:Function) {
-        let from = $el.height()
+        let from = $el.height() || 0;
         let to = from;
         noTransition($el, function () {
             callback();
 
             $el.css('height', '');
-            to = $el.height();
+            to = $el.height() || 0;
             if (from != to && transition) $el.css('height', from);
         });
 

@@ -62,23 +62,23 @@ namespace typedoc
         pointerUp   = 'touchend';
     }
 
-    $document.on(pointerDown, (e:JQueryMouseEventObject) => {
+    $document.on(pointerDown, (e) => {
         isPointerDown = true;
         hasPointerMoved = false;
         var t = (pointerDown == 'touchstart' ? (e.originalEvent as TouchEvent).targetTouches[0] : e);
-        pointerDownPosition.x = t.pageX;
-        pointerDownPosition.y = t.pageY;
-    }).on(pointerMove, (e:JQueryMouseEventObject) => {
+        pointerDownPosition.y = t.pageY || 0;
+        pointerDownPosition.x = t.pageX || 0;
+    }).on(pointerMove, (e) => {
         if (!isPointerDown) return;
         if (!hasPointerMoved) {
             var t = (pointerDown == 'touchstart' ? (e.originalEvent as TouchEvent).targetTouches[0] : e);
-            var x = pointerDownPosition.x - t.pageX;
-            var y = pointerDownPosition.y - t.pageY;
+            var x = pointerDownPosition.x - (t.pageX || 0);
+            var y = pointerDownPosition.y - (t.pageY || 0);
             hasPointerMoved = (Math.sqrt(x*x + y*y) > 10);
         }
-    }).on(pointerUp, (e:JQueryMouseEventObject) => {
+    }).on(pointerUp, (e) => {
         isPointerDown = false;
-    }).on('click', (e:JQueryMouseEventObject) => {
+    }).on('click', (e) => {
         if (preventNextClick) {
             e.preventDefault();
             e.stopImmediatePropagation();
