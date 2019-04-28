@@ -1,10 +1,13 @@
-import { Application } from './typedoc/Application';
-import './typedoc/services/Viewport';
-import './typedoc/components/Filter';
-import './typedoc/components/MenuHighlight';
-import './typedoc/components/MenuSticky';
-import './typedoc/components/Search';
-import './typedoc/components/Signature';
-import './typedoc/components/Toggle';
+/// <reference path='./typedoc/Application.ts' />
+/// <reference path='./typedoc/services/Viewport.ts' />
+/// <reference path='./typedoc/components/Filter.ts' />
+/// <reference path='./typedoc/components/MenuHighlight.ts' />
+/// <reference path='./typedoc/components/MenuSticky.ts' />
+/// <reference path='./typedoc/components/Search.ts' />
+/// <reference path='./typedoc/components/Signature.ts' />
+/// <reference path='./typedoc/components/Toggle.ts' />
 
-export var app: Application = new Application();
+namespace typedoc
+{
+    export var app: Application = new Application();
+}

@@ -1,7 +1,7 @@
-import { $html, registerComponent, IService, getServiceFunction } from "../Application";
-import Backbone from "backbone";
-import _ from "underscore";
-import { Viewport } from "../services/Viewport";
+/// <reference types='backbone' />
+/// <reference types='underscore' />
+/// <reference path='../Application.ts' />
+/// <reference path='../services/Viewport.ts' />
 
 namespace typedoc
 {
@@ -69,29 +69,25 @@ namespace typedoc
          */
         private stickyBottom: number = 0;
 
-        /** Viewport instance */
-        private viewport: Viewport;
-
 
         /**
          * Create a new MenuSticky instance.
          *
          * @param options  Backbone view constructor options.
          */
-        constructor(options:Backbone.ViewOptions<any>, getService: getServiceFunction) {
+        constructor(options:Backbone.ViewOptions<any>) {
             super(options);
-            this.viewport = getService(Viewport);
 
             this.$current    = this.$el.find('> ul.current');
             this.$navigation = this.$el.parents('.menu-sticky-wrap');
             this.$container  = this.$el.parents('.row');
 
-            this.listenTo(this.viewport, 'resize', this.onResize);
+            this.listenTo(viewport, 'resize', this.onResize);
             if (!hasPositionSticky) {
-                this.listenTo(this.viewport, 'scroll', this.onScroll);
+                this.listenTo(viewport, 'scroll', this.onScroll);
             }
 
-            this.onResize(this.viewport.width, this.viewport.height);
+            this.onResize(viewport.width, viewport.height);
         }
 
 
@@ -148,7 +144,7 @@ namespace typedoc
 
             if (!hasPositionSticky) {
                 this.$navigation.css('left', this.$navigation.offset()!.left);
-                this.onScroll(this.viewport.scrollTop);
+                this.onScroll(viewport.scrollTop);
             } else {
                 if (this.stickyMode == StickyMode.Current) {
                     this.setState('sticky-current');
