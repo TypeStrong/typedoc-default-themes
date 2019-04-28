@@ -30,6 +30,7 @@
     "node": ">= 6"
   },
   "dependencies": {
+    "almond": "^0.3.3",
     "backbone": "^1.1.2",
     "jquery": "^3.3.1",
     "lunr": "^2.3.6",
@@ -44,6 +45,7 @@
     "grunt-autoprefixer": "^3.0.4",
     "grunt-cli": "^1.2.0",
     "grunt-contrib-copy": "^1.0.0",
+    "grunt-contrib-requirejs": "^1.0.0",
     "grunt-contrib-uglify": "^2.3.0",
     "grunt-contrib-watch": "~1.0.0",
     "grunt-sass": "^2.1.0",

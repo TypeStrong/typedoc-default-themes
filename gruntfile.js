@@ -7,6 +7,40 @@ module.exports = function(grunt)
                 tsconfig: './tsconfig.json'
             }
         },
+        requirejs: {
+            compile: {
+                options: {
+                    baseDir: './',
+                    name: 'node_modules/almond/almond',
+                    out: 'bin/default/assets/js/main.js',
+                    include: ['src/default/assets/js/main', 'jquery', 'backbone', 'underscore', 'lunr'],
+                    paths: {
+                        'jquery': 'node_modules/jquery/dist/jquery.min',
+                        'underscore': 'node_modules/underscore/underscore-min',
+                        'backbone': 'node_modules/backbone/backbone-min',
+                        'lunr': 'node_modules/lunr/lunr.min'
+                    },
+                    insertRequire: ['~bootstrap'],
+                    shim: {
+                        backbone: {
+                            //These script dependencies should be loaded before loading
+                            //backbone.js
+                            deps: ['underscore', 'jquery'],
+                            //Once loaded, use the global 'Backbone' as the
+                            //module value.
+                            exports: 'Backbone'
+                        },
+                        underscore: {
+                            exports: '_'
+                        },
+                        lunr: {
+                            exports: 'lunr'
+                        }
+                    },
+                    optimize: 'none' // TODO: Replace grunt uglify with this
+                }
+            }
+        },
         uglify: {
             themeDefault: {
                 options: {
@@ -136,13 +170,13 @@ module.exports = function(grunt)
 
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-sass');
-    grunt.loadNpmTasks('grunt-contrib-uglify');
+    grunt.loadNpmTasks('grunt-contrib-requirejs');
     grunt.loadNpmTasks('grunt-contrib-copy');
     grunt.loadNpmTasks('grunt-string-replace');
     grunt.loadNpmTasks('grunt-autoprefixer');
     grunt.loadNpmTasks('grunt-ts');
 
     grunt.registerTask('css', ['sass', 'autoprefixer']);
-    grunt.registerTask('js', ['ts:themeDefault', 'uglify']);
+    grunt.registerTask('js', ['ts:themeDefault', 'requirejs']);
     grunt.registerTask('default', ['copy', 'css', 'js', 'string-replace']);
 };
