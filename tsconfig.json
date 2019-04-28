@@ -8,9 +8,11 @@
     "module": "amd",
     "declaration": false,
     "skipLibCheck": true,
+    "sourceMap": false,
     "allowJs": true,
     "outFile": "./src/default/assets/js/main.js",
     "strict": true,
-    "esModuleInterop": true
+    "alwaysStrict": false,
+    "noImplicitUseStrict": true
   }
 }
