@@ -1,3 +1,10 @@
+/// <reference types='underscore' />
+/// <reference types='jquery' />
+/// <reference types='backbone' />
+/// <reference path='../Application.ts' />
+/// <reference path='../utils/transitions.ts' />
+/// <reference path='../services/Viewport.ts' />
+
 namespace typedoc
 {
     /**
@@ -66,7 +73,7 @@ namespace typedoc
         /**
          * The container holding all the descriptions.
          */
-        private $container!: JQuery;
+        private $container?: JQuery;
 
         /**
          * The index of the currently displayed signature.
@@ -84,7 +91,7 @@ namespace typedoc
 
             this.createGroups();
 
-            if (this.groups) {
+            if (this.$container) {
                 this.$el.addClass('active')
                     .on('touchstart', '.tsd-signature', (event) => this.onClick(event))
                     .on('click', '.tsd-signature', (event) => this.onClick(event));
@@ -108,7 +115,8 @@ namespace typedoc
             if (this.index > -1) {
                 var from = this.groups[this.index];
 
-                animateHeight(this.$container, () => {
+                // We know $container exists because index > -1
+                animateHeight(this.$container!, () => {
                     from.removeClass('current').addClass('fade-out');
                     to.addClass('current fade-in');
                     viewport.triggerResize();

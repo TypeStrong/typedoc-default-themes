@@ -1,3 +1,8 @@
+/// <reference types='backbone' />
+/// <reference types='jquery' />
+/// <reference path='../utils/pointer.ts' />
+/// <reference path='../Application.ts' />
+
 namespace typedoc
 {
     /**

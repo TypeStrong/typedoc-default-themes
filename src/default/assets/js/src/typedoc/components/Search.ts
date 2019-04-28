@@ -1,3 +1,5 @@
+/// <reference types='lunr' />
+
 declare namespace typedoc.search
 {
     interface IDocument {

@@ -1,3 +1,6 @@
+/// <reference types='underscore' />
+/// <reference path='../Application.ts' />
+
 namespace typedoc
 {
     /**

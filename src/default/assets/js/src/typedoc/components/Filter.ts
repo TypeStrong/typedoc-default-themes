@@ -1,3 +1,8 @@
+/// <reference types='jquery' />
+/// <reference types='backbone' />
+/// <reference path='../Application.ts' />
+/// <reference path='../utils/pointer.ts' />
+
 namespace typedoc
 {
     abstract class FilterItem<T>

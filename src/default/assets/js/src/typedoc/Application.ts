@@ -1,3 +1,7 @@
+/// <reference types='backbone' />
+/// <reference types='underscore' />
+/// <reference types='jquery' />
+
 declare namespace typedoc
 {
     export interface Events extends Backbone.Events {

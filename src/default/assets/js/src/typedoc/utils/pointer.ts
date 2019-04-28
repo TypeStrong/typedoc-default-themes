@@ -1,3 +1,5 @@
+/// <reference path="../Application.ts" />
+
 namespace typedoc
 {
     /**

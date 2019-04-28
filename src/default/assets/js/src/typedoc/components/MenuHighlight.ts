@@ -1,3 +1,8 @@
+/// <reference types='backbone' />
+/// <reference types='underscore' />
+/// <reference path='../Application.ts' />
+/// <reference path='../services/Viewport.ts' />
+
 namespace typedoc
 {
     /**
