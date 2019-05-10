@@ -30,8 +30,8 @@
     "node": ">= 6"
   },
   "dependencies": {
-    "backbone": "^1.1.2",
-    "jquery": "^3.3.1",
+    "backbone": "^1.4.0",
+    "jquery": "^3.4.1",
     "lunr": "^2.3.6",
     "underscore": "^1.9.1"
   },
