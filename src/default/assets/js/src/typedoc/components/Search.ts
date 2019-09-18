@@ -132,6 +132,7 @@ namespace typedoc.search
             $.get($el.attr('data-index'))
                 .done((source:string) => {
                     eval(source);
+                    data = typedoc.search.data;
                     createIndex();
                 }).fail(() => {
                     setLoadingState(SearchLoadingState.Failure);
