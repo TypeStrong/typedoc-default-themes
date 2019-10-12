@@ -13,7 +13,7 @@
         +INDENT($DEPTH, $BASE, $STEP)
 
 .tsd-navigation
-    padding: 0 0 0 40px
+    margin: 0 0 0 40px
 
     a
         display: block
@@ -110,6 +110,12 @@
 // </nav>
 //
 .tsd-navigation.secondary
+    max-height: calc(100vh - 1rem)
+    overflow: auto
+    position: -webkit-sticky
+    position: sticky
+    top: .5rem
+
     ul
         +INDENTS(6, 25, 20)
         transition: opacity 0.2s
@@ -135,28 +141,3 @@
 .menu-sticky-wrap
     +size-md-lg
         position: static
-
-        .no-csspositionsticky &
-            &.sticky
-                position: fixed
-
-            &.sticky-current
-                position: fixed
-
-                ul.before-current,
-                ul.after-current
-                    opacity: 0
-
-            &.sticky-bottom
-                position: absolute
-                top: auto !important
-                left: auto !important
-                bottom: 0
-                right: 0
-
-        .csspositionsticky &
-            &.sticky
-                position: sticky
-
-            &.sticky-current
-                position: sticky
