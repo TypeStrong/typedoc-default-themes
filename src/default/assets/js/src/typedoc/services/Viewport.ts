@@ -14,6 +14,11 @@ namespace typedoc
         scrollTop:number = 0;
 
         /**
+         * The previous scrollTop.
+         */
+        lastY:number = 0;
+
+        /**
          * The width of the window.
          */
         width:number = 0;
@@ -23,12 +28,25 @@ namespace typedoc
          */
         height:number = 0;
 
+        /**
+         * The toolbar (contains the search input).
+         */
+        toolbar:HTMLDivElement;
+
+        /**
+         * Boolean indicating whether the toolbar is shown.
+         */
+        showToolbar:boolean = true;
+
 
         /**
          * Create new Viewport instance.
          */
         constructor() {
             super();
+
+            this.toolbar = <HTMLDivElement>document.querySelector('.tsd-page-toolbar');
+
             $window.on('scroll', _.throttle(() => this.onScroll(), 10))
             $window.on('resize', _.throttle(() => this.onResize(), 10));
 
@@ -61,6 +79,20 @@ namespace typedoc
         onScroll() {
             this.scrollTop = $window.scrollTop() || 0;
             this.trigger('scroll', this.scrollTop);
+            this.hideShowToolbar();
+        }
+
+
+        /**
+         * Handle hiding/showing of the toolbar.
+         */
+        hideShowToolbar() {
+            const isShown = this.showToolbar;
+            this.showToolbar = this.lastY >= this.scrollTop || this.scrollTop === 0;
+            if (isShown !== this.showToolbar) {
+                this.toolbar.classList[this.showToolbar ? 'remove' : 'add']('tsd-page-toolbar--hide');
+            }
+            this.lastY = this.scrollTop;
         }
     }
 
