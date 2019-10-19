@@ -39,7 +39,7 @@ namespace typedoc
         showToolbar:boolean = true;
 
         /**
-         * The toolbar (contains the search input).
+         * The sticky side nav that contains members of the current page.
          */
         secondaryNav:HTMLElement;
 
@@ -96,8 +96,8 @@ namespace typedoc
             const isShown = this.showToolbar;
             this.showToolbar = this.lastY >= this.scrollTop || this.scrollTop === 0;
             if (isShown !== this.showToolbar) {
-                this.toolbar.classList[this.showToolbar ? 'remove' : 'add']('tsd-page-toolbar--hide');
-                this.secondaryNav.classList[this.showToolbar ? 'add' : 'remove']('tsd-navigation--displace');
+                this.toolbar.classList.toggle('tsd-page-toolbar--hide');
+                this.secondaryNav.classList.toggle('tsd-navigation--toolbar-hide');
             }
             this.lastY = this.scrollTop;
         }
