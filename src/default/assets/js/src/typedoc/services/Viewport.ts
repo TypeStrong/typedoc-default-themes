@@ -39,7 +39,7 @@ namespace typedoc
         showToolbar:boolean = true;
 
         /**
-         * The toolbar (contains the search input).
+         * The sticky side nav that contains members of the current page.
          */
         secondaryNav:HTMLElement;
 
