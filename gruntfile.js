@@ -1,14 +1,21 @@
+const sass = require('node-sass');
+
 module.exports = function(grunt)
 {
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
         ts: {
             themeDefault: {
-                tsconfig: './tsconfig.json'
+                tsconfig: './tsconfig.json',
+                options: {
+                    // Required because of https://github.com/TypeStrong/grunt-ts/issues/432
+                    // Wouldn't be needed if lunr fixed https://github.com/olivernn/lunr.js/issues/324
+                    additionalFlags: '--alwaysStrict false'
+                }
             },
             themeDefaultHelpers: {
                 tsconfig: 'src/default/helpers/tsconfig.json'
-            },
+            }
         },
         uglify: {
             themeDefault: {
@@ -55,6 +62,7 @@ module.exports = function(grunt)
         },
         sass: {
             options: {
+                implementation: sass,
                 style: 'compact',
                 unixNewlines: true
             },

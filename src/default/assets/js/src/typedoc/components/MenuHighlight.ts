@@ -1,3 +1,8 @@
+/// <reference types='backbone' />
+/// <reference types='underscore' />
+/// <reference path='../Application.ts' />
+/// <reference path='../services/Viewport.ts' />
+
 namespace typedoc
 {
     /**
@@ -8,17 +13,17 @@ namespace typedoc
         /**
          * jQuery instance of the anchor tag.
          */
-        $anchor?:JQuery;
+        $anchor?: JQuery;
 
         /**
          * jQuery instance of the link in the navigation representing this anchor.
          */
-        $link?:JQuery;
+        $link?: JQuery<Node>;
 
         /**
          * The vertical offset of the anchor on the page.
          */
-        position:number;
+        position: number;
     }
 
 

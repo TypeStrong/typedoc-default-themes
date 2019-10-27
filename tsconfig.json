@@ -5,6 +5,15 @@
     "src/default/assets/js/src/~bootstrap.ts"
   ],
   "compilerOptions": {
-    "outFile": "./src/default/assets/js/main.js"
+    "target": "es5",
+    "module": "amd",
+    "declaration": false,
+    "skipLibCheck": true,
+    "sourceMap": false,
+    "allowJs": true,
+    "outFile": "./src/default/assets/js/main.js",
+    "strict": true,
+    "alwaysStrict": false,
+    "noImplicitUseStrict": true
   }
 }

@@ -1,3 +1,6 @@
+/// <reference types='underscore' />
+/// <reference path='../Application.ts' />
+
 namespace typedoc
 {
     /**
@@ -11,6 +14,11 @@ namespace typedoc
         scrollTop:number = 0;
 
         /**
+         * The previous scrollTop.
+         */
+        lastY:number = 0;
+
+        /**
          * The width of the window.
          */
         width:number = 0;
@@ -20,14 +28,33 @@ namespace typedoc
          */
         height:number = 0;
 
+        /**
+         * The toolbar (contains the search input).
+         */
+        toolbar:HTMLDivElement;
+
+        /**
+         * Boolean indicating whether the toolbar is shown.
+         */
+        showToolbar:boolean = true;
+
+        /**
+         * The sticky side nav that contains members of the current page.
+         */
+        secondaryNav:HTMLElement;
+
 
         /**
          * Create new Viewport instance.
          */
         constructor() {
             super();
-            $window.on('scroll', <any>_(() => this.onScroll()).throttle(10));
-            $window.on('resize', <any>_(() => this.onResize()).throttle(10));
+
+            this.toolbar = <HTMLDivElement>document.querySelector('.tsd-page-toolbar');
+            this.secondaryNav = <HTMLElement>document.querySelector('.tsd-navigation.secondary');
+
+            $window.on('scroll', _.throttle(() => this.onScroll(), 10))
+            $window.on('resize', _.throttle(() => this.onResize(), 10));
 
             this.onResize();
             this.onScroll();
@@ -46,8 +73,8 @@ namespace typedoc
          * Triggered when the size of the window has changed.
          */
         onResize() {
-            this.width  = $window.width();
-            this.height = $window.height();
+            this.width = $window.width() || 0;
+            this.height = $window.height() || 0;
             this.trigger('resize', this.width, this.height);
         }
 
@@ -56,8 +83,23 @@ namespace typedoc
          * Triggered when the user scrolled the viewport.
          */
         onScroll() {
-            this.scrollTop = $window.scrollTop();
+            this.scrollTop = $window.scrollTop() || 0;
             this.trigger('scroll', this.scrollTop);
+            this.hideShowToolbar();
+        }
+
+
+        /**
+         * Handle hiding/showing of the toolbar.
+         */
+        hideShowToolbar() {
+            const isShown = this.showToolbar;
+            this.showToolbar = this.lastY >= this.scrollTop || this.scrollTop === 0;
+            if (isShown !== this.showToolbar) {
+                this.toolbar.classList.toggle('tsd-page-toolbar--hide');
+                this.secondaryNav.classList.toggle('tsd-navigation--toolbar-hide');
+            }
+            this.lastY = this.scrollTop;
         }
     }
 

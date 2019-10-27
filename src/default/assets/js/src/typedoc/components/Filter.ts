@@ -1,6 +1,11 @@
+/// <reference types='jquery' />
+/// <reference types='backbone' />
+/// <reference path='../Application.ts' />
+/// <reference path='../utils/pointer.ts' />
+
 namespace typedoc
 {
-    class FilterItem<T>
+    abstract class FilterItem<T>
     {
         protected key:string;
 
@@ -25,17 +30,11 @@ namespace typedoc
         protected initialize() {}
 
 
-        protected handleValueChange(oldValue:T, newValue:T) {}
+        protected abstract handleValueChange(oldValue:T, newValue:T): void;
 
+        protected abstract fromLocalStorage(value: string): T;
 
-        protected fromLocalStorage(value:string):T {
-            return <any>value;
-        }
-
-
-        protected toLocalStorage(value:T):string {
-            return <any>value;
-        }
+        protected abstract toLocalStorage(value: T): string;
 
 
         protected setValue(value:T) {
@@ -93,12 +92,12 @@ namespace typedoc
                 this.$select.addClass('active');
             }).on('mouseleave', () => {
                 this.$select.removeClass('active');
-            }).on(pointerUp, 'li', (e:JQueryMouseEventObject) => {
+            }).on(pointerUp, 'li', (e) => {
                 this.$select.removeClass('active');
-                this.setValue($(e.target).attr('data-value'));
+                this.setValue(($(e.target).attr('data-value') || '').toString());
             });
 
-            $document.on(pointerDown, (e:JQueryMouseEventObject) => {
+            $document.on(pointerDown, (e) => {
                 var $path = $(e.target).parents().addBack();
                 if ($path.is(this.$select)) return;
 
@@ -115,11 +114,19 @@ namespace typedoc
             $html.removeClass('toggle-' + oldValue);
             $html.addClass('toggle-' + newValue);
         }
+
+        protected fromLocalStorage(value: string): string {
+            return value;
+        }
+
+        protected toLocalStorage(value: string): string {
+            return value;
+        }
     }
 
 
     class Filter extends Backbone.View<any>
-    { 
+    {
         private optionVisibility:FilterItemSelect;
 
         private optionInherited:FilterItemCheckbox;

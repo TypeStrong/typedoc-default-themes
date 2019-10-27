@@ -1,3 +1,7 @@
+/// <reference types='backbone' />
+/// <reference types='underscore' />
+/// <reference types='jquery' />
+
 declare namespace typedoc
 {
     export interface Events extends Backbone.Events {
@@ -96,11 +100,8 @@ namespace typedoc
      * Copy Backbone.Events to TypeScript class.
      */
     if (typeof Backbone != 'undefined') {
-        typedoc.Events = <any>(function() {
-            var res = function() {};
-            _.extend(res.prototype, Backbone.Events);
-            return res;
-        })();
+        typedoc.Events = function () {} as any;
+        _.extend(typedoc.Events.prototype, Backbone.Events);
     }
 
 
