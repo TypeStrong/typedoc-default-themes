@@ -110,11 +110,16 @@
 // </nav>
 //
 .tsd-navigation.secondary
-    max-height: calc(100vh - 1rem)
+    max-height: calc(100vh - 1rem - #{$TOOLBAR_HEIGHT})
     overflow: auto
     position: -webkit-sticky
     position: sticky
-    top: .5rem
+    top: calc(.5rem + #{$TOOLBAR_HEIGHT})
+    transition: .3s
+
+    &.tsd-navigation--toolbar-hide
+        max-height: calc(100vh - 1rem)
+        top: .5rem
 
     ul
         +INDENTS(6, 25, 20)
