@@ -8,7 +8,7 @@
         {{> member.signatures}}
     {{else}}{{#if hasGetterOrSetter}}
         {{> member.getterSetter}}
-    {{else}}{{#if tryGetTargetReflectionDeep}}
+    {{else}}{{#if isReference}}
         {{> member.reference}}
     {{else}}
         {{> member.declaration}}
