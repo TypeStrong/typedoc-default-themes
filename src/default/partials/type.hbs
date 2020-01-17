@@ -86,6 +86,13 @@ if an inner type may result in invalid output without them. For example:
     {{/if}}
 {{/inline}}
 
+{{#*inline 'query'}}
+    <span class="tsd-signature-symbol">typeof </span>
+    {{#with queryType}}
+        {{> type}}
+    {{/with}}
+{{/inline}}
+
 {{#*inline 'reference'}}
     {{#if reflection}}
         <a href="{{relativeURL reflection.url}}" class="tsd-signature-type">
@@ -126,7 +133,7 @@ if an inner type may result in invalid output without them. For example:
             {{/with}}
         {{/each}}
         <span class="tsd-signature-symbol"> }</span>
-    {{else}}
+    {{else if declaration.signatures}}
         {{#if (lookup declaration.signatures 1) }} {{! more than one signature}}
             <span class="tsd-signature-symbol">{ </span>
             {{#each declaration.signatures}}
@@ -147,6 +154,8 @@ if an inner type may result in invalid output without them. For example:
                 <span class="tsd-signature-symbol">)</span>
             {{/if}}
         {{/if}}
+    {{else}}
+        <span class="tsd-signature-symbol">{}</span>
     {{/if}}
 {{/inline}}
 
