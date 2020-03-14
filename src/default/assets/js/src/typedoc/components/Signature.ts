@@ -116,7 +116,7 @@ namespace typedoc
                 var from = this.groups[this.index];
 
                 // We know $container exists because index > -1
-                animateHeight(this.$container!, () => {
+                animateHeight(this.$container!.get(0), () => {
                     from.removeClass('current').addClass('fade-out');
                     to.addClass('current fade-in');
                     viewport.triggerResize();

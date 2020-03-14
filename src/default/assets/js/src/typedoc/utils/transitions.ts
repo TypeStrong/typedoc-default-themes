@@ -20,33 +20,38 @@ namespace typedoc {
     });
 
 
-    export function noTransition($el: JQuery, callback: () => void) {
-        $el.addClass('no-transition');
+    export function noTransition(el: HTMLElement, callback: () => void) {
+        el.classList.add('no-transition');
         callback();
-        $el.offset();
-        $el.removeClass('no-transition');
+        el.getBoundingClientRect();
+        el.classList.remove('no-transition');
     }
 
 
-    export function animateHeight($el: JQuery, callback:Function, success?:Function) {
-        let from = $el.height() || 0;
+    export function animateHeight(el: HTMLElement, callback:Function, success?:Function) {
+        let from = parseFloat(getComputedStyle(el).height) || 0;
         let to = from;
-        noTransition($el, function () {
+        noTransition(el, () => {
             callback();
 
-            $el.css('height', '');
-            to = $el.height() || 0;
-            if (from != to && transition) $el.css('height', from);
+            el.style.height = '';
+            to = parseFloat(getComputedStyle(el).height) || 0;
+            if (from != to && transition) {
+                el.style.height = from + 'px';
+            }
         });
 
         if (from != to && transition) {
-            $el.css('height', to);
-            $el.on(transition.endEvent, function () {
-                noTransition($el, function () {
-                    $el.off(transition!.endEvent).css('height', '');
+            el.style.height = to + 'px';
+            const onTransitionEnd = () => {
+                noTransition(el, () => {
+                    el.removeEventListener(transition!.endEvent, onTransitionEnd);
+                    el.style.height = '';
                     if (success) success();
                 });
-            });
+            };
+
+            el.addEventListener(transition.endEvent, onTransitionEnd);
         } else {
             if (success) success();
         }
