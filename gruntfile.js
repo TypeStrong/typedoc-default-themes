@@ -8,7 +8,7 @@ module.exports = function(grunt)
             themeDefault: {
                 tsconfig: './tsconfig.json',
                 options: {
-                    // Required because of https://github.com/TypeStrong/grunt-ts/issues/432 
+                    // Required because of https://github.com/TypeStrong/grunt-ts/issues/432
                     // Wouldn't be needed if lunr fixed https://github.com/olivernn/lunr.js/issues/324
                     additionalFlags: '--alwaysStrict false'
                 }
@@ -21,9 +21,6 @@ module.exports = function(grunt)
                 },
                 files: {
                     'bin/default/assets/js/main.js': [
-                        'node_modules/jquery/dist/jquery.min.js',
-                        'node_modules/underscore/underscore-min.js',
-                        'node_modules/backbone/backbone-min.js',
                         'node_modules/lunr/lunr.min.js',
                         'src/default/assets/js/main.js'
                     ]
