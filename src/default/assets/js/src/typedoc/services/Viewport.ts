@@ -53,8 +53,8 @@ namespace typedoc
             this.toolbar = <HTMLDivElement>document.querySelector('.tsd-page-toolbar');
             this.secondaryNav = <HTMLElement>document.querySelector('.tsd-navigation.secondary');
 
-            $window.on('scroll', _.throttle(() => this.onScroll(), 10))
-            $window.on('resize', _.throttle(() => this.onResize(), 10));
+            window.addEventListener('scroll', _.throttle(() => this.onScroll(), 10));
+            window.addEventListener('resize', _.throttle(() => this.onResize(), 10));
 
             this.onResize();
             this.onScroll();
@@ -73,8 +73,8 @@ namespace typedoc
          * Triggered when the size of the window has changed.
          */
         onResize() {
-            this.width = $window.width() || 0;
-            this.height = $window.height() || 0;
+            this.width = window.innerWidth || 0;
+            this.height = window.innerHeight || 0;
             this.trigger('resize', this.width, this.height);
         }
 
@@ -83,7 +83,7 @@ namespace typedoc
          * Triggered when the user scrolled the viewport.
          */
         onScroll() {
-            this.scrollTop = $window.scrollTop() || 0;
+            this.scrollTop = window.scrollY || window.pageYOffset || 0;
             this.trigger('scroll', this.scrollTop);
             this.hideShowToolbar();
         }
