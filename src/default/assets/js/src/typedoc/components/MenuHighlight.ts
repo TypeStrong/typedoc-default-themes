@@ -13,12 +13,12 @@ namespace typedoc
         /**
          * jQuery instance of the anchor tag.
          */
-        $anchor?: JQuery;
+        anchor?: HTMLElement;
 
         /**
          * jQuery instance of the link in the navigation representing this anchor.
          */
-        $link?: JQuery<Node>;
+        link?: HTMLElement;
 
         /**
          * The vertical offset of the anchor on the page.
@@ -73,18 +73,20 @@ namespace typedoc
                 base = base.substr(0, base.indexOf('#'));
             }
 
-            this.$el.find('a').each((_index, el: Element) => {
-                var href = (el as HTMLAnchorElement).href;
+            const el: HTMLElement = this.el;
+            el.querySelectorAll('a').forEach(el => {
+                var href = el.href;
                 if (href.indexOf('#') == -1) return;
                 if (href.substr(0, base.length) != base) return;
 
                 var hash = href.substr(href.indexOf('#') + 1);
-                var $anchor = $('a.tsd-anchor[name=' + hash + ']');
-                if ($anchor.length == 0) return;
+                var anchor = document.querySelector<HTMLElement>('a.tsd-anchor[name=' + hash + ']');
+                var link = el.parentNode;
+                if (!anchor || !link) return;
 
                 this.anchors.push({
-                    $link:    $(el.parentNode!),
-                    $anchor:  $anchor,
+                    link:    link as HTMLElement,
+                    anchor:  anchor,
                     position: 0
                 });
             });
@@ -100,7 +102,8 @@ namespace typedoc
             var anchor: IAnchorInfo;
             for (var index = 1, count = this.anchors.length; index < count; index++) {
                 anchor = this.anchors[index];
-                anchor.position = anchor.$anchor!.offset()!.top;
+                const rect = anchor.anchor!.getBoundingClientRect();
+                anchor.position = Math.max(0, rect.top + document.body.scrollTop);
             }
 
             this.anchors.sort((a, b) => {
@@ -131,9 +134,9 @@ namespace typedoc
             }
 
             if (this.index != index) {
-                if (this.index > 0) this.anchors[this.index].$link!.removeClass('focus');
+                if (this.index > 0) this.anchors[this.index].link!.classList.remove('focus');
                 this.index = index;
-                if (this.index > 0) this.anchors[this.index].$link!.addClass('focus');
+                if (this.index > 0) this.anchors[this.index].link!.classList.add('focus');
             }
         }
     }
