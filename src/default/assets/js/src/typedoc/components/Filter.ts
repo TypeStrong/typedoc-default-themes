@@ -129,7 +129,7 @@ namespace typedoc
 
             if (selected && label) {
                 selected.classList.add('selected');
-                label.innerText = selected.innerHTML;
+                label.textContent = selected.textContent;
             }
 
             document.documentElement.classList.remove('toggle-' + oldValue);
