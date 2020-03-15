@@ -2,7 +2,6 @@
 /// <reference types='jquery' />
 /// <reference types='backbone' />
 /// <reference path='../Application.ts' />
-/// <reference path='../utils/transitions.ts' />
 /// <reference path='../services/Viewport.ts' />
 
 namespace typedoc
@@ -115,12 +114,9 @@ namespace typedoc
             if (this.index > -1) {
                 var from = this.groups[this.index];
 
-                // We know $container exists because index > -1
-                animateHeight(this.$container!.get(0), () => {
-                    from.removeClass('current').addClass('fade-out');
-                    to.addClass('current fade-in');
-                    viewport.triggerResize();
-                });
+                from.removeClass('current').addClass('fade-out');
+                to.addClass('current fade-in');
+                viewport.triggerResize();
 
                 setTimeout(() => {
                     from.removeClass('fade-out');
