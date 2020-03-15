@@ -83,7 +83,7 @@ namespace typedoc
          * Triggered when the user scrolled the viewport.
          */
         onScroll() {
-            this.scrollTop = window.scrollY || window.pageYOffset || 0;
+            this.scrollTop = window.scrollY || 0;
             this.trigger('scroll', this.scrollTop);
             this.hideShowToolbar();
         }

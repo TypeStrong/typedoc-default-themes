@@ -13,12 +13,12 @@ namespace typedoc
         /**
          * jQuery instance of the anchor tag.
          */
-        anchor?: HTMLElement;
+        anchor: HTMLElement;
 
         /**
          * jQuery instance of the link in the navigation representing this anchor.
          */
-        link?: HTMLElement;
+        link: HTMLElement;
 
         /**
          * The vertical offset of the anchor on the page.
@@ -41,7 +41,7 @@ namespace typedoc
         /**
          * Index of the currently highlighted anchor.
          */
-        private index:number = 0;
+        private index:number = -1;
 
 
         /**
@@ -63,11 +63,6 @@ namespace typedoc
          * Find all anchors on the current page.
          */
         private createAnchors() {
-            this.index = 0;
-            this.anchors = [{
-                position: 0
-            }];
-
             var base = window.location.href;
             if (base.indexOf('#') != -1) {
                 base = base.substr(0, base.indexOf('#'));
@@ -100,10 +95,10 @@ namespace typedoc
          */
         private onResize() {
             var anchor: IAnchorInfo;
-            for (var index = 1, count = this.anchors.length; index < count; index++) {
+            for (var index = 0, count = this.anchors.length; index < count; index++) {
                 anchor = this.anchors[index];
-                const rect = anchor.anchor!.getBoundingClientRect();
-                anchor.position = Math.max(0, rect.top + document.body.scrollTop);
+                const rect = anchor.anchor.getBoundingClientRect();
+                anchor.position = rect.top + document.body.scrollTop;
             }
 
             this.anchors.sort((a, b) => {
@@ -125,7 +120,7 @@ namespace typedoc
             var count    = anchors.length - 1;
 
             scrollTop += 5;
-            while (index > 0 && anchors[index].position > scrollTop) {
+            while (index > -1 && anchors[index].position > scrollTop) {
                 index -= 1;
             }
 
@@ -134,9 +129,9 @@ namespace typedoc
             }
 
             if (this.index != index) {
-                if (this.index > 0) this.anchors[this.index].link!.classList.remove('focus');
+                if (this.index > -1) this.anchors[this.index].link.classList.remove('focus');
                 this.index = index;
-                if (this.index > 0) this.anchors[this.index].link!.classList.add('focus');
+                if (this.index > -1) this.anchors[this.index].link.classList.add('focus');
             }
         }
     }

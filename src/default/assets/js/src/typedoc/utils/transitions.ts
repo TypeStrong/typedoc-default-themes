@@ -45,13 +45,12 @@ namespace typedoc {
             el.style.height = to + 'px';
             const onTransitionEnd = () => {
                 noTransition(el, () => {
-                    el.removeEventListener(transition!.endEvent, onTransitionEnd);
                     el.style.height = '';
                     if (success) success();
                 });
             };
 
-            el.addEventListener(transition.endEvent, onTransitionEnd);
+            el.addEventListener(transition.endEvent, onTransitionEnd, { once: true });
         } else {
             if (success) success();
         }
