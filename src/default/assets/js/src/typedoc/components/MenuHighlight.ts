@@ -11,12 +11,12 @@ namespace typedoc
     interface IAnchorInfo
     {
         /**
-         * jQuery instance of the anchor tag.
+         * The anchor element.
          */
         anchor: HTMLElement;
 
         /**
-         * jQuery instance of the link in the navigation representing this anchor.
+         * The link element in the navigation representing this anchor.
          */
         link: HTMLElement;
 
