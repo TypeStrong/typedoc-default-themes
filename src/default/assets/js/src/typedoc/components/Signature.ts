@@ -1,5 +1,4 @@
 /// <reference types='underscore' />
-/// <reference types='jquery' />
 /// <reference types='backbone' />
 /// <reference path='../Application.ts' />
 /// <reference path='../services/Viewport.ts' />
@@ -14,23 +13,23 @@ namespace typedoc
         /**
          * The target signature.
          */
-        $signature:JQuery;
+        signature:HTMLElement;
 
         /**
          * The description for the signature.
          */
-        $description:JQuery;
+        description:HTMLElement;
 
 
         /**
          * Create a new SignatureGroup instance.
          *
-         * @param $signature    The target signature.
-         * @param $description  The description for the signature.
+         * @param signature    The target signature.
+         * @param description  The description for the signature.
          */
-        constructor($signature: JQuery, $description: JQuery) {
-            this.$signature   = $signature;
-            this.$description = $description;
+        constructor(signature: HTMLElement, description: HTMLElement) {
+            this.signature   = signature;
+            this.description = description;
         }
 
 
@@ -40,8 +39,8 @@ namespace typedoc
          * @param className  The class name to add.
          */
         addClass(className:string):SignatureGroup {
-            this.$signature.addClass(className);
-            this.$description.addClass(className);
+            this.signature.classList.add(className);
+            this.description.classList.add(className);
             return this;
         }
 
@@ -52,8 +51,8 @@ namespace typedoc
          * @param className  The class name to remove.
          */
         removeClass(className:string):SignatureGroup {
-            this.$signature.removeClass(className);
-            this.$description.removeClass(className);
+            this.signature.classList.remove(className);
+            this.description.classList.remove(className);
             return this;
         }
     }
@@ -72,7 +71,7 @@ namespace typedoc
         /**
          * The container holding all the descriptions.
          */
-        private $container?: JQuery;
+        private container?: HTMLElement;
 
         /**
          * The index of the currently displayed signature.
@@ -90,11 +89,14 @@ namespace typedoc
 
             this.createGroups();
 
-            if (this.$container) {
-                this.$el.addClass('active')
-                    .on('touchstart', '.tsd-signature', (event) => this.onClick(event))
-                    .on('click', '.tsd-signature', (event) => this.onClick(event));
-                this.$container.addClass('active');
+            if (this.container) {
+                const el: HTMLElement = this.el;
+                el.classList.add('active');
+                el.querySelectorAll('.tsd-signature').forEach(signature => {
+                    signature.addEventListener('touchstart', (event) => this.onClick(event));
+                    signature.addEventListener('click', (event) => this.onClick(event));
+                });
+                this.container.classList.add('active');
                 this.setIndex(0);
             }
         }
@@ -110,12 +112,13 @@ namespace typedoc
             if (index > this.groups.length - 1) index = this.groups.length - 1;
             if (this.index == index) return;
 
-            var to = this.groups[index];
+            const to = this.groups[index];
             if (this.index > -1) {
-                var from = this.groups[this.index];
+                const from = this.groups[this.index];
 
                 from.removeClass('current').addClass('fade-out');
-                to.addClass('current fade-in');
+                to.addClass('current');
+                to.addClass('fade-in');
                 viewport.triggerResize();
 
                 setTimeout(() => {
@@ -135,15 +138,16 @@ namespace typedoc
          * Find all signature/description groups.
          */
         private createGroups() {
-            var $signatures = this.$el.find('> .tsd-signature');
-            if ($signatures.length < 2) return;
+            const el: HTMLElement = this.el;
+            const signatures = el.querySelectorAll<HTMLElement>('.tsd-signature');
+            if (signatures.length < 2) return;
 
-            this.$container   = this.$el.siblings('.tsd-descriptions');
-            var $descriptions = this.$container.find('> .tsd-description');
+            this.container = el.nextElementSibling as HTMLElement;
+            const descriptions = this.container.querySelectorAll<HTMLElement>('.tsd-description');
 
             this.groups = [];
-            $signatures.each((index, el) => {
-                this.groups.push(new SignatureGroup($(el), $descriptions.eq(index)));
+            signatures.forEach((el, index) => {
+                this.groups.push(new SignatureGroup(el, descriptions[index]));
             });
         }
 
@@ -151,11 +155,11 @@ namespace typedoc
         /**
          * Triggered when the user clicks onto a signature header.
          *
-         * @param e  The related jQuery event object.
+         * @param e  The related event object.
          */
-        private onClick(e: JQuery.ClickEvent | JQuery.TouchEventBase) {
-            _(this.groups).forEach((group, index) => {
-                if (group.$signature.is(e.currentTarget)) {
+        private onClick(e: Event) {
+            this.groups.forEach((group, index) => {
+                if (group.signature === e.currentTarget) {
                     this.setIndex(index);
                 }
             });
