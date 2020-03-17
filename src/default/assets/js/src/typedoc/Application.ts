@@ -1,6 +1,5 @@
 /// <reference types='backbone' />
 /// <reference types='underscore' />
-/// <reference types='jquery' />
 
 declare namespace typedoc
 {
@@ -12,9 +11,6 @@ declare namespace typedoc
 
 namespace typedoc
 {
-    export var $html = $('html');
-
-
     /**
      * Service definition.
      */
@@ -48,22 +44,6 @@ namespace typedoc
      * List of all known components.
      */
     var components:IComponent[] = [];
-
-    /**
-     * jQuery instance of the document.
-     */
-    export var $document = $(document);
-
-    /**
-     * jQuery instance of the window.
-     */
-    export var $window = $(window);
-
-    /**
-     * jQuery instance of the window.
-     */
-    export var $body = $('body');
-
 
     /**
      * Register a new component.
@@ -117,7 +97,7 @@ namespace typedoc
             super();
 
             this.createServices();
-            this.createComponents($body);
+            this.createComponents(document.body);
         }
 
 
@@ -135,28 +115,19 @@ namespace typedoc
         /**
          * Create all components beneath the given jQuery element.
          */
-        public createComponents($context:JQuery, namespace:string = 'default'):Backbone.View<any>[] {
-            var result: any[] = [];
-            _(components).forEach((c) => {
+        public createComponents(context:HTMLElement, namespace:string = 'default') {
+            components.forEach((c) => {
                 if (c.namespace != namespace && c.namespace != '*') {
                     return;
                 }
 
-                $context.find(c.selector).each((m:number, el: Element) => {
-                    var $el = $(el), instance;
-                    if (instance = $el.data('component')) {
-                        if (_(result).indexOf(instance) == -1) {
-                            result.push(instance);
-                        }
-                    } else {
-                        instance = new c.constructor({el:el});
-                        $el.data('component', instance);
-                        result.push(instance);
+                context.querySelectorAll<HTMLElement>(c.selector).forEach((el) => {
+                    if (!el.dataset.hasInstance) {
+                        new c.constructor({el:el});
+                        el.dataset.hasInstance = String(true);
                     }
                 });
             });
-
-            return result;
         }
     }
 }
