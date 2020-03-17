@@ -1,6 +1,7 @@
 /// <reference types='lunr' />
 
-declare namespace typedoc.search
+
+namespace typedoc.search
 {
     interface IDocument {
         id:number;
@@ -16,12 +17,6 @@ declare namespace typedoc.search
         rows:IDocument[];
     }
 
-    var data:IData;
-}
-
-
-namespace typedoc.search
-{
     /**
      * Loading state definitions.
      */
@@ -37,17 +32,17 @@ namespace typedoc.search
         /**
          * The input field of the search widget.
          */
-        private $field: JQuery = $('#tsd-search-field');
+        private field: HTMLInputElement;
 
         /**
          * The result list wrapper.
          */
-        private $results: JQuery = $('.results');
+        private results: HTMLElement;
 
         /**
          * The base url that must be prepended to the indexed urls.
          */
-        private base: string = this.$el.attr('data-base') + '/';
+        private base: string;
 
         /**
          * The current query string.
@@ -70,6 +65,11 @@ namespace typedoc.search
         private preventPress: boolean = false;
 
         /**
+         * The search data
+         */
+        private data: IData | null = null;
+
+        /**
          * The lunr index used to search the documentation.
          */
         private index: lunr.Index | null = null;
@@ -83,13 +83,26 @@ namespace typedoc.search
         constructor(options: Backbone.ViewOptions<any>) {
             super(options);
 
+            const field = document.querySelector<HTMLInputElement>('#tsd-search-field');
+            const results = document.querySelector<HTMLElement>('.results');
+
+            if (!field || !results) {
+                throw new Error('The input field or the result list wrapper are not found');
+            }
+
+            this.field = field;
+            this.results = results;
+
+            const el: HTMLElement = this.el;
+            this.base = el.dataset.base + '/';
+
             this.bindEvents();
         }
 
         /**
          * Instantiate the lunr index.
          */
-        private createIndex() {
+        private createIndex(data: IData) {
             var builder = new lunr.Builder();
             builder.pipeline.add(
                 lunr.trimmer
@@ -130,16 +143,33 @@ namespace typedoc.search
                 }
             }, 500);
 
-            if (typeof data != 'undefined') {
-                this.createIndex();
+            if (this.data) {
+                this.createIndex(this.data);
             } else {
-                $.get(this.$el.attr('data-index'))
-                    .done((source: string) => {
-                        eval(source);
-                        this.createIndex();
-                    }).fail(() => {
+                const el: HTMLElement = this.el;
+                const url = el.dataset.index;
+                if (!url) {
                     this.setLoadingState(SearchLoadingState.Failure);
-                });
+                    return;
+                }
+
+                fetch(url)
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error('The source is not found');
+                        }
+
+                        return response.text();
+                    })
+                    .then(source => {
+                        this.data = eval(source);
+                        if (this.data) {
+                            this.createIndex(this.data);
+                        }
+                    })
+                    .catch(() => {
+                        this.setLoadingState(SearchLoadingState.Failure);
+                    });
             }
         }
 
@@ -148,8 +178,12 @@ namespace typedoc.search
          * Update the visible state of the search control.
          */
         private updateResults() {
-            this.$results.empty();
-            if (this.loadingState != SearchLoadingState.Ready || !this.query || !this.index) return;
+            // Don't clear results, if loading state is not ready,
+            // because loading or error message can be removed.
+            if (this.loadingState != SearchLoadingState.Ready) return;
+
+            this.results.textContent = '';
+            if (!this.query || !this.index || !this.data) return;
 
             // Perform a wildcard search
             var res = this.index.search(`*${this.query}*`);
@@ -160,7 +194,7 @@ namespace typedoc.search
             }
 
             for (var i = 0, c = Math.min(10, res.length); i < c; i++) {
-                var row = data.rows[Number(res[i].ref)];
+                var row = this.data.rows[Number(res[i].ref)];
 
                 // Bold the matched part of the query in the search results
                 var name = row.name.replace(new RegExp(this.query, 'i'), (match: string) => `<b>${match}</b>`);
@@ -168,7 +202,12 @@ namespace typedoc.search
                 parent = parent.replace(new RegExp(this.query, 'i'), (match: string) => `<b>${match}</b>`);
 
                 if (parent) name = '<span class="parent">' + parent + '.</span>' + name;
-                this.$results.append('<li class="' + row.classes + '"><a href="' + this.base + row.url + '" class="tsd-kind-icon">' + name + '</li>');
+                const item = document.createElement('li');
+                item.classList.value = row.classes;
+                item.innerHTML = `
+                    <a href="${this.base + row.url}" class="tsd-kind-icon">${name}'</a>
+                `;
+                this.results.appendChild(item);
             }
         }
 
@@ -179,13 +218,12 @@ namespace typedoc.search
         private setLoadingState(value: SearchLoadingState) {
             if (this.loadingState == value) return;
 
-            this.$el.removeClass(SearchLoadingState[this.loadingState].toLowerCase());
+            const el: HTMLElement = this.el;
+            el.classList.remove(SearchLoadingState[this.loadingState].toLowerCase());
             this.loadingState = value;
-            this.$el.addClass(SearchLoadingState[this.loadingState].toLowerCase());
+            el.classList.add(SearchLoadingState[this.loadingState].toLowerCase());
 
-            if (value == SearchLoadingState.Ready) {
-                this.updateResults();
-            }
+            this.updateResults();
         }
 
 
@@ -195,13 +233,14 @@ namespace typedoc.search
         private setHasFocus(value: boolean) {
             if (this.hasFocus == value) return;
             this.hasFocus = value;
-            this.$el.toggleClass('has-focus');
+            const el: HTMLElement = this.el;
+            el.classList.toggle('has-focus');
 
             if (!value) {
-                this.$field.val(this.query);
+                this.field.value = this.query;
             } else {
                 this.setQuery('');
-                this.$field.val('');
+                this.field.value = '';
             }
         }
 
@@ -210,7 +249,7 @@ namespace typedoc.search
          * Set the query string and update the results.
          */
         private setQuery(value: string) {
-            this.query = $.trim(value);
+            this.query = value.trim();
             this.updateResults();
         }
 
@@ -219,14 +258,17 @@ namespace typedoc.search
          * Move the highlight within the result set.
          */
         private setCurrentResult(dir: number) {
-            var $current = this.$results.find('.current');
-            if ($current.length == 0) {
-                this.$results.find(dir == 1 ? 'li:first-child' : 'li:last-child').addClass('current');
+            var current = this.results.querySelector('.current');
+            if (!current) {
+                current = this.results.querySelector(dir == 1 ? 'li:first-child' : 'li:last-child');
+                if (current) {
+                    current.classList.add('current')
+                }
             } else {
-                var $rel = dir == 1 ? $current.next('li') : $current.prev('li');
-                if ($rel.length > 0) {
-                    $current.removeClass('current');
-                    $rel.addClass('current');
+                var rel = dir == 1 ? current.nextElementSibling : current.previousElementSibling;
+                if (rel) {
+                    current.classList.remove('current');
+                    rel.classList.add('current');
                 }
             }
         }
@@ -236,15 +278,18 @@ namespace typedoc.search
          * Navigate to the highlighted result.
          */
         private gotoCurrentResult() {
-            var $current = this.$results.find('.current');
+            var current = this.results.querySelector('.current');
 
-            if ($current.length == 0) {
-                $current = this.$results.find('li:first-child');
+            if (!current) {
+                current = this.results.querySelector('li:first-child');
             }
 
-            if ($current.length > 0) {
-                window.location.href = $current.find('a').prop('href');
-                this.$field.blur();
+            if (current) {
+                const link = current.querySelector('a');
+                if (link) {
+                    window.location.href = link.href;
+                }
+                this.field.blur();
             }
         }
 
@@ -256,23 +301,23 @@ namespace typedoc.search
              * Intercept mousedown and mouseup events so we can correctly
              * handle clicking on search results.
              */
-            this.$results
-                .on('mousedown', () => {
-                    this.resultClicked = true;
-                })
-                .on('mouseup', () => {
-                    this.resultClicked = false;
-                    this.setHasFocus(false);
-                });
+            this.results.addEventListener('mousedown', () => {
+                this.resultClicked = true;
+            });
+            this.results.addEventListener('mouseup', () => {
+                this.resultClicked = false;
+                this.setHasFocus(false);
+            });
 
 
             /**
              * Bind all required events on the input field.
              */
-            this.$field.on('focusin', () => {
+            this.field.addEventListener('focusin', () => {
                 this.setHasFocus(true);
                 this.loadIndex();
-            }).on('focusout', () => {
+            });
+            this.field.addEventListener('focusout', () => {
                 // If the user just clicked on a search result, then
                 // don't lose the focus straight away, as this prevents
                 // them from clicking the result and following the link
@@ -282,9 +327,11 @@ namespace typedoc.search
                 }
 
                 setTimeout(() => this.setHasFocus(false), 100);
-            }).on('input', () => {
-                this.setQuery($.trim((this.$field.val() || '').toString()));
-            }).on('keydown', (e: JQueryKeyEventObject) => {
+            });
+            this.field.addEventListener('input', () => {
+                this.setQuery(this.field.value);
+            });
+            this.field.addEventListener('keydown', (e) => {
                 if (e.keyCode == 13 || e.keyCode == 27 || e.keyCode == 38 || e.keyCode == 40) {
                     this.preventPress = true;
                     e.preventDefault();
@@ -292,7 +339,7 @@ namespace typedoc.search
                     if (e.keyCode == 13) {
                         this.gotoCurrentResult();
                     } else if (e.keyCode == 27) {
-                        this.$field.blur();
+                        this.field.blur();
                     } else if (e.keyCode == 38) {
                         this.setCurrentResult(-1);
                     } else if (e.keyCode == 40) {
@@ -301,7 +348,8 @@ namespace typedoc.search
                 } else {
                     this.preventPress = false;
                 }
-            }).on('keypress', (e) => {
+            });
+            this.field.addEventListener('keypress', (e) => {
                 if (this.preventPress) e.preventDefault();
             });
 
@@ -309,10 +357,10 @@ namespace typedoc.search
             /**
              * Start searching by pressing a key on the body.
              */
-            $('body').on('keydown', (e: JQueryKeyEventObject) => {
+            document.body.addEventListener('keydown', e => {
                 if (e.altKey || e.ctrlKey || e.metaKey) return;
                 if (!this.hasFocus && e.keyCode > 47 && e.keyCode < 112) {
-                    this.$field.focus();
+                    this.field.focus();
                 }
             });
         }
