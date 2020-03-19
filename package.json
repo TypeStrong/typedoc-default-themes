@@ -1,7 +1,7 @@
 {
   "name": "typedoc-default-themes",
   "description": "Default themes for TypeDoc.",
-  "version": "0.7.2",
+  "version": "0.8.0",
   "homepage": "https://typedoc.org/",
   "main": "bin/plugin.js",
   "files": [
@@ -14,16 +14,12 @@
     "build": "npm run clean && npm run grunt",
     "prepublish": "npm run build"
   },
-  "author": {
-    "name": "Sebastian Lenz",
-    "url": "http://www.sebastian-lenz.de/"
-  },
   "repository": {
     "type": "git",
-    "url": "git://github.com/sebastian-lenz/typedoc-default-themes.git"
+    "url": "git://github.com/TypeStrong/typedoc-default-themes.git"
   },
   "bugs": {
-    "url": "https://github.com/sebastian-lenz/TypeDoc/issues"
+    "url": "https://github.com/TypeStrong/TypeDoc/issues"
   },
   "license": "Apache-2.0",
   "engines": {
@@ -44,9 +40,9 @@
     "grunt-sass": "^3.1.0",
     "grunt-string-replace": "^1.0.0",
     "grunt-ts": "^6.0.0-beta.22",
-    "node-sass": "^4.13.0",
-    "rimraf": "^2.7.1",
-    "typescript": "^3.7.3"
+    "sass": "^1.26.3",
+    "rimraf": "^3.0.2",
+    "typescript": "^3.8.3"
   },
   "keywords": [
     "typescript",
