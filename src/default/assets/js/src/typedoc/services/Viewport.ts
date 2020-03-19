@@ -1,6 +1,6 @@
-/// <reference types='underscore' />
 /// <reference path='../Application.ts' />
 /// <reference path='../EventTarget.ts' />
+/// <reference path='../utils/trottle.ts' />
 
 namespace typedoc
 {
@@ -54,8 +54,8 @@ namespace typedoc
             this.toolbar = <HTMLDivElement>document.querySelector('.tsd-page-toolbar');
             this.secondaryNav = <HTMLElement>document.querySelector('.tsd-navigation.secondary');
 
-            window.addEventListener('scroll', _.throttle(() => this.onScroll(), 10));
-            window.addEventListener('resize', _.throttle(() => this.onResize(), 10));
+            window.addEventListener('scroll', throttle(() => this.onScroll(), 10));
+            window.addEventListener('resize', throttle(() => this.onResize(), 10));
 
             this.onResize();
             this.onScroll();

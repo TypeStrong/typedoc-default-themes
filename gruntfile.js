@@ -21,7 +21,6 @@ module.exports = function(grunt)
                 },
                 files: {
                     'bin/default/assets/js/main.js': [
-                        'node_modules/underscore/underscore-min.js',
                         'node_modules/lunr/lunr.min.js',
                         'src/default/assets/js/main.js'
                     ]
