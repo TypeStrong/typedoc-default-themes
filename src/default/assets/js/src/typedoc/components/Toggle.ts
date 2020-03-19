@@ -15,10 +15,9 @@ namespace typedoc
         constructor(options: IComponentOptions) {
             super(options);
 
-            const el: HTMLElement = this.el;
-            this.className = el.dataset.toggle || '';
-            el.addEventListener(pointerUp, (e) => this.onPointerUp(e));
-            el.addEventListener('click', (e) => e.preventDefault());
+            this.className = this.el.dataset.toggle || '';
+            this.el.addEventListener(pointerUp, (e) => this.onPointerUp(e));
+            this.el.addEventListener('click', (e) => e.preventDefault());
             document.addEventListener(pointerDown, (e) => this.onDocumentPointerDown(e));
             document.addEventListener(pointerUp, (e) => this.onDocumentPointerUp(e));
         }
@@ -28,8 +27,7 @@ namespace typedoc
             this.active = value;
 
             document.documentElement.classList.toggle('has-' + this.className, value);
-            const el: HTMLElement = this.el;
-            el.classList.toggle('active', value);
+            this.el.classList.toggle('active', value);
 
             const transition = (this.active ? 'to-has-' : 'from-has-') + this.className;
             document.documentElement.classList.add(transition);

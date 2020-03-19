@@ -94,8 +94,7 @@ namespace typedoc.search
             this.field = field;
             this.results = results;
 
-            const el: HTMLElement = this.el;
-            this.base = el.dataset.base + '/';
+            this.base = this.el.dataset.base + '/';
 
             this.bindEvents();
         }
@@ -147,8 +146,7 @@ namespace typedoc.search
             if (this.data) {
                 this.createIndex(this.data);
             } else {
-                const el: HTMLElement = this.el;
-                const url = el.dataset.index;
+                const url = this.el.dataset.index;
                 if (!url) {
                     this.setLoadingState(SearchLoadingState.Failure);
                     return;
@@ -219,10 +217,9 @@ namespace typedoc.search
         private setLoadingState(value: SearchLoadingState) {
             if (this.loadingState == value) return;
 
-            const el: HTMLElement = this.el;
-            el.classList.remove(SearchLoadingState[this.loadingState].toLowerCase());
+            this.el.classList.remove(SearchLoadingState[this.loadingState].toLowerCase());
             this.loadingState = value;
-            el.classList.add(SearchLoadingState[this.loadingState].toLowerCase());
+            this.el.classList.add(SearchLoadingState[this.loadingState].toLowerCase());
 
             this.updateResults();
         }
@@ -234,8 +231,7 @@ namespace typedoc.search
         private setHasFocus(value: boolean) {
             if (this.hasFocus == value) return;
             this.hasFocus = value;
-            const el: HTMLElement = this.el;
-            el.classList.toggle('has-focus');
+            this.el.classList.toggle('has-focus');
 
             if (!value) {
                 this.field.value = this.query;

@@ -89,9 +89,8 @@ namespace typedoc
             this.createGroups();
 
             if (this.container) {
-                const el: HTMLElement = this.el;
-                el.classList.add('active');
-                el.querySelectorAll('.tsd-signature').forEach(signature => {
+                this.el.classList.add('active');
+                this.el.querySelectorAll('.tsd-signature').forEach(signature => {
                     signature.addEventListener('touchstart', (event) => this.onClick(event));
                     signature.addEventListener('click', (event) => this.onClick(event));
                 });
@@ -137,11 +136,10 @@ namespace typedoc
          * Find all signature/description groups.
          */
         private createGroups() {
-            const el: HTMLElement = this.el;
-            const signatures = el.querySelectorAll<HTMLElement>('.tsd-signature');
+            const signatures = this.el.querySelectorAll<HTMLElement>('.tsd-signature');
             if (signatures.length < 2) return;
 
-            this.container = el.nextElementSibling as HTMLElement;
+            this.container = this.el.nextElementSibling as HTMLElement;
             const descriptions = this.container.querySelectorAll<HTMLElement>('.tsd-description');
 
             this.groups = [];

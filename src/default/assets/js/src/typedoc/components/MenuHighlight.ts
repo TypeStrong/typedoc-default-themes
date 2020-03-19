@@ -67,8 +67,7 @@ namespace typedoc
                 base = base.substr(0, base.indexOf('#'));
             }
 
-            const el: HTMLElement = this.el;
-            el.querySelectorAll('a').forEach(el => {
+            this.el.querySelectorAll('a').forEach(el => {
                 var href = el.href;
                 if (href.indexOf('#') == -1) return;
                 if (href.substr(0, base.length) != base) return;
