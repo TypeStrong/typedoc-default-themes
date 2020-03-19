@@ -1,6 +1,5 @@
-/// <reference types='underscore' />
-/// <reference types='backbone' />
 /// <reference path='../Application.ts' />
+/// <reference path='../Component.ts' />
 /// <reference path='../services/Viewport.ts' />
 
 namespace typedoc
@@ -61,7 +60,7 @@ namespace typedoc
     /**
      * Controls the tab like behaviour of methods and functions with multiple signatures.
      */
-    class Signature extends Backbone.View<any>
+    class Signature extends Component
     {
         /**
          * List of found signature groups.
@@ -84,7 +83,7 @@ namespace typedoc
          *
          * @param options  Backbone view constructor options.
          */
-        constructor(options:Backbone.ViewOptions<any>) {
+        constructor(options:IComponentOptions) {
             super(options);
 
             this.createGroups();

@@ -1,13 +1,4 @@
-/// <reference types='backbone' />
 /// <reference types='underscore' />
-
-declare namespace typedoc
-{
-    export interface Events extends Backbone.Events {
-        new (): Events
-    }
-    export var Events: Backbone.Events & { new (): Backbone.Events };
-}
 
 namespace typedoc
 {
@@ -77,25 +68,14 @@ namespace typedoc
 
 
     /**
-     * Copy Backbone.Events to TypeScript class.
-     */
-    if (typeof Backbone != 'undefined') {
-        typedoc.Events = function () {} as any;
-        _.extend(typedoc.Events.prototype, Backbone.Events);
-    }
-
-
-    /**
      * TypeDoc application class.
      */
-    export class Application extends Events
+    export class Application
     {
         /**
          * Create a new Application instance.
          */
         constructor() {
-            super();
-
             this.createServices();
             this.createComponents(document.body);
         }
@@ -105,7 +85,7 @@ namespace typedoc
          * Create all services.
          */
         private createServices() {
-            _(services).forEach((c) => {
+            services.forEach((c) => {
                 c.instance = new c.constructor();
                 (typedoc as any)[c.name] = c.instance;
             });

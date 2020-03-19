@@ -1,6 +1,5 @@
-/// <reference types='backbone' />
-/// <reference types='underscore' />
 /// <reference path='../Application.ts' />
+/// <reference path='../Component.ts' />
 /// <reference path='../services/Viewport.ts' />
 
 namespace typedoc
@@ -31,7 +30,7 @@ namespace typedoc
      * Manages the sticky state of the navigation and moves the highlight
      * to the current navigation item.
      */
-    export class MenuHighlight extends Backbone.View<any>
+    export class MenuHighlight extends Component
     {
         /**
          * List of all discovered anchors.
@@ -49,11 +48,11 @@ namespace typedoc
          *
          * @param options  Backbone view constructor options.
          */
-        constructor(options:Backbone.ViewOptions<any>) {
+        constructor(options:IComponentOptions) {
             super(options);
 
-            this.listenTo(viewport, 'resize', this.onResize);
-            this.listenTo(viewport, 'scroll', this.onScroll);
+            viewport.addEventListener('resize', this.onResize);
+            viewport.addEventListener('scroll', this.onScroll);
 
             this.createAnchors();
         }
@@ -105,21 +104,26 @@ namespace typedoc
                 return a.position - b.position;
             });
 
-            this.onScroll(viewport.scrollTop);
+            const event = new CustomEvent('scroll', {
+                detail: {
+                    scrollTop: viewport.scrollTop,
+                }
+            });
+            this.onScroll(event);
         }
 
 
         /**
          * Triggered after the viewport was scrolled.
          *
-         * @param scrollTop  The current vertical scroll position.
+         * @param event  The custom event with the current vertical scroll position.
          */
-        private onScroll(scrollTop:number) {
-            var anchors  = this.anchors;
-            var index    = this.index;
-            var count    = anchors.length - 1;
+        private onScroll(event: CustomEvent<{ scrollTop:number }>) {
+            const scrollTop = event.detail.scrollTop + 5;
+            const anchors   = this.anchors;
+            const count     = anchors.length - 1;
+            let index       = this.index;
 
-            scrollTop += 5;
             while (index > -1 && anchors[index].position > scrollTop) {
                 index -= 1;
             }

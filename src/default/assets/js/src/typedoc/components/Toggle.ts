@@ -1,5 +1,5 @@
-/// <reference types='backbone' />
 /// <reference path='../utils/pointer.ts' />
+/// <reference path='../Component.ts' />
 /// <reference path='../Application.ts' />
 
 namespace typedoc
@@ -7,12 +7,12 @@ namespace typedoc
     /**
      * Enabled simple toggle buttons.
      */
-    class Toggle extends Backbone.View<any> {
+    class Toggle extends Component {
         active?: boolean;
 
         className: string;
 
-        constructor(options: Backbone.ViewOptions<any>) {
+        constructor(options: IComponentOptions) {
             super(options);
 
             const el: HTMLElement = this.el;

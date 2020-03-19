@@ -1,6 +1,6 @@
 namespace typedoc
 {
-    interface IComponentOptions {
+    export interface IComponentOptions {
         el: HTMLElement;
     }
 
@@ -8,7 +8,7 @@ namespace typedoc
      * TypeDoc component class.
      */
     export class Component {
-        private el: HTMLElement;
+        protected el: HTMLElement;
 
         constructor(options: IComponentOptions) {
             this.el = options.el;

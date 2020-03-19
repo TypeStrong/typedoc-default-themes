@@ -1,12 +1,13 @@
 /// <reference types='underscore' />
 /// <reference path='../Application.ts' />
+/// <reference path='../EventTarget.ts' />
 
 namespace typedoc
 {
     /**
      * A global service that monitors the window size and scroll position.
      */
-    export class Viewport extends Events
+    export class Viewport extends EventTarget
     {
         /**
          * The current scroll position.
@@ -65,7 +66,14 @@ namespace typedoc
          * Trigger a resize event.
          */
         triggerResize() {
-            this.trigger('resize', this.width, this.height);
+            const event = new CustomEvent('resize', {
+                detail: {
+                    width: this.width,
+                    height: this.height,
+                }
+            });
+
+            this.dispatchEvent(event);
         }
 
 
@@ -75,7 +83,15 @@ namespace typedoc
         onResize() {
             this.width = window.innerWidth || 0;
             this.height = window.innerHeight || 0;
-            this.trigger('resize', this.width, this.height);
+
+            const event = new CustomEvent('resize', {
+                detail: {
+                    width: this.width,
+                    height: this.height,
+                }
+            });
+
+            this.dispatchEvent(event);
         }
 
 
@@ -84,7 +100,14 @@ namespace typedoc
          */
         onScroll() {
             this.scrollTop = window.scrollY || 0;
-            this.trigger('scroll', this.scrollTop);
+
+            const event = new CustomEvent('scroll', {
+                detail: {
+                    scrollTop: this.scrollTop,
+                }
+            });
+
+            this.dispatchEvent(event);
             this.hideShowToolbar();
         }
 

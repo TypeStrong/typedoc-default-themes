@@ -1,3 +1,4 @@
+/// <reference path='../Component.ts' />
 /// <reference types='lunr' />
 
 
@@ -28,7 +29,7 @@ namespace typedoc.search
     /**
      * Provides an indexed search on generated documentation
      */
-    export class Search extends Backbone.View<any> {
+    export class Search extends Component {
         /**
          * The input field of the search widget.
          */
@@ -80,7 +81,7 @@ namespace typedoc.search
          */
         private resultClicked: boolean = false;
 
-        constructor(options: Backbone.ViewOptions<any>) {
+        constructor(options: IComponentOptions) {
             super(options);
 
             const field = document.querySelector<HTMLInputElement>('#tsd-search-field');

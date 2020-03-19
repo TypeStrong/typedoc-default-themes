@@ -1,5 +1,5 @@
-/// <reference types='backbone' />
 /// <reference path='../Application.ts' />
+/// <reference path='../Component.ts' />
 /// <reference path='../utils/pointer.ts' />
 
 namespace typedoc
@@ -146,7 +146,7 @@ namespace typedoc
     }
 
 
-    class Filter extends Backbone.View<any>
+    class Filter extends Component
     {
         private optionVisibility:FilterItemSelect;
 
@@ -157,7 +157,7 @@ namespace typedoc
         private optionExternals:FilterItemCheckbox;
 
 
-        constructor(options?:Backbone.ViewOptions<any>) {
+        constructor(options:IComponentOptions) {
             super(options);
 
             this.optionVisibility   = new FilterItemSelect('visibility',      'private');
