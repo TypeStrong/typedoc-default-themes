@@ -51,8 +51,8 @@ namespace typedoc
         constructor(options:IComponentOptions) {
             super(options);
 
-            viewport.addEventListener('resize', this.onResize);
-            viewport.addEventListener('scroll', this.onScroll);
+            viewport.addEventListener('resize', () => this.onResize());
+            viewport.addEventListener<{ scrollTop:number }>('scroll', e => this.onScroll(e));
 
             this.createAnchors();
         }
