@@ -1,5 +1,3 @@
-/// <reference types='underscore' />
-
 namespace typedoc
 {
     /**
