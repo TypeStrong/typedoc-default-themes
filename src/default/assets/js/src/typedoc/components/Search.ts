@@ -16,6 +16,7 @@ namespace typedoc.search
     interface IData {
         kinds:{[kind:number]:string};
         rows:IDocument[];
+        index:object;
     }
 
     /**
@@ -100,76 +101,40 @@ namespace typedoc.search
         }
 
         /**
-         * Instantiate the lunr index.
-         */
-        private createIndex(data: IData) {
-            var builder = new lunr.Builder();
-            builder.pipeline.add(
-                lunr.trimmer
-            );
-
-            builder.field('name', {boost: 10});
-            builder.field('parent');
-            builder.ref('id');
-
-            var rows = data.rows;
-            var pos = 0;
-            var length = rows.length;
-
-            const batch = () => {
-                var cycles = 0;
-                while (cycles++ < 100) {
-                    builder.add(rows[pos]);
-                    if (++pos == length) {
-                        this.index = builder.build();
-                        return this.setLoadingState(SearchLoadingState.Ready);
-                    }
-                }
-                setTimeout(batch, 10);
-            };
-
-            batch();
-        }
-
-
-        /**
          * Lazy load the search index and parse it.
          */
         private loadIndex() {
-            if (this.loadingState != SearchLoadingState.Idle) return;
+            if (this.loadingState != SearchLoadingState.Idle || this.data) return;
+
             setTimeout(() => {
                 if (this.loadingState == SearchLoadingState.Idle) {
                     this.setLoadingState(SearchLoadingState.Loading);
                 }
             }, 500);
 
-            if (this.data) {
-                this.createIndex(this.data);
-            } else {
-                const url = this.el.dataset.index;
-                if (!url) {
-                    this.setLoadingState(SearchLoadingState.Failure);
-                    return;
-                }
-
-                fetch(url)
-                    .then(response => {
-                        if (!response.ok) {
-                            throw new Error('The source is not found');
-                        }
-
-                        return response.text();
-                    })
-                    .then(source => {
-                        this.data = eval(source);
-                        if (this.data) {
-                            this.createIndex(this.data);
-                        }
-                    })
-                    .catch(() => {
-                        this.setLoadingState(SearchLoadingState.Failure);
-                    });
+            const url = this.el.dataset.index;
+            if (!url) {
+                this.setLoadingState(SearchLoadingState.Failure);
+                return;
             }
+
+            fetch(url)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('The source is not found');
+                    }
+
+                    return response.json();
+                })
+                .then((source: IData) => {
+                    this.data = source;
+                    this.index = lunr.Index.load(source.index);
+
+                    this.setLoadingState(SearchLoadingState.Ready);
+                })
+                .catch(() => {
+                    this.setLoadingState(SearchLoadingState.Failure);
+                });
         }
 
 
