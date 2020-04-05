@@ -121,7 +121,7 @@ namespace typedoc.search
             fetch(url)
                 .then(response => {
                     if (!response.ok) {
-                        throw new Error('The source is not found');
+                        throw new Error('The search index is missing');
                     }
 
                     return response.json();
@@ -132,7 +132,8 @@ namespace typedoc.search
 
                     this.setLoadingState(SearchLoadingState.Ready);
                 })
-                .catch(() => {
+                .catch((error) => {
+                    console.error(error);
                     this.setLoadingState(SearchLoadingState.Failure);
                 });
         }
