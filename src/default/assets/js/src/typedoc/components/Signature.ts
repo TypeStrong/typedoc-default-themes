@@ -12,12 +12,12 @@ namespace typedoc
         /**
          * The target signature.
          */
-        signature:HTMLElement;
+        signature: Element;
 
         /**
          * The description for the signature.
          */
-        description:HTMLElement;
+        description: Element;
 
 
         /**
@@ -26,7 +26,7 @@ namespace typedoc
          * @param signature    The target signature.
          * @param description  The description for the signature.
          */
-        constructor(signature: HTMLElement, description: HTMLElement) {
+        constructor(signature: Element, description: Element) {
             this.signature   = signature;
             this.description = description;
         }
@@ -90,7 +90,7 @@ namespace typedoc
 
             if (this.container) {
                 this.el.classList.add('active');
-                this.el.querySelectorAll('.tsd-signature').forEach(signature => {
+                Array.from(this.el.children).forEach(signature => {
                     signature.addEventListener('touchstart', (event) => this.onClick(event));
                     signature.addEventListener('click', (event) => this.onClick(event));
                 });
@@ -136,16 +136,16 @@ namespace typedoc
          * Find all signature/description groups.
          */
         private createGroups() {
-            const signatures = this.el.querySelectorAll<HTMLElement>('.tsd-signature');
+            const signatures = this.el.children;
             if (signatures.length < 2) return;
 
             this.container = this.el.nextElementSibling as HTMLElement;
-            const descriptions = this.container.querySelectorAll<HTMLElement>('.tsd-description');
+            const descriptions = this.container.children;
 
             this.groups = [];
-            signatures.forEach((el, index) => {
-                this.groups.push(new SignatureGroup(el, descriptions[index]));
-            });
+            for (let index = 0; index < signatures.length; index++) {
+                this.groups.push(new SignatureGroup(signatures[index], descriptions[index]));
+            }
         }
 
 

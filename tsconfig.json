@@ -5,6 +5,11 @@
   ],
   "compilerOptions": {
     "target": "es5",
+    "lib": [
+      "ES2016",
+      "DOM",
+      "DOM.Iterable"
+    ],
     "module": "amd",
     "declaration": false,
     "skipLibCheck": true,
