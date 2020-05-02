@@ -95,7 +95,7 @@ if an inner type may result in invalid output without them. For example:
 
 {{#*inline 'reference'}}
     {{#if reflection}}
-        <a href="{{relativeURL reflection.url}}" class="tsd-signature-type">
+        <a href="{{relativeURL reflection.url}}" class="tsd-signature-type" data-tsd-kind="{{reflection.kindString}}">
             {{reflection.name}}
         </a>
     {{else}}
