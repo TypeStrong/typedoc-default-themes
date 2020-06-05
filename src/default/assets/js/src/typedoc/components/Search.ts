@@ -170,7 +170,7 @@ namespace typedoc.search
                 const item = document.createElement('li');
                 item.classList.value = row.classes;
                 item.innerHTML = `
-                    <a href="${this.base + row.url}" class="tsd-kind-icon">${name}'</a>
+                    <a href="${this.base + row.url}" class="tsd-kind-icon">${name}</a>
                 `;
                 this.results.appendChild(item);
             }
