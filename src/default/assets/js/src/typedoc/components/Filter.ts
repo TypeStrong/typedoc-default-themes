@@ -65,6 +65,7 @@ namespace typedoc
 
 
         protected handleValueChange(oldValue:boolean, newValue:boolean) {
+            if (!this.checkbox) return;
             this.checkbox.checked = this.value;
             document.documentElement.classList.toggle('toggle-' + this.key, this.value != this.defaultValue);
         }
