@@ -21,4 +21,4 @@ if (Filter.isSupported()) {
 
 const app: Application = new Application();
 
-Object.defineProperty(window, 'app', {value: app, writable: false});
+Object.defineProperty(window, 'app', {value: app});
