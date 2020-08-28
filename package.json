@@ -9,9 +9,8 @@
     "LICENSE"
   ],
   "scripts": {
-    "clean": "rimraf bin",
-    "grunt": "grunt",
-    "build": "npm run clean && npm run grunt",
+    "webpack": "webpack -p",
+    "build": "npm run webpack",
     "prepublish": "npm run build"
   },
   "repository": {
@@ -30,18 +29,20 @@
   },
   "devDependencies": {
     "@types/lunr": "^2.3.2",
-    "grunt": "^1.0.4",
-    "grunt-autoprefixer": "^3.0.4",
-    "grunt-cli": "^1.2.0",
-    "grunt-contrib-copy": "^1.0.0",
-    "grunt-contrib-uglify": "^4.0.1",
-    "grunt-contrib-watch": "~1.1.0",
-    "grunt-sass": "^3.1.0",
-    "grunt-string-replace": "^1.0.0",
-    "grunt-ts": "^6.0.0-beta.22",
-    "rimraf": "^3.0.2",
+    "clean-webpack-plugin": "^3.0.0",
+    "copy-webpack-plugin": "^6.0.3",
+    "css-loader": "^4.2.0",
+    "file-loader": "^6.0.0",
+    "mini-css-extract-plugin": "^0.9.0",
+    "resolve-url-loader": "^3.1.1",
     "sass": "^1.26.3",
-    "typescript": "^3.8.3"
+    "sass-loader": "^9.0.2",
+    "ts-loader": "^8.0.2",
+    "typescript": "^3.8.3",
+    "url-loader": "^4.1.0",
+    "webpack": "^4.44.1",
+    "webpack-cli": "^3.3.12",
+    "webpack-merge": "^5.1.1"
   },
   "keywords": [
     "typescript",
