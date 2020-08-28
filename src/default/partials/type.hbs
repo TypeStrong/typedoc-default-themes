@@ -204,6 +204,18 @@ if an inner type may result in invalid output without them. For example:
     <span class="tsd-signature-type">{{name}}</span>
 {{/inline}}
 
+{{#*inline 'named-tuple-member'}}
+    {{name}}
+    {{#if isOptional}}
+        <span class="tsd-signature-symbol">?: </span>
+    {{else}}
+        <span class="tsd-signature-symbol">: </span>
+    {{/if}}
+    {{#with element}}
+        {{> type}}
+    {{/with}}
+{{/inline}}
+
 {{#if this}}
     {{> (lookup . 'type') }}
 {{else}}
