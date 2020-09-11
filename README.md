@@ -17,5 +17,5 @@ in the project where you want to use your local build run `npm install ../path/t
 ## License
 
 Copyright (c) 2015 [Sebastian Lenz](http://www.sebastian-lenz.de).<br>
-Copyright (c) 2016-2019 [TypeDoc Contributors](https://github.com/TypeStrong/typedoc/graphs/contributors).<br>
+Copyright (c) 2016-2020 [TypeDoc Contributors](https://github.com/TypeStrong/typedoc/graphs/contributors).<br>
 Licensed under the Apache License 2.0.
