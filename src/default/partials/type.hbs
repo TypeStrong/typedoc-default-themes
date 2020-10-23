@@ -73,6 +73,10 @@ if an inner type may result in invalid output without them. For example:
     <span class="tsd-signature-type">{{name}}</span>
 {{/inline}}
 
+{{#*inline 'literal'}}
+    <span class="tsd-signature-type">{{this}}</span>
+{{/inline}}
+
 {{#*inline 'predicate'}}
     {{#if asserts}}
         <span class="tsd-signature-symbol">asserts</span>
@@ -157,10 +161,6 @@ if an inner type may result in invalid output without them. For example:
     {{else}}
         <span class="tsd-signature-symbol">{}</span>
     {{/if}}
-{{/inline}}
-
-{{#*inline 'stringLiteral'}}
-    <span class="tsd-signature-type">"{{value}}"</span>
 {{/inline}}
 
 {{#*inline 'tuple'}}
