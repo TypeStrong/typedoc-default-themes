@@ -74,7 +74,7 @@ if an inner type may result in invalid output without them. For example:
 {{/inline}}
 
 {{#*inline 'literal'}}
-    <span class="tsd-signature-type">{{this}}</span>
+    <span class="tsd-signature-type">{{json value}}</span>
 {{/inline}}
 
 {{#*inline 'predicate'}}
@@ -98,13 +98,13 @@ if an inner type may result in invalid output without them. For example:
 {{/inline}}
 
 {{#*inline 'reference'}}
-    {{#if reflection}}
-        <a href="{{relativeURL reflection.url}}" class="tsd-signature-type">
-            {{reflection.name}}
+    {{#with getReflection }}
+        <a href="{{relativeURL url}}" class="tsd-signature-type">
+            {{name}}
         </a>
     {{else}}
         <span class="tsd-signature-type">{{name}}</span>
-    {{/if}}
+    {{/with}}
     {{#if typeArguments}}
         <span class="tsd-signature-symbol">&lt;</span>
         {{#each typeArguments}}
