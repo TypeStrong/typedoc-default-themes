@@ -2,7 +2,7 @@ name: Publish
 on:
   push:
     branches:
-      - master
+      - library2
 jobs:
   npm-publish:
     name: npm-publish
@@ -29,4 +29,4 @@ jobs:
           NPM_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
       - name: Publish
         if: steps.check.outputs.changed == 'true'
-        run: npm publish
+        run: npm publish --tag beta

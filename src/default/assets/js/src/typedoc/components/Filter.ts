@@ -147,10 +147,7 @@ export class Filter extends Component {
 
     private optionInherited: FilterItemCheckbox;
 
-    private optionOnlyExported: FilterItemCheckbox;
-
     private optionExternals: FilterItemCheckbox;
-
 
     constructor(options: IComponentOptions) {
         super(options);
@@ -158,9 +155,7 @@ export class Filter extends Component {
         this.optionVisibility = new FilterItemSelect('visibility', 'private');
         this.optionInherited = new FilterItemCheckbox('inherited', true);
         this.optionExternals = new FilterItemCheckbox('externals', true);
-        this.optionOnlyExported = new FilterItemCheckbox('only-exported', false);
     }
-
 
     static isSupported(): boolean {
         try {
