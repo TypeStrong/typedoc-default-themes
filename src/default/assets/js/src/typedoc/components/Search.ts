@@ -1,5 +1,5 @@
-import {Component, IComponentOptions} from "../Component";
-import {Index} from 'lunr';
+import { Component, IComponentOptions } from "../Component";
+import { Index } from "lunr";
 
 interface IDocument {
     id: number;
@@ -20,7 +20,10 @@ interface IData {
  * Loading state definitions.
  */
 enum SearchLoadingState {
-    Idle, Loading, Ready, Failure
+    Idle,
+    Loading,
+    Ready,
+    Failure,
 }
 
 /**
@@ -45,7 +48,7 @@ export class Search extends Component {
     /**
      * The current query string.
      */
-    private query: string = '';
+    private query: string = "";
 
     /**
      * The state the search is currently in.
@@ -81,17 +84,21 @@ export class Search extends Component {
     constructor(options: IComponentOptions) {
         super(options);
 
-        const field = document.querySelector<HTMLInputElement>('#tsd-search-field');
-        const results = document.querySelector<HTMLElement>('.results');
+        const field = document.querySelector<HTMLInputElement>(
+            "#tsd-search-field"
+        );
+        const results = document.querySelector<HTMLElement>(".results");
 
         if (!field || !results) {
-            throw new Error('The input field or the result list wrapper are not found');
+            throw new Error(
+                "The input field or the result list wrapper are not found"
+            );
         }
 
         this.field = field;
         this.results = results;
 
-        this.base = this.el.dataset.base + '/';
+        this.base = this.el.dataset.base + "/";
 
         this.bindEvents();
     }
@@ -115,9 +122,9 @@ export class Search extends Component {
         }
 
         fetch(url)
-            .then(response => {
+            .then((response) => {
                 if (!response.ok) {
-                    throw new Error('The search index is missing');
+                    throw new Error("The search index is missing");
                 }
 
                 return response.json();
@@ -134,7 +141,6 @@ export class Search extends Component {
             });
     }
 
-
     /**
      * Update the visible state of the search control.
      */
@@ -143,7 +149,7 @@ export class Search extends Component {
         // because loading or error message can be removed.
         if (this.loadingState != SearchLoadingState.Ready) return;
 
-        this.results.textContent = '';
+        this.results.textContent = "";
         if (!this.query || !this.index || !this.data) return;
 
         // Perform a wildcard search
@@ -158,20 +164,28 @@ export class Search extends Component {
             const row = this.data.rows[Number(res[i].ref)];
 
             // Bold the matched part of the query in the search results
-            let name = row.name.replace(new RegExp(this.query, 'i'), (match: string) => `<b>${match}</b>`);
-            let parent = row.parent || '';
-            parent = parent.replace(new RegExp(this.query, 'i'), (match: string) => `<b>${match}</b>`);
+            let name = row.name.replace(
+                new RegExp(this.query, "i"),
+                (match: string) => `<b>${match}</b>`
+            );
+            let parent = row.parent || "";
+            parent = parent.replace(
+                new RegExp(this.query, "i"),
+                (match: string) => `<b>${match}</b>`
+            );
 
-            if (parent) name = '<span class="parent">' + parent + '.</span>' + name;
-            const item = document.createElement('li');
+            if (parent)
+                name = '<span class="parent">' + parent + ".</span>" + name;
+            const item = document.createElement("li");
             item.classList.value = row.classes;
             item.innerHTML = `
-                    <a href="${this.base + row.url}" class="tsd-kind-icon">${name}</a>
+                    <a href="${
+                        this.base + row.url
+                    }" class="tsd-kind-icon">${name}</a>
                 `;
             this.results.appendChild(item);
         }
     }
-
 
     /**
      * Set the loading state and update the visual state accordingly.
@@ -179,13 +193,16 @@ export class Search extends Component {
     private setLoadingState(value: SearchLoadingState) {
         if (this.loadingState == value) return;
 
-        this.el.classList.remove(SearchLoadingState[this.loadingState].toLowerCase());
+        this.el.classList.remove(
+            SearchLoadingState[this.loadingState].toLowerCase()
+        );
         this.loadingState = value;
-        this.el.classList.add(SearchLoadingState[this.loadingState].toLowerCase());
+        this.el.classList.add(
+            SearchLoadingState[this.loadingState].toLowerCase()
+        );
 
         this.updateResults();
     }
-
 
     /**
      * Set the focus state and update the visual state accordingly.
@@ -193,16 +210,15 @@ export class Search extends Component {
     private setHasFocus(value: boolean) {
         if (this.hasFocus == value) return;
         this.hasFocus = value;
-        this.el.classList.toggle('has-focus');
+        this.el.classList.toggle("has-focus");
 
         if (!value) {
             this.field.value = this.query;
         } else {
-            this.setQuery('');
-            this.field.value = '';
+            this.setQuery("");
+            this.field.value = "";
         }
     }
-
 
     /**
      * Set the query string and update the results.
@@ -212,39 +228,42 @@ export class Search extends Component {
         this.updateResults();
     }
 
-
     /**
      * Move the highlight within the result set.
      */
     private setCurrentResult(dir: number) {
-        let current = this.results.querySelector('.current');
+        let current = this.results.querySelector(".current");
         if (!current) {
-            current = this.results.querySelector(dir == 1 ? 'li:first-child' : 'li:last-child');
+            current = this.results.querySelector(
+                dir == 1 ? "li:first-child" : "li:last-child"
+            );
             if (current) {
-                current.classList.add('current')
+                current.classList.add("current");
             }
         } else {
-            const rel = dir == 1 ? current.nextElementSibling : current.previousElementSibling;
+            const rel =
+                dir == 1
+                    ? current.nextElementSibling
+                    : current.previousElementSibling;
             if (rel) {
-                current.classList.remove('current');
-                rel.classList.add('current');
+                current.classList.remove("current");
+                rel.classList.add("current");
             }
         }
     }
-
 
     /**
      * Navigate to the highlighted result.
      */
     private gotoCurrentResult() {
-        let current = this.results.querySelector('.current');
+        let current = this.results.querySelector(".current");
 
         if (!current) {
-            current = this.results.querySelector('li:first-child');
+            current = this.results.querySelector("li:first-child");
         }
 
         if (current) {
-            const link = current.querySelector('a');
+            const link = current.querySelector("a");
             if (link) {
                 window.location.href = link.href;
             }
@@ -260,23 +279,22 @@ export class Search extends Component {
          * Intercept mousedown and mouseup events so we can correctly
          * handle clicking on search results.
          */
-        this.results.addEventListener('mousedown', () => {
+        this.results.addEventListener("mousedown", () => {
             this.resultClicked = true;
         });
-        this.results.addEventListener('mouseup', () => {
+        this.results.addEventListener("mouseup", () => {
             this.resultClicked = false;
             this.setHasFocus(false);
         });
 
-
         /**
          * Bind all required events on the input field.
          */
-        this.field.addEventListener('focusin', () => {
+        this.field.addEventListener("focusin", () => {
             this.setHasFocus(true);
             this.loadIndex();
         });
-        this.field.addEventListener('focusout', () => {
+        this.field.addEventListener("focusout", () => {
             // If the user just clicked on a search result, then
             // don't lose the focus straight away, as this prevents
             // them from clicking the result and following the link
@@ -287,11 +305,16 @@ export class Search extends Component {
 
             setTimeout(() => this.setHasFocus(false), 100);
         });
-        this.field.addEventListener('input', () => {
+        this.field.addEventListener("input", () => {
             this.setQuery(this.field.value);
         });
-        this.field.addEventListener('keydown', (e) => {
-            if (e.keyCode == 13 || e.keyCode == 27 || e.keyCode == 38 || e.keyCode == 40) {
+        this.field.addEventListener("keydown", (e) => {
+            if (
+                e.keyCode == 13 ||
+                e.keyCode == 27 ||
+                e.keyCode == 38 ||
+                e.keyCode == 40
+            ) {
                 this.preventPress = true;
                 e.preventDefault();
 
@@ -308,15 +331,14 @@ export class Search extends Component {
                 this.preventPress = false;
             }
         });
-        this.field.addEventListener('keypress', (e) => {
+        this.field.addEventListener("keypress", (e) => {
             if (this.preventPress) e.preventDefault();
         });
-
 
         /**
          * Start searching by pressing a key on the body.
          */
-        document.body.addEventListener('keydown', e => {
+        document.body.addEventListener("keydown", (e) => {
             if (e.altKey || e.ctrlKey || e.metaKey) return;
             if (!this.hasFocus && e.keyCode > 47 && e.keyCode < 112) {
                 this.field.focus();
@@ -324,4 +346,3 @@ export class Search extends Component {
         });
     }
 }
-

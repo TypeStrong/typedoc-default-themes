@@ -3,7 +3,6 @@
 This module contains the default themes of TypeDoc.
 Visit https://typedoc.org/ to learn more about TypeDoc.
 
-
 ## Contributing
 
 Contributions are welcome and appreciated. You can find TypeDoc on GitHub, feel free to start
@@ -12,7 +11,6 @@ an issue or create a pull requests:<br>
 
 To use a local build of this project, run the `npm pack` command in this directory. Then
 in the project where you want to use your local build run `npm install ../path/to/typedoc-default-themes-VERSION.tgz`
-
 
 ## License
 
