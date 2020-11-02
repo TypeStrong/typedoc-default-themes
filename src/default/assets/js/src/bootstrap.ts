@@ -1,13 +1,13 @@
 import { Application, registerComponent } from "./typedoc/Application";
-import { Search } from "./typedoc/components/Search";
 import { MenuHighlight } from "./typedoc/components/MenuHighlight";
+import { initSearch } from "./typedoc/components/Search";
 import { Signature } from "./typedoc/components/Signature";
 import { Toggle } from "./typedoc/components/Toggle";
 import { Filter } from "./typedoc/components/Filter";
 
 import "../../css/main.sass";
 
-registerComponent(Search, "#tsd-search");
+initSearch();
 
 registerComponent(MenuHighlight, ".menu-highlight");
 registerComponent(Signature, ".tsd-signatures");
