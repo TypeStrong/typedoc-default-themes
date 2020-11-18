@@ -1,5 +1,4 @@
 const path = require('path');
-const {CleanWebpackPlugin} = require('clean-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CopyPlugin = require('copy-webpack-plugin');
 const {merge} = require('webpack-merge');
@@ -28,7 +27,6 @@ const config = {
     },
 
     plugins: [
-        new CleanWebpackPlugin(),
         new MiniCssExtractPlugin({
             filename: 'default/assets/css/main.css',
         }),
