@@ -80,34 +80,34 @@ if an inner type may result in invalid output without them. For example:
 {{#*inline 'mapped'}}
     <span class="tsd-signature-symbol">{</span>
     {{#ifCond readonlyModifier '===' '+'}}
-        <span class="tsd-signature-symbol">readonly</span>
+        <span class="tsd-signature-symbol">readonly </span>
     {{else}}
         {{#ifCond readonlyModifier '===' '-'}}
-            <span class="tsd-signature-symbol">-readonly</span>
+            <span class="tsd-signature-symbol">-readonly </span>
         {{/ifCond}}
     {{/ifCond}}
 
-    <span class="tsd-signature-symbol">[</span>
+    <span class="tsd-signature-symbol">[ </span>
     <span class="tsd-signature-type">{{parameter}}</span>
-    <span class="tsd-signature-symbol">in</span>
+    <span class="tsd-signature-symbol"> in </span>
 
     {{#with parameterType}}
         {{>type}}
     {{/with}}
 
-    {{#if nameType}}
-        <span class="tsd-signature-symbol">as</span>
+    {{#with nameType}}
+        <span class="tsd-signature-symbol"> as </span>
         {{>type}}
     {{/with}}
 
     <span class="tsd-signature-symbol">]</span>
     {{#ifCond readonlyModifier '===' '+'}}
-        <span class="tsd-signature-symbol">?:</span>
+        <span class="tsd-signature-symbol">?: </span>
     {{else}}
         {{#ifCond readonlyModifier '===' '-'}}
-            <span class="tsd-signature-symbol">-?:</span>
+            <span class="tsd-signature-symbol">-?: </span>
         {{else}}
-            <span class="tsd-signature-symbol">:</span>
+            <span class="tsd-signature-symbol">: </span>
         {{/ifCond}}
     {{/ifCond}}
 
@@ -115,12 +115,12 @@ if an inner type may result in invalid output without them. For example:
         {{>type}}
     {{/with}}
 
-    <span class="tsd-signature-symbol">}</span>
+    <span class="tsd-signature-symbol"> }</span>
 {{/inline}}
 
 {{#*inline 'predicate'}}
     {{#if asserts}}
-        <span class="tsd-signature-symbol">asserts</span>
+        <span class="tsd-signature-symbol">asserts </span>
     {{/if}}
     <span class="tsd-signature-type">{{name}}</span>
     {{#if targetType}}
@@ -221,13 +221,13 @@ if an inner type may result in invalid output without them. For example:
         <span class="tsd-signature-type">{{head}}</span>
     {{/if}}
     {{#each tail}}
-        <span class="tsd-signature-type">${</span>
-        {{#with 0}}
+        <span class="tsd-signature-symbol">${</span>
+        {{#with this.[0]}}
             {{>type}}
         {{/with}}
-        <span class="tsd-signature-type">}</span>
-        {{#if 1}}
-            <span class="tsd-signature-type">{{1}}</span>
+        <span class="tsd-signature-symbol">}</span>
+        {{#if this.[1]}}
+            <span class="tsd-signature-type">{{this.[1]}}</span>
         {{/if}}
     {{/each}}
     <span class="tsd-signature-symbol">`</span>
