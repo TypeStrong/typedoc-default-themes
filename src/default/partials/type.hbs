@@ -95,6 +95,11 @@ if an inner type may result in invalid output without them. For example:
         {{>type}}
     {{/with}}
 
+    {{#if nameType}}
+        <span class="tsd-signature-symbol">as</span>
+        {{>type}}
+    {{/with}}
+
     <span class="tsd-signature-symbol">]</span>
     {{#ifCond readonlyModifier '===' '+'}}
         <span class="tsd-signature-symbol">?:</span>
@@ -208,6 +213,24 @@ if an inner type may result in invalid output without them. For example:
         {{> type}}
     {{/each}}
     <span class="tsd-signature-symbol">]</span>
+{{/inline}}
+
+{{#*inline 'template-literal'}}
+    <span class="tsd-signature-symbol">`</span>
+    {{#if head}}
+        <span class="tsd-signature-type">{{head}}</span>
+    {{/if}}
+    {{#each tail}}
+        <span class="tsd-signature-type">${</span>
+        {{#with 0}}
+            {{>type}}
+        {{/with}}
+        <span class="tsd-signature-type">}</span>
+        {{#if 1}}
+            <span class="tsd-signature-type">{{1}}</span>
+        {{/if}}
+    {{/each}}
+    <span class="tsd-signature-symbol">`</span>
 {{/inline}}
 
 {{#*inline 'typeOperator'}}
