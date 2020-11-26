@@ -1,4 +1,5 @@
 import {Component, IComponentOptions} from "../Component";
+import {debounce} from '../utils/debounce';
 import {Index} from 'lunr';
 
 interface IDocument {
@@ -27,6 +28,10 @@ enum SearchLoadingState {
  * Provides an indexed search on generated documentation
  */
 export class Search extends Component {
+    /**
+     * The threashold between searches
+     */
+    private static readonly debounceTimeout: number = 200;
     /**
      * The input field of the search widget.
      */
@@ -208,6 +213,9 @@ export class Search extends Component {
      * Set the query string and update the results.
      */
     private setQuery(value: string) {
+        if (this.query === value.trim()) {
+            return;
+        }
         this.query = value.trim();
         this.updateResults();
     }
@@ -287,9 +295,7 @@ export class Search extends Component {
 
             setTimeout(() => this.setHasFocus(false), 100);
         });
-        this.field.addEventListener('input', () => {
-            this.setQuery(this.field.value);
-        });
+        this.field.addEventListener('input', debounce(() => this.setQuery(this.field.value), Search.debounceTimeout));
         this.field.addEventListener('keydown', (e) => {
             if (e.keyCode == 13 || e.keyCode == 27 || e.keyCode == 38 || e.keyCode == 40) {
                 this.preventPress = true;
