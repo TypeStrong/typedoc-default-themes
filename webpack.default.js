@@ -8,8 +8,8 @@ const config = {
     name: "Default Theme",
 
     output: {
-        path: path.resolve(__dirname, "bin"),
-        filename: "default/assets/js/main.js",
+        path: path.resolve(__dirname, "bin", "default"),
+        filename: "assets/js/main.js",
     },
 
     module: {

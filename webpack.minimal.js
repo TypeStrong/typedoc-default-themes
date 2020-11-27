@@ -9,8 +9,8 @@ const config = {
     name: "Minimal Theme",
 
     output: {
-        path: path.resolve(__dirname, "bin"),
-        filename: "minimal/assets/js/main.js",
+        path: path.resolve(__dirname, "bin", "minimal"),
+        filename: "assets/js/main.js",
     },
 
     module: {
@@ -24,7 +24,7 @@ const config = {
 
     plugins: [
         new MiniCssExtractPlugin({
-            filename: "minimal/assets/css/main.css",
+            filename: "assets/css/main.css",
         }),
         new CopyPlugin({
             patterns: [
@@ -44,13 +44,13 @@ const config = {
         new InlineAssetsPlugin({
             patterns: [
                 {
-                    from: "minimal/assets/js/main.js",
-                    to: "minimal/layouts/default.hbs",
+                    from: "assets/js/main.js",
+                    to: "layouts/default.hbs",
                     pattern: "{{ JS }}",
                 },
                 {
-                    from: "minimal/assets/css/main.css",
-                    to: "minimal/layouts/default.hbs",
+                    from: "assets/css/main.css",
+                    to: "layouts/default.hbs",
                     pattern: "{{ CSS }}",
                 },
             ],
