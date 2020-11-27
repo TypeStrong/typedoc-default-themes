@@ -152,12 +152,7 @@ export class Search extends Component {
         if (!this.query || !this.index || !this.data) return;
 
         // Perform a wildcard search
-        let res = this.index.search(`*${this.query}*`);
-
-        // If still no results, try a fuzzy match search
-        if (res.length === 0) {
-            res = this.index.search(`*${this.query}~1*`);
-        }
+        const res = this.index.search(`*${this.query}*`);
 
         for (let i = 0, c = Math.min(10, res.length); i < c; i++) {
             const row = this.data.rows[Number(res[i].ref)];
