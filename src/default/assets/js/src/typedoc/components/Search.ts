@@ -1,3 +1,4 @@
+import { debounce } from "../utils/debounce";
 import { Index } from "lunr";
 
 interface IDocument {
@@ -75,9 +76,12 @@ function bindEvents(
     field: HTMLInputElement,
     state: SearchState
 ) {
-    field.addEventListener("input", () => {
-        updateResults(searchEl, results, field, state);
-    });
+    field.addEventListener(
+        "input",
+        debounce(() => {
+            updateResults(searchEl, results, field, state);
+        }, 200)
+    );
 
     let preventPress = false;
     field.addEventListener("keydown", (e) => {
@@ -138,11 +142,6 @@ function updateResults(
 
     // Perform a wildcard search
     let res = state.index.search(`*${searchText}*`);
-
-    // If still no results, try a fuzzy match search
-    if (res.length === 0) {
-        res = state.index.search(`*${searchText}~1*`);
-    }
 
     for (let i = 0, c = Math.min(10, res.length); i < c; i++) {
         const row = state.data.rows[Number(res[i].ref)];
