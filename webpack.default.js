@@ -18,7 +18,7 @@ const config = {
                 test: /\.png$/,
                 loader: "file-loader",
                 options: {
-                    outputPath: "default/assets/images",
+                    outputPath: "assets/images",
                     publicPath: "../images",
                     name: "[name].[ext]",
                 },
@@ -28,7 +28,7 @@ const config = {
 
     plugins: [
         new MiniCssExtractPlugin({
-            filename: "default/assets/css/main.css",
+            filename: "assets/css/main.css",
         }),
         new CopyPlugin({
             patterns: [
