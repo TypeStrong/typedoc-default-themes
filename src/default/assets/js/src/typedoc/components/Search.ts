@@ -99,6 +99,7 @@ export class Search extends Component {
         this.base = this.el.dataset.base + '/';
 
         this.bindEvents();
+        this.loadIndex();
     }
 
     /**
@@ -275,10 +276,7 @@ export class Search extends Component {
         /**
          * Bind all required events on the input field.
          */
-        this.field.addEventListener('focusin', () => {
-            this.setHasFocus(true);
-            this.loadIndex();
-        });
+        this.field.addEventListener('focusin', () => this.setHasFocus(true));
         this.field.addEventListener('focusout', () => {
             // If the user just clicked on a search result, then
             // don't lose the focus straight away, as this prevents
