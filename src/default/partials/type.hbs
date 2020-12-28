@@ -140,7 +140,7 @@ if an inner type may result in invalid output without them. For example:
 
 {{#*inline 'reference'}}
     {{#with getReflection }}
-        <a href="{{relativeURL url}}" class="tsd-signature-type">
+        <a href="{{relativeURL url}}" class="tsd-signature-type" data-tsd-kind="{{kindString}}">
             {{name}}
         </a>
     {{else}}
