@@ -118,6 +118,13 @@ if an inner type may result in invalid output without them. For example:
     <span class="tsd-signature-symbol"> }</span>
 {{/inline}}
 
+{{#*inline 'optional'}}
+    {{#with elementType}}
+        {{> type}}
+    {{/with}}
+    <span class="tsd-signature-symbol">?</span>
+{{/inline}}
+
 {{#*inline 'predicate'}}
     {{#if asserts}}
         <span class="tsd-signature-symbol">asserts </span>
