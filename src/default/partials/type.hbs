@@ -204,6 +204,13 @@ if an inner type may result in invalid output without them. For example:
     {{/if}}
 {{/inline}}
 
+{{#*inline 'rest'}}
+    <span class="tsd-signature-symbol">...</span>
+    {{#with elementType}}
+        {{> type}}
+    {{/with}}
+{{/inline}}
+
 {{#*inline 'tuple'}}
     <span class="tsd-signature-symbol">[</span>
     {{#each elements}}
