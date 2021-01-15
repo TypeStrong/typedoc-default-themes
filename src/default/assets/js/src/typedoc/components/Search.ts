@@ -57,10 +57,18 @@ export function initSearch() {
         );
     }
 
+    let resultClicked = false;
+    results.addEventListener("mousedown", () => (resultClicked = true));
+    results.addEventListener("mouseup", () => {
+        resultClicked = false;
+        field.blur();
+    });
+
     field.addEventListener("focus", () => searchEl.classList.add("has-focus"));
     field.addEventListener("blur", () => {
-        // Delay a bit so that mouse clicks don't get swallowed
-        setTimeout(() => searchEl.classList.remove("has-focus"), 100);
+        if (!resultClicked) {
+            searchEl.classList.remove("has-focus");
+        }
     });
 
     const state: SearchState = {
