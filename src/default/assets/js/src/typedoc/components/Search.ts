@@ -61,12 +61,13 @@ export function initSearch() {
     results.addEventListener("mousedown", () => (resultClicked = true));
     results.addEventListener("mouseup", () => {
         resultClicked = false;
-        field.blur();
+        searchEl.classList.remove("has-focus");
     });
 
     field.addEventListener("focus", () => searchEl.classList.add("has-focus"));
     field.addEventListener("blur", () => {
         if (!resultClicked) {
+            resultClicked = false;
             searchEl.classList.remove("has-focus");
         }
     });

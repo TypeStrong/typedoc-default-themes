@@ -9,8 +9,7 @@
     "LICENSE"
   ],
   "scripts": {
-    "webpack": "webpack",
-    "build": "npm run webpack",
+    "build": "webpack",
     "lint": "prettier --check .",
     "prepublishOnly": "npm run build"
   },
