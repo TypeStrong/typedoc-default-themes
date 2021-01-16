@@ -35,6 +35,7 @@ export function initSearch() {
     const searchScript = document.getElementById(
         "search-script"
     ) as HTMLScriptElement | null;
+    searchEl.classList.add("loading");
     if (searchScript) {
         searchScript.addEventListener("error", () => {
             searchEl.classList.remove("loading");
@@ -44,9 +45,10 @@ export function initSearch() {
             searchEl.classList.remove("loading");
             searchEl.classList.add("ready");
         });
+        if (window.searchData) {
+            searchEl.classList.remove("loading");
+        }
     }
-
-    searchEl.classList.add("loading");
 
     const field = document.querySelector<HTMLInputElement>("#tsd-search-field");
     const results = document.querySelector<HTMLElement>(".results");
