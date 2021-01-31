@@ -39,8 +39,8 @@
         </li>
     {{/if}}
     {{#each children}}
-        <li class="tsd-parameter">
-            {{#if signatures}}
+        {{#if signatures}}
+            <li class="tsd-parameter">
                 <h5>{{#compact}}
                     {{#if flags.isRest}}<span class="tsd-signature-symbol">...</span>{{/if}}
                     {{{wbr name}}}
@@ -52,7 +52,9 @@
                 {{/compact}}</h5>
 
                 {{> member.signatures}}
-            {{else}}
+            </li>
+        {{else}}{{#if type}} {{! standard type }}
+            <li class="tsd-parameter">
                 <h5>{{#compact}}
                     {{#each flags}}
                         <span class="tsd-flag ts-flag{{this}}">{{this}}</span>&nbsp;
@@ -65,41 +67,6 @@
                             :&nbsp;
                         </span>
                         {{>type}}
-                    {{else}}
-                        {{#if getSignature}}
-                            {{#if setSignature}}
-                                {{{wbr name}}}
-                                <span class="tsd-signature-symbol">:&nbsp;</span>
-                                {{#with getSignature.type}}
-                                    {{> type}}
-                                {{/with}}
-                            {{else}}
-                                <span class="tsd-signature-symbol">get&nbsp;</span>
-                                {{{wbr name}}}
-                                <span class="tsd-signature-symbol">():&nbsp;</span>
-                                {{#with getSignature.type}}
-                                    {{> type}}
-                                {{/with}}
-                            {{/if}}
-                        {{else}}
-                            {{#if setSignature}}
-                                <span class="tsd-signature-symbol">set&nbsp;</span>
-                                {{{wbr name}}}
-                                <span class="tsd-signature-symbol">(</span>
-                                {{#each setSignature.parameters}}
-                                    {{name}}
-                                    <span class="tsd-signature-symbol">: </span>
-                                    {{#with type}}
-                                        {{> type}}
-                                    {{else}}
-                                        <span class="tsd-signature-type">any</span>
-                                    {{/with}}
-                                {{/each}}
-                                <span class="tsd-signature-symbol">)</span>
-                            {{else}}
-                                <span class="tsd-signature-type">any</span>
-                            {{/if}}
-                        {{/if}}
                     {{/with}}
                 {{/compact}}</h5>
 
@@ -114,7 +81,52 @@
                         {{> parameter}}
                     {{/with}}
                 {{/if}}
-            {{/if}}
-        </li>
+            </li>
+        {{else}} {{! getter/setter }}
+            {{#with getSignature}} {{! getter }}
+                <li class="tsd-parameter">
+                    <h5>{{#compact}}
+                        {{#each flags}}
+                            <span class="tsd-flag ts-flag{{this}}">{{this}}</span>&nbsp;
+                        {{/each}}
+                        <span class="tsd-signature-symbol">get&nbsp;</span>
+                        {{{wbr ../name}}}
+                        <span class="tsd-signature-symbol">():&nbsp;</span>
+                        {{#with type}}
+                            {{> type}}
+                        {{/with}}
+                    {{/compact}}</h5>
+
+                    {{> comment }}
+                </li>
+            {{/with}}
+            {{#with setSignature}} {{! setter }}
+                <li class="tsd-parameter">
+                    <h5>{{#compact}}
+                        {{#each flags}}
+                            <span class="tsd-flag ts-flag{{this}}">{{this}}</span>&nbsp;
+                        {{/each}}
+                        <span class="tsd-signature-symbol">set&nbsp;</span>
+                        {{{wbr ../name}}}
+                        <span class="tsd-signature-symbol">(</span>
+                        {{#each parameters}}
+                            {{name}}
+                            <span class="tsd-signature-symbol">: </span>
+                            {{#with type}}
+                                {{> type}}
+                            {{else}}
+                                <span class="tsd-signature-type">any</span>
+                            {{/with}}
+                        {{/each}}
+                        <span class="tsd-signature-symbol">):&nbsp;</span>
+                        {{#with type}}
+                            {{> type}}
+                        {{/with}}
+                    {{/compact}}</h5>
+
+                    {{> comment }}
+                </li>
+            {{/with}}
+        {{/if}}{{/if}}
     {{/each}}
 </ul>
