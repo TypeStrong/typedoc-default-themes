@@ -31,7 +31,7 @@
         @extend h4
         margin: 0 -20px 10px -20px
         padding: 0 20px 10px 20px
-        border-bottom: 1px solid $COLOR_PANEL_DIVIDER
+        border-bottom: 1px solid var(--td-color-panel-divider)
 
     ul.tsd-index-list
         +vendors(column-count, 3)
@@ -51,29 +51,28 @@
 
     a,
     .tsd-parent-kind-module a
-        color: $COLOR_TS
+        color: var(--td-color-ts)
 
     .tsd-parent-kind-interface a
-        color: $COLOR_TS_INTERFACE
+        color: var(--td-color-ts-interface)
 
     .tsd-parent-kind-enum a
-        color: $COLOR_TS_ENUM
+        color: var(--td-color-ts-enum)
 
     .tsd-parent-kind-class a
-        color: $COLOR_TS_CLASS
-
+        color: var(--td-color-ts-class)
 
     .tsd-kind-module a
-        color: $COLOR_TS
+        color: var(--td-color-ts)
 
     .tsd-kind-interface a
-        color: $COLOR_TS_INTERFACE
+        color: var(--td-color-ts-interface)
 
     .tsd-kind-enum a
-        color: $COLOR_TS_ENUM
+        color: var(--td-color-ts-enum)
 
     .tsd-kind-class a
-        color: $COLOR_TS_CLASS
+        color: var(--td-color-ts-class)
 
     .tsd-is-private a
-        color: $COLOR_TS_PRIVATE
+        color: var(--td-color-ts-private)

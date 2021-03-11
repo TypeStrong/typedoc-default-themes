@@ -14,7 +14,7 @@
 .tsd-signature
     margin: 0 0 1em 0
     padding: 10px
-    border: 1px solid $COLOR_PANEL_DIVIDER
+    border: 1px solid var(--td-color-panel-divider)
     font-family: $FONT_FAMILY_MONO
     font-size: $FONT_SIZE_MONO
     overflow-x: auto
@@ -38,13 +38,12 @@
                 left: 20px
 
 .tsd-signature-symbol
-    color: $COLOR_TEXT_ASIDE
+    color: var(--td-color-text-aside)
     font-weight: normal
 
 .tsd-signature-type
     font-style: italic
     font-weight: normal
-
 
 // Displays a list of signatures.
 // Changes its appearance when directly placed inside a `tsd-panel`.
@@ -58,7 +57,7 @@
 .tsd-signatures
     padding: 0
     margin: 0 0 1em 0
-    border: 1px solid $COLOR_PANEL_DIVIDER
+    border: 1px solid var(--td-color-panel-divider)
 
     .tsd-signature
         margin: 0
@@ -69,7 +68,7 @@
             border-top-width: 0
 
         &.current
-            background-color: $COLOR_PANEL_DIVIDER
+            background-color: var(--td-color-panel-divider)
 
     &.active > .tsd-signature
         cursor: pointer
@@ -88,7 +87,6 @@
     .tsd-panel > a.anchor + &
         border-top-width: 0
         margin-top: -20px
-
 
 // Holds the descriptions related to a list of signatures.
 // Made interactive by JavaScript at `typedoc.Signature`.

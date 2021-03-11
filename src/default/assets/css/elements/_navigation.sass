@@ -20,7 +20,7 @@
         padding-top: 2px
         padding-bottom: 2px
         border-left: 2px solid transparent
-        color: $COLOR_TEXT
+        color: var(--td-color-text)
         text-decoration: none
         transition: border-left-color 0.1s
 
@@ -34,7 +34,6 @@
 
     li
         padding: 0
-
 
 // Primary part of the navigation containing the available modules.
 //
@@ -64,10 +63,10 @@
         +INDENTS(6, 5, 20)
 
     > ul
-        border-bottom: 1px solid $COLOR_PANEL_DIVIDER
+        border-bottom: 1px solid var(--td-color-panel-divider)
 
     li
-        border-top: 1px solid $COLOR_PANEL_DIVIDER
+        border-top: 1px solid var(--td-color-panel-divider)
 
         &.current > a
             font-weight: bold
@@ -75,12 +74,11 @@
         &.label span
             display: block
             padding: 20px 0 6px 5px
-            color: $COLOR_MENU_LABEL
+            color: var(--td-color-menu-label)
 
         &.globals + li > span,
         &.globals + li > a
             padding-top: 20px
-
 
 // Secondary part of the navigation containing the table of contents
 // of the current module.
@@ -126,20 +124,19 @@
         transition: opacity 0.2s
 
         &.current a
-            border-left-color: $COLOR_PANEL_DIVIDER
+            border-left-color: var(--td-color-panel-divider)
 
     li.focus > a,
     ul.current li.focus > a
-        border-left-color: $COLOR_MENU_DIVIDER_FOCUS
+        border-left-color: var(--td-color-menu-divider-focus)
 
     li.current
         margin-top: 20px
         margin-bottom: 20px
-        border-left-color: $COLOR_PANEL_DIVIDER
+        border-left-color: var(--td-color-panel-divider)
 
         > a
             font-weight: bold
-
 
 // Sticky menu setup
 //

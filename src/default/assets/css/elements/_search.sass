@@ -23,7 +23,7 @@
             outline: 0
             border: 0
             background: transparent
-            color: $COLOR_TEXT
+            color: var(--td-color-text)
 
         label
             position: absolute
@@ -46,17 +46,17 @@
 
         li
             padding: 0 10px
-            background-color: $COLOR_BACKGROUND
+            background-color: var(--td-color-background)
 
         li:nth-child(even)
-            background-color: $COLOR_PANEL
+            background-color: var(--td-color-panel)
 
         li.state
             display: none
 
         li.current,
         li:hover
-            background-color: $COLOR_PANEL_DIVIDER
+            background-color: var(--td-color-panel-divider)
 
         a
             display: block
@@ -65,11 +65,11 @@
                 top: 10px
 
         span.parent
-            color: $COLOR_TEXT_ASIDE
+            color: var(--td-color-text-aside)
             font-weight: normal
 
     &.has-focus
-        background-color: $COLOR_PANEL_DIVIDER
+        background-color: var(--td-color-panel-divider)
 
         .field input
             top: 0
