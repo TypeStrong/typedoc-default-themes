@@ -120,7 +120,7 @@ export class Viewport extends EventTarget {
      */
     hideShowToolbar() {
         const isShown = this.showToolbar;
-        this.showToolbar = this.lastY >= this.scrollTop || this.scrollTop === 0;
+        this.showToolbar = this.lastY >= this.scrollTop || this.scrollTop <= 0;
         if (isShown !== this.showToolbar) {
             this.toolbar.classList.toggle("tsd-page-toolbar--hide");
             this.secondaryNav.classList.toggle("tsd-navigation--toolbar-hide");
