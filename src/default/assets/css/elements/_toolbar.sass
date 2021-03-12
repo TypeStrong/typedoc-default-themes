@@ -17,13 +17,13 @@
     left: 0
     width: 100%
     height: $TOOLBAR_HEIGHT
-    color: var(--td-color-toolbar-text)
-    background: var(--td-color-toolbar)
-    border-bottom: 1px solid var(--td-color-panel-divider)
+    color: var(--color-toolbar-text)
+    background: var(--color-toolbar)
+    border-bottom: 1px solid var(--color-panel-divider)
     transition: transform .3s linear
 
     a
-        color: var(--td-color-toolbar-text)
+        color: var(--color-toolbar-text)
         text-decoration: none
 
         &.title
@@ -80,7 +80,7 @@
 
     &.active
         opacity: 1
-        background-color: var(--td-color-panel-divider)
+        background-color: var(--color-panel-divider)
 
     &.no-caption
         width: 40px
@@ -150,16 +150,16 @@
         li
             @extend %TSD_WIDGET_ICON
             padding: 0 20px 0 0
-            background-color: var(--td-color-background)
+            background-color: var(--color-background)
 
             &:before
                 background-position: 40px 0
 
             &:nth-child(even)
-                background-color: var(--td-color-panel)
+                background-color: var(--color-panel)
 
             &:hover
-                background-color: var(--td-color-panel-divider)
+                background-color: var(--color-panel-divider)
 
             &.selected:before
                 background-position: -200px 0

@@ -20,7 +20,7 @@
         padding-top: 2px
         padding-bottom: 2px
         border-left: 2px solid transparent
-        color: var(--td-color-text)
+        color: var(--color-text)
         text-decoration: none
         transition: border-left-color 0.1s
 
@@ -63,10 +63,10 @@
         +INDENTS(6, 5, 20)
 
     > ul
-        border-bottom: 1px solid var(--td-color-panel-divider)
+        border-bottom: 1px solid var(--color-panel-divider)
 
     li
-        border-top: 1px solid var(--td-color-panel-divider)
+        border-top: 1px solid var(--color-panel-divider)
 
         &.current > a
             font-weight: bold
@@ -74,7 +74,7 @@
         &.label span
             display: block
             padding: 20px 0 6px 5px
-            color: var(--td-color-menu-label)
+            color: var(--color-menu-label)
 
         &.globals + li > span,
         &.globals + li > a
@@ -124,16 +124,16 @@
         transition: opacity 0.2s
 
         &.current a
-            border-left-color: var(--td-color-panel-divider)
+            border-left-color: var(--color-panel-divider)
 
     li.focus > a,
     ul.current li.focus > a
-        border-left-color: var(--td-color-menu-divider-focus)
+        border-left-color: var(--color-menu-divider-focus)
 
     li.current
         margin-top: 20px
         margin-bottom: 20px
-        border-left-color: var(--td-color-panel-divider)
+        border-left-color: var(--color-panel-divider)
 
         > a
             font-weight: bold
