@@ -1,28 +1,28 @@
 // Default light theme
 :root {
-    --td-color-background: #fdfdfd;
-    --td-color-text: #222;
-    --td-color-text-aside: #707070;
-    --td-color-link: #4da6ff;
+    --color-background: #fdfdfd;
+    --color-text: #222;
+    --color-text-aside: #707070;
+    --color-link: #4da6ff;
 
-    --td-color-menu-divider: #eee;
-    --td-color-menu-divider-focus: #000;
-    --td-color-menu-label: #707070;
+    --color-menu-divider: #eee;
+    --color-menu-divider-focus: #000;
+    --color-menu-label: #707070;
 
-    --td-color-panel: #fff;
-    --td-color-panel-divider: #eee;
+    --color-panel: #fff;
+    --color-panel-divider: #eee;
 
-    --td-color-comment-tag: #707070;
-    --td-color-comment-tag-text: #fff;
+    --color-comment-tag: #707070;
+    --color-comment-tag-text: #fff;
 
-    --td-color-code-background: rgba(#000, 0.04);
+    --color-code-background: rgba(#000, 0.04);
 
-    --td-color-ts: #9600ff;
-    --td-color-ts-interface: #647f1b;
-    --td-color-ts-enum: #937210;
-    --td-color-ts-class: #0672de;
-    --td-color-ts-private: #707070;
+    --color-ts: #9600ff;
+    --color-ts-interface: #647f1b;
+    --color-ts-enum: #937210;
+    --color-ts-class: #0672de;
+    --color-ts-private: #707070;
 
-    --td-color-toolbar: #fff;
-    --td-color-toolbar-text: #333;
+    --color-toolbar: #fff;
+    --color-toolbar-text: #333;
 }
