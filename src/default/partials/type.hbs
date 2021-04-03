@@ -62,7 +62,7 @@ if an inner type may result in invalid output without them. For example:
         {{#unless @first}}
             <span class="tsd-signature-symbol"> &amp; </span>
         {{/unless}}
-        {{> type}}
+        {{> type needsParens=true}}
     {{/each}}
     {{#if needsParens}}
         <span class="tsd-signature-symbol">)</span>
