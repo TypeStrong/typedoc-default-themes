@@ -4,7 +4,7 @@
             <h2>{{#if title}}{{title}} {{/if}}{{superProps.title}}</h2>
             {{#each children}}
                 {{#unless hasOwnDocument}}
-                    {{__partials__ member}}
+                    {{__partials__.member}}
                 {{/unless}}
             {{/each}}
         </section>
@@ -14,7 +14,7 @@
         <h2>{{title}}</h2>
         {{#each children}}
             {{#unless hasOwnDocument}}
-                {{__partials__ member}}
+                {{__partials__.member}}
             {{/unless}}
         {{/each}}
     </section>

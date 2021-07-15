@@ -5,20 +5,20 @@
     {{/if}}
 
     {{#if signatures}}
-        {{__partials__ member.signatures}}
+        {{__partials__.member.signatures}}
     {{else}}{{#if hasGetterOrSetter}}
-        {{__partials__ member.getterSetter}}
+        {{__partials__.member.getterSetter}}
     {{else}}{{#if tryGetTargetReflectionDeep}}
-        {{__partials__ member.reference}}
+        {{__partials__.member.reference}}
     {{else}}
-        {{__partials__ member.declaration}}
+        {{__partials__.member.declaration}}
     {{/if}}{{/if}}{{/if}}
 
     {{#unless isContainer}}
         {{#each groups}}
             {{#each children}}
                 {{#unless hasOwnDocument}}
-                    {{__partials__ member}}
+                    {{__partials__.member}}
                 {{/unless}}
             {{/each}}
         {{/each}}
@@ -26,6 +26,6 @@
 </section>
 
 {{#if isContainer}}
-    {{__partials__ index}}
-    {{__partials__ members}}
+    {{__partials__.index}}
+    {{__partials__.members}}
 {{/if}}

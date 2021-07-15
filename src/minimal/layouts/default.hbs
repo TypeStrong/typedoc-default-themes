@@ -10,12 +10,12 @@
 </head>
 <body>
 
-{{__partials__ header}}
+{{__partials__.header}}
 
 <nav class="tsd-navigation secondary">
     <ul>
         {{#each toc.children}}
-            {{__partials__ toc}}
+            {{__partials__.toc}}
         {{/each}}
     </ul>
 </nav>
@@ -29,7 +29,7 @@
         {{/if}}
 
         {{{contents}}}
-        {{__partials__ footer}}
+        {{__partials__.footer}}
     </div>
 </div>
 
@@ -37,7 +37,7 @@
 {{ JS }}
 </script>
 
-{{__partials__ analytics}}
+{{__partials__.analytics}}
 
 </body>
 </html>

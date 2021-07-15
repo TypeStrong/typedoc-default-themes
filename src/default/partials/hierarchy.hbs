@@ -4,12 +4,12 @@
             {{#if superProps.isTarget}}
                 <span class="target">{{this}}</span>
             {{else}}
-                <Compact>{{__partials__ type}}</Compact>
+                <Compact>{{__partials__.type}}</Compact>
             {{/if}}
 
             {{#if @last}}
                 <With superProps=props props=superProps.next>
-                    {{__partials__ hierarchy}}
+                    {{__partials__.hierarchy}}
                 </With>
             {{/if}}
         </li>

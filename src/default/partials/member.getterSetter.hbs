@@ -4,7 +4,7 @@
             <li class="tsd-signature tsd-kind-icon"><Compact>
                 <span class="tsd-signature-symbol">get</span>&nbsp;
                 {{superProps.name}}
-                {{__partials__ member.signature.title hideName=true }}
+                {{__partials__.member.signature.title hideName=true }}
             </Compact></li>
         </With>
     {{/if}}
@@ -13,7 +13,7 @@
             <li class="tsd-signature tsd-kind-icon"><Compact>
                 <span class="tsd-signature-symbol">set</span>&nbsp;
                 {{superProps.name}}
-                {{__partials__ member.signature.title hideName=true }}
+                {{__partials__.member.signature.title hideName=true }}
             </Compact></li>
         </With>
     {{/if}}
@@ -23,14 +23,14 @@
     {{#if getSignature}}
         <With superProps=props props=getSignature>
             <li class="tsd-description">
-                {{__partials__ member.signature.body }}
+                {{__partials__.member.signature.body }}
             </li>
         </With>
     {{/if}}
     {{#if setSignature}}
         <With superProps=props props=setSignature>
             <li class="tsd-description">
-                {{__partials__ member.signature.body }}
+                {{__partials__.member.signature.body }}
             </li>
         </With>
     {{/if}}

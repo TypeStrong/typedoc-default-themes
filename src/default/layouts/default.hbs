@@ -12,7 +12,7 @@
 </head>
 <body>
 
-{{__partials__ header}}
+{{__partials__.header}}
 
 <div class="container container-main">
     <div class="row">
@@ -23,7 +23,7 @@
             <nav class="tsd-navigation primary">
                 <ul>
                     {{#each navigation.children}}
-                        {{__partials__ navigation}}
+                        {{__partials__.navigation}}
                     {{/each}}
                 </ul>
             </nav>
@@ -31,7 +31,7 @@
             <nav class="tsd-navigation secondary menu-sticky">
                 <ul class="before-current">
                     {{#each toc.children}}
-                        {{__partials__ toc.root}}
+                        {{__partials__.toc.root}}
                     {{/each}}
                 </ul>
             </nav>
@@ -39,12 +39,12 @@
     </div>
 </div>
 
-{{__partials__ footer}}
+{{__partials__.footer}}
 
 <div class="overlay"></div>
 <script src="{{relativeURL "assets/js/main.js"}}"></script>
 
-{{__partials__ analytics}}
+{{__partials__.analytics}}
 
 </body>
 </html>
