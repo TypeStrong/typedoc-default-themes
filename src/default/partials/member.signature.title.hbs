@@ -1,12 +1,12 @@
 {{#unless hideName}}
     {{{wbr name}}}
 {{else}}
-    {{#ifCond kindString "===" "Constructor signature"}}
+    <IfCond cond="kindString '===' 'Constructor signature'">
         {{#if flags.isAbstract}}
             <span class="tsd-signature-symbol">abstract </span>
         {{/if}}
         <span class="tsd-signature-symbol">new </span>
-    {{/ifCond}}
+    </IfCond>
 {{/unless}}
 {{#if typeParameters}}
     &lt;

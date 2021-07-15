@@ -1,12 +1,15 @@
 {{#if tryGetTargetReflectionDeep}}
     <With superProps=props props=tryGetTargetReflectionDeep>
-        {{#ifCond superProps.name '===' name}}
+        <IfCond cond="superProps.name '===' name">
             Re-exports <a href="{{relativeURL url}}">{{name}}</a>
-        {{else if flags.isExported}}
-            Renames and re-exports <a href="{{relativeURL url}}">{{name}}</a>
-        {{else}}
-            Renames and exports <a href="{{relativeURL url}}">{{name}}</a>
-        {{/ifCond}}
+        </IfCond>
+        <IfNotCond cond="superProps.name '===' name">
+            {{#if flags.isExported}}
+                Renames and re-exports <a href="{{relativeURL url}}">{{name}}</a>
+            {{else}}
+                Renames and exports <a href="{{relativeURL url}}">{{name}}</a>
+            {{/if}}
+        </IfNotCond>
     </With>
 {{else}}
     Re-exports {{name}}
