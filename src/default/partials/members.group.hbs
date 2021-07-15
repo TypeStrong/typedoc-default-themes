@@ -1,7 +1,7 @@
 {{#if categories}}
     {{#each categories}}
         <section class="tsd-panel-group tsd-member-group {{cssClasses}}">
-            <h2>{{#if title}}{{title}} {{/if}}{{../title}}</h2>
+            <h2>{{#if title}}{{title}} {{/if}}{{superProps.title}}</h2>
             {{#each children}}
                 {{#unless hasOwnDocument}}
                     {{__partials__ member}}

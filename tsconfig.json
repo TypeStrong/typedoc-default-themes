@@ -10,5 +10,11 @@
         "strict": true,
         "alwaysStrict": false,
         "noImplicitUseStrict": true
+    },
+    "ts-node": {
+        "transpileOnly": true,
+        "moduleTypes": {
+            "**/*": "cjs"
+        }
     }
 }

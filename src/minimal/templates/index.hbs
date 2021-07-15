@@ -1,15 +1,15 @@
-<With props=model>
+<With superProps=props props=model>
     {{__partials__ comment}}
 </With>
 
 {{#if model.typeHierarchy}}
     <section class="tsd-hierarchy">
         <h2>Hierarchy</h2>
-        <With props=model.typeHierarchy>{{__partials__ hierarchy}}</With>
+        <With superProps=props props=model.typeHierarchy>{{__partials__ hierarchy}}</With>
     </section>
 {{/if}}
 
-<With props=model>
+<With superProps=props props=model>
     <div style="position:relative;"><a name="typedoc-main-index" class="tsd-anchor"></a></div>
     {{__partials__ index}}
     {{__partials__ members}}

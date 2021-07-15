@@ -47,5 +47,10 @@
     "typescript",
     "documentation",
     "generator"
-  ]
+  ],
+  "dependencies": {
+    "glob": "^7.1.7",
+    "handlebars-to-jsx": "^0.1.4",
+    "ts-node": "^10.1.0"
+  }
 }

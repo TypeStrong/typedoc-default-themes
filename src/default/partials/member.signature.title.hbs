@@ -1,6 +1,6 @@
 {{#unless hideName}}
     {{{wbr name}}}
-{{else}} {{! This ugliness goes away when we stop naming constructor signatures "new X"}}
+{{else}}
     {{#ifCond kindString "===" "Constructor signature"}}
         {{#if flags.isAbstract}}
             <span class="tsd-signature-symbol">abstract </span>
@@ -26,7 +26,7 @@
         {{#if defaultValue}}?{{/if}}
         :&nbsp;
     </span>
-    <With props=type>{{__partials__ type}}</With>
+    <With superProps=props props=type>{{__partials__ type}}</With>
 {{/each}}
 <span class="tsd-signature-symbol">)</span>
 {{#if type}}
@@ -35,7 +35,7 @@
     {{else}}
         <span class="tsd-signature-symbol">: </span>
     {{/if}}
-    <With props=type>
+    <With superProps=props props=type>
         {{__partials__ type}}
     </With>
 {{/if}}

@@ -20,7 +20,7 @@
                     {{/each}}
                     {{#if flags.isRest}}<span class="tsd-signature-symbol">...</span>{{/if}}
                     {{name}}:&nbsp;
-                    <With props=type>{{__partials__ type}}</With>
+                    <With superProps=props props=type>{{__partials__ type}}</With>
                     {{#if defaultValue}}
                         <span class="tsd-signature-symbol">
                         &nbsp;=&nbsp;
@@ -32,7 +32,7 @@
                 {{__partials__ comment}}
 
                 {{#if type.declaration}}
-                    <With props=type.declaration>
+                    <With superProps=props props=type.declaration>
                         {{__partials__ parameter}}
                     </With>
                 {{/if}}
@@ -42,14 +42,14 @@
 {{/if}}
 
 {{#if type}}
-    <h4 class="tsd-returns-title">Returns <Compact><With props=type>{{__partials__ type}}</With></Compact></h4>
+    <h4 class="tsd-returns-title">Returns <Compact><With superProps=props props=type>{{__partials__ type}}</With></Compact></h4>
 
     {{#if comment.returns}}
         <Markdown>{{{comment.returns}}}</Markdown>
     {{/if}}
 
     {{#if type.declaration}}
-        <With props=type.declaration>
+        <With superProps=props props=type.declaration>
             {{__partials__ parameter}}
         </With>
     {{/if}}

@@ -8,7 +8,7 @@
         {{/each}}
         &gt;
     {{/if}}
-    <span class="tsd-signature-symbol">{{#if isOptional}}?{{/if}}:</span>&nbsp;<With props=type>{{__partials__ type}}</With>
+    <span class="tsd-signature-symbol">{{#if isOptional}}?{{/if}}:</span>&nbsp;<With superProps=props props=type>{{__partials__ type}}</With>
     {{#if defaultValue}}
         <span class="tsd-signature-symbol">
         &nbsp;=&nbsp;
@@ -29,7 +29,7 @@
 {{#if type.declaration}}
     <div class="tsd-type-declaration">
         <h4>Type declaration</h4>
-        <With props=type.declaration>
+        <With superProps=props props=type.declaration>
             {{__partials__ parameter}}
         </With>
     </div>

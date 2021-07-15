@@ -1,4 +1,4 @@
-<With props=model>
+<With superProps=props props=model>
     {{#if hasComment}}
         <section class="tsd-panel tsd-comment">
             {{__partials__ comment}}
@@ -9,14 +9,14 @@
 {{#if model.typeParameters}}
     <section class="tsd-panel tsd-type-parameters">
         <h3>Type parameters</h3>
-        <With props=model>{{__partials__ typeParameters}}</With>
+        <With superProps=props props=model>{{__partials__ typeParameters}}</With>
     </section>
 {{/if}}
 
 {{#if model.typeHierarchy}}
     <section class="tsd-panel tsd-hierarchy">
         <h3>Hierarchy</h3>
-        <With props=model.typeHierarchy>{{__partials__ hierarchy}}</With>
+        <With superProps=props props=model.typeHierarchy>{{__partials__ hierarchy}}</With>
     </section>
 {{/if}}
 
@@ -45,7 +45,7 @@
 {{#if model.signatures}}
     <section class="tsd-panel">
         <h3 class="tsd-before-signature">Callable</h3>
-        <With props=model>{{__partials__ member.signatures}}</With>
+        <With superProps=props props=model>{{__partials__ member.signatures}}</With>
     </section>
 {{/if}}
 
@@ -55,25 +55,25 @@
         <div class="tsd-signature tsd-kind-icon"><Compact>
             <span class="tsd-signature-symbol">[</span>
             {{#each model.indexSignature.parameters}}
-                {{name}}:&nbsp;<With props=type>{{__partials__ type}}</With>
+                {{name}}:&nbsp;<With superProps=props props=type>{{__partials__ type}}</With>
             {{/each}}
             <span class="tsd-signature-symbol">]:&nbsp;</span>
-            <With props=model.indexSignature.type>{{__partials__ type}}</With>
+            <With superProps=props props=model.indexSignature.type>{{__partials__ type}}</With>
         </Compact></div>
 
-        <With props=model.indexSignature>
+        <With superProps=props props=model.indexSignature>
             {{__partials__ comment}}
         </With>
 
         {{#if model.indexSignature.type.declaration}}
-            <With props=model.indexSignature.type.declaration>
+            <With superProps=props props=model.indexSignature.type.declaration>
                 {{__partials__ parameter}}
             </With>
         {{/if}}
     </section>
 {{/if}}
 
-<With props=model>
+<With superProps=props props=model>
     {{__partials__ index}}
     {{__partials__ members}}
 </With>
