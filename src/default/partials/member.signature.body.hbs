@@ -45,7 +45,7 @@
     <h4 class="tsd-returns-title">Returns {{#compact}}{{#with type}}{{>type}}{{/with}}{{/compact}}</h4>
 
     {{#if comment.returns}}
-        {{#markdown}}{{{comment.returns}}}{{/markdown}}
+        <Markdown>{{{comment.returns}}}</Markdown>
     {{/if}}
 
     {{#if type.declaration}}
