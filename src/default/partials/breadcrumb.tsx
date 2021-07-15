@@ -1,10 +1,10 @@
 import React from 'react';
-export const component = props => Boolean(props.parent) ? <React.Fragment>    <With superProps="props" props="parent">{props.__partials__.breadcrumb}</With>
+export const component = props => Boolean(props.parent) ? <>    <With superProps="props" props="parent">{props.__partials__.breadcrumb}</With>
     <li>
-    {Boolean(props.url) ? <React.Fragment>            <a href={props.relativeURL}>{props.name}</a>
-    </React.Fragment> : <React.Fragment>            <span>{props.name}</span>
-    </React.Fragment>}    </li>
-</React.Fragment> : Boolean(props.url) && <React.Fragment>        <li>
+    {Boolean(props.url) ? <>            <a href={props.relativeURL}>{props.name}</a>
+    </> : <>            <span>{props.name}</span>
+    </>}    </li>
+</> : Boolean(props.url) && <>        <li>
             <a href={props.relativeURL}>{props.name}</a>
         </li>
-</React.Fragment>;
+</>;

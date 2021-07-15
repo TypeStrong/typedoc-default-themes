@@ -1,5 +1,5 @@
 import React from 'react';
-export const component = props => <React.Fragment>
+export const component = props => <>
     <span className="tsd-signature-symbol">{"{"}</span>
     <IfCond cond="readonlyModifier '===' '+'">
         <span className="tsd-signature-symbol">readonly </span>
@@ -41,4 +41,4 @@ export const component = props => <React.Fragment>
     </With>
 
     <span className="tsd-signature-symbol"> {"}"}</span>
-</React.Fragment>;
+</>;

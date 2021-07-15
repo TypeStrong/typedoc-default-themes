@@ -22,9 +22,9 @@ export const component = props => <header>
                             <input type="checkbox" id="tsd-filter-inherited" checked="" />
                             <label className="tsd-widget" htmlFor="tsd-filter-inherited">Inherited</label>
 
-              {!Boolean(props.settings.excludeExternals) && <React.Fragment>                                <input type="checkbox" id="tsd-filter-externals" checked="" />
+              {!Boolean(props.settings.excludeExternals) && <>                                <input type="checkbox" id="tsd-filter-externals" checked="" />
                                 <label className="tsd-widget" htmlFor="tsd-filter-externals">Externals</label>
-              </React.Fragment>}
+              </>}
                             <input type="checkbox" id="tsd-filter-only-exported" />
                             <label className="tsd-widget" htmlFor="tsd-filter-only-exported">Only exported</label>
                         </div>

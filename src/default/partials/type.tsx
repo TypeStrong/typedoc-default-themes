@@ -1,5 +1,5 @@
 import React from 'react';
-export const component = props => <React.Fragment>{
+export const component = props => <>{
     /* Each type gets its own inline helper to determine how it is rendered. */
   }{
     /* The name of the helper is the value of the 'type' property on the type.*/
@@ -12,6 +12,6 @@ export const component = props => <React.Fragment>{
     () => 1 | 2 !== (() => 1) | 2
     */
   }
-  {Boolean(props) ? <React.Fragment>    {props.__partials__.lookup.dot.typeString}
-  </React.Fragment> : <React.Fragment>    <span className="tsd-signature-type">void</span>
-  </React.Fragment>}</React.Fragment>;
+  {Boolean(props) ? <>    {props.__partials__.lookup.dot.typeString}
+  </> : <>    <span className="tsd-signature-type">void</span>
+  </>}</>;

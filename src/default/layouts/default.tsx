@@ -1,5 +1,5 @@
 import React from 'react';
-export const component = props => <React.Fragment>
+export const component = props => <>
   <html className="default no-js">
     <head>
     <meta charSet="utf-8" />
@@ -23,14 +23,14 @@ export const component = props => <React.Fragment>
         <div className="col-4 col-menu menu-sticky-wrap menu-highlight">
             <nav className="tsd-navigation primary">
                 <ul>
-                {props.navigation.children.map((item, i) => <React.Fragment key={i}>                        {item.__partials__.navigation}
-                </React.Fragment>)}                </ul>
+                {props.navigation.children.map((item, i) => <>                        {item.__partials__.navigation}
+                </>)}                </ul>
             </nav>
 
             <nav className="tsd-navigation secondary menu-sticky">
                 <ul className="before-current">
-                {props.toc.children.map((item, i) => <React.Fragment key={i}>                        {item.__partials__.toc.root}
-                </React.Fragment>)}                </ul>
+                {props.toc.children.map((item, i) => <>                        {item.__partials__.toc.root}
+                </>)}                </ul>
             </nav>
         </div>
     </div>
@@ -45,4 +45,4 @@ export const component = props => <React.Fragment>
 
     </body>
   </html>
-</React.Fragment>;
+</>;

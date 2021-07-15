@@ -1,5 +1,5 @@
 import React from 'react';
-export const component = props => <React.Fragment><header>
+export const component = props => <><header>
     <div className="tsd-page-toolbar">
         <div className="container">
             <div className="table-wrap">
@@ -33,9 +33,9 @@ export const component = props => <React.Fragment><header>
                             <input type="checkbox" id="tsd-filter-inherited" checked="" />
                             <label className="tsd-widget" htmlFor="tsd-filter-inherited">Inherited</label>
 
-                {!Boolean(props.settings.excludeExternals) && <React.Fragment>                                <input type="checkbox" id="tsd-filter-externals" checked="" />
+                {!Boolean(props.settings.excludeExternals) && <>                                <input type="checkbox" id="tsd-filter-externals" checked="" />
                                 <label className="tsd-widget" htmlFor="tsd-filter-externals">Externals</label>
-                </React.Fragment>}                        </div>
+                </>}                        </div>
                     </div>
 
                     <a href="#" className="tsd-widget menu no-caption" data-toggle="menu">Menu</a>
@@ -45,23 +45,23 @@ export const component = props => <React.Fragment><header>
     </div>
     <div className="tsd-page-title">
         <div className="container">
-            {Boolean(props.model.parent) && <React.Fragment> {
+            {Boolean(props.model.parent) && <> {
             /* Don't show breadcrumbs on main project page, it is the root page. !*/
           }
                 <ul className="tsd-breadcrumb">
                     <With superProps="props" props="model">{props.__partials__.breadcrumb}</With>
                 </ul>
-        </React.Fragment>}            <h1><Compact>
+        </>}            <h1><Compact>
                 <IfCond cond="model.kindString '!==' 'Project' ">
-                    {props.model.kindString} 
+                    {props.model.kindString}
                 </IfCond>
                 {props.model.name}
-            {Boolean(props.model.typeParameters) && <React.Fragment>                    <
-              {props.model.typeParameters.map((item, i) => <React.Fragment key={i}>                        {Boolean(item.index) && ",\xA0"}
+            {Boolean(props.model.typeParameters) && <>                    <
+              {props.model.typeParameters.map((item, i) => <>                        {Boolean(item.index) && ",\xA0"}
                         {item.name}
-              </React.Fragment>)}                    >
-            </React.Fragment>}            </Compact></h1>
+              </>)}                    >
+            </>}            </Compact></h1>
         </div>
     </div>
   </header>
-</React.Fragment>;
+</>;

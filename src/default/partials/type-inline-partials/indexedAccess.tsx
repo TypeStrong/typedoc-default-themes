@@ -1,5 +1,5 @@
 import React from 'react';
-export const component = props => <React.Fragment>
+export const component = props => <>
     <With superProps="props" props="objectType">
         {props.__partials__.type}
     </With>
@@ -8,4 +8,4 @@ export const component = props => <React.Fragment>
         {props.__partials__.type}
     </With>
     <span className="tsd-signature-symbol">]</span>
-</React.Fragment>;
+</>;

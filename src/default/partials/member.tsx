@@ -1,16 +1,16 @@
 import React from 'react';
-export const component = props => <React.Fragment><section className={"tsd-panel tsd-member " + props.cssClasses}>
+export const component = props => <><section className={"tsd-panel tsd-member " + props.cssClasses}>
     <a name={props.anchor} className="tsd-anchor"></a>
-    {Boolean(props.name) && <React.Fragment>        <h3>{props.flags.map((item, i) => <React.Fragment key={i}><span className={"tsd-flag ts-flag" + item}>{item}</span> </React.Fragment>)}{props.wbr}</h3>
-    </React.Fragment>}
-    {Boolean(props.signatures) ? <React.Fragment>        {props.__partials__.member.signatures}
-    </React.Fragment> : Boolean(props.hasGetterOrSetter) ? <React.Fragment>
+    {Boolean(props.name) && <>        <h3>{props.flags.map((item, i) => <><span className={"tsd-flag ts-flag" + item}>{item}</span> </>)}{props.wbr}</h3>
+    </>}
+    {Boolean(props.signatures) ? <>        {props.__partials__.member.signatures}
+    </> : Boolean(props.hasGetterOrSetter) ? <>
         {props.__partials__.member.getterSetter}
-    </React.Fragment> : Boolean(props.isReference) ? <React.Fragment>
+    </> : Boolean(props.isReference) ? <>
         {props.__partials__.member.reference}
-    </React.Fragment> : <React.Fragment>        {props.__partials__.member.declaration}
-    </React.Fragment>}
+    </> : <>        {props.__partials__.member.declaration}
+    </>}
 
-    {props.groups.map((item, i) => <React.Fragment key={i}>{item.children.map((item, i) => <React.Fragment key={i}>{!Boolean(item.hasOwnDocument) && <React.Fragment>                {item.__partials__.member}
-        </React.Fragment>}</React.Fragment>)}</React.Fragment>)}</section>
-</React.Fragment>;
+    {props.groups.map((item, i) => <>{item.children.map((item, i) => <>{!Boolean(item.hasOwnDocument) && <>                {item.__partials__.member}
+        </>}</>)}</>)}</section>
+</>;
