@@ -1,4 +1,4 @@
-import {With, IfCond, IfNotCond, Markdown} from '../../lib';
+import {With, Compact, IfCond, IfNotCond, Markdown} from '../../lib';
 import React from 'react';
 export const component = (props, item = props) => <>{ With(item || props, (item || props).model, (superProps, props, item) => (<>
     {Boolean(props.hasComment) && <>        <section className="tsd-panel tsd-comment">

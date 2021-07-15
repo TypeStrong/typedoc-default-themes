@@ -1,4 +1,4 @@
-import {With, IfCond, IfNotCond, Markdown} from '../../lib';
+import {With, Compact, IfCond, IfNotCond, Markdown} from '../../lib';
 import React from 'react';
 export const component = (props, item = props) => Boolean(props.categories) ? props.categories.map((item, i) => <>{!Boolean(item.allChildrenHaveOwnDocument) && <>            <section className={"tsd-panel-group tsd-member-group " + item.cssClasses}>
                 <h2>{item.title}</h2>

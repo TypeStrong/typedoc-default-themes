@@ -1,11 +1,11 @@
-import {With, IfCond, IfNotCond, Markdown} from '../../lib';
+import {With, Compact, IfCond, IfNotCond, Markdown} from '../../lib';
 import React from 'react';
 export const component = (props, item = props) => <><div className="tsd-signature tsd-kind-icon"><Compact>
     {props.wbr}
-      {Boolean(props.typeParameters) && <>        <
+      {Boolean(props.typeParameters) && <>        {"<"}
         {props.typeParameters.map((item, i) => <>            {Boolean(item.index) && ",\xA0"}
             {item.name}
-        </>)}        >
+        </>)}        {'>'}
       </>}    <span className="tsd-signature-symbol">{Boolean(props.isOptional) && "?"}:</span> { With(item || props, (item || props).type, (superProps, props, item) => (<>{props.__partials__.type}</>)) }
       {Boolean(props.defaultValue) && <>        <span className="tsd-signature-symbol">
          =

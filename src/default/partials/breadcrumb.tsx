@@ -1,4 +1,4 @@
-import {With, IfCond, IfNotCond, Markdown} from '../../lib';
+import {With, Compact, IfCond, IfNotCond, Markdown} from '../../lib';
 import React from 'react';
 export const component = (props, item = props) => Boolean(props.parent) ? <>    { With(item || props, (item || props).parent, (superProps, props, item) => (<>{props.__partials__.breadcrumb}</>)) }
     <li>

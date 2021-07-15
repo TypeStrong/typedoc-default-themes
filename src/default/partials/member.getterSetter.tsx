@@ -1,4 +1,4 @@
-import {With, IfCond, IfNotCond, Markdown} from '../../lib';
+import {With, Compact, IfCond, IfNotCond, Markdown} from '../../lib';
 import React from 'react';
 export const component = (props, item = props) => <><ul className={"tsd-signatures " + props.cssClasses}>
     {Boolean(props.getSignature) && <>        { With(item || props, (item || props).getSignature, (superProps, props, item) => (<>

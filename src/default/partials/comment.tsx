@@ -1,4 +1,4 @@
-import {With, IfCond, IfNotCond, Markdown} from '../../lib';
+import {With, Compact, IfCond, IfNotCond, Markdown} from '../../lib';
 import React from 'react';
 export const component = (props, item = props) => <>{ With(item || props, (item || props).comment, (superProps, props, item) => (<>
     {Boolean(props.hasVisibleComponent) && <>        <div className="tsd-comment tsd-typography">

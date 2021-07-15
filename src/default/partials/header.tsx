@@ -1,4 +1,4 @@
-import {With, IfCond, IfNotCond, Markdown} from '../../lib';
+import {With, Compact, IfCond, IfNotCond, Markdown} from '../../lib';
 import React from 'react';
 export const component = (props, item = props) => <><header>
     <div className="tsd-page-toolbar">
@@ -57,10 +57,10 @@ export const component = (props, item = props) => <><header>
                     {props.model.kindString}
                 </IfCond>
                 {props.model.name}
-            {Boolean(props.model.typeParameters) && <>                    <
+            {Boolean(props.model.typeParameters) && <>                    {"<"}
               {props.model.typeParameters.map((item, i) => <>                        {Boolean(item.index) && ",\xA0"}
                         {item.name}
-              </>)}                    >
+              </>)}                    {'>'}
             </>}            </Compact></h1>
         </div>
     </div>
