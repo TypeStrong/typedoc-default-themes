@@ -1,4 +1,4 @@
-{{#with tryGetTargetReflectionDeep}}
+<With props=tryGetTargetReflectionDeep>
     {{#ifCond ../name '===' name}}
         Re-exports <a href="{{relativeURL url}}">{{name}}</a>
     {{else if flags.isExported}}
@@ -8,4 +8,4 @@
     {{/ifCond}}
 {{else}}
     Re-exports {{name}}
-{{/with}}
+</With>

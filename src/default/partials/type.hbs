@@ -9,44 +9,44 @@ if an inner type may result in invalid output without them. For example:
 }}
 
 {{#*inline 'array'}}
-    {{#with elementType}}
-        {{> type needsParens=true}}
+    <With props=elementType>
+        {{__partials__ type needsParens=true}}
         <span class="tsd-signature-symbol">[]</span>
-    {{/with}}
+    </With>
 {{/inline}}
 
 {{#*inline 'conditional'}}
     {{#if needsParens}}
         <span class="tsd-signature-symbol">(</span>
     {{/if}}
-    {{#with checkType}}
-        {{> type needsParens=true}}
-    {{/with}}
+    <With props=checkType>
+        {{__partials__ type needsParens=true}}
+    </With>
     <span class="tsd-signature-symbol"> extends </span>
-    {{#with extendsType}}
-        {{> type}}
-    {{/with}}
+    <With props=extendsType>
+        {{__partials__ type}}
+    </With>
     <span class="tsd-signature-symbol"> ? </span>
-    {{#with trueType}}
-        {{> type}}
-    {{/with}}
+    <With props=trueType>
+        {{__partials__ type}}
+    </With>
     <span class="tsd-signature-symbol"> : </span>
-    {{#with falseType}}
-        {{> type}}
-    {{/with}}
+    <With props=falseType>
+        {{__partials__ type}}
+    </With>
     {{#if needsParens}}
         <span class="tsd-signature-symbol">)</span>
     {{/if}}
 {{/inline}}
 
 {{#*inline 'indexedAccess'}}
-    {{#with objectType}}
-        {{> type}}
-    {{/with}}
+    <With props=objectType>
+        {{__partials__ type}}
+    </With>
     <span class="tsd-signature-symbol">[</span>
-    {{#with indexType}}
-        {{> type}}
-    {{/with}}
+    <With props=indexType>
+        {{__partials__ type}}
+    </With>
     <span class="tsd-signature-symbol">]</span>
 {{/inline}}
 
@@ -62,7 +62,7 @@ if an inner type may result in invalid output without them. For example:
         {{#unless @first}}
             <span class="tsd-signature-symbol"> &amp; </span>
         {{/unless}}
-        {{> type needsParens=true}}
+        {{__partials__ type needsParens=true}}
     {{/each}}
     {{#if needsParens}}
         <span class="tsd-signature-symbol">)</span>
@@ -91,14 +91,14 @@ if an inner type may result in invalid output without them. For example:
     <span class="tsd-signature-type">{{parameter}}</span>
     <span class="tsd-signature-symbol"> in </span>
 
-    {{#with parameterType}}
-        {{>type}}
-    {{/with}}
+    <With props=parameterType>
+        {{__partials__ type}}
+    </With>
 
-    {{#with nameType}}
+    <With props=nameType>
         <span class="tsd-signature-symbol"> as </span>
-        {{>type}}
-    {{/with}}
+        {{__partials__ type}}
+    </With>
 
     <span class="tsd-signature-symbol">]</span>
     {{#ifCond readonlyModifier '===' '+'}}
@@ -111,17 +111,17 @@ if an inner type may result in invalid output without them. For example:
         {{/ifCond}}
     {{/ifCond}}
 
-    {{#with templateType}}
-        {{>type}}
-    {{/with}}
+    <With props=templateType>
+        {{__partials__ type}}
+    </With>
 
     <span class="tsd-signature-symbol"> }</span>
 {{/inline}}
 
 {{#*inline 'optional'}}
-    {{#with elementType}}
-        {{> type}}
-    {{/with}}
+    <With props=elementType>
+        {{__partials__ type}}
+    </With>
     <span class="tsd-signature-symbol">?</span>
 {{/inline}}
 
@@ -132,34 +132,34 @@ if an inner type may result in invalid output without them. For example:
     <span class="tsd-signature-type">{{name}}</span>
     {{#if targetType}}
         <span class="tsd-signature-symbol"> is </span>
-        {{#with targetType}}
-            {{>type}}
-        {{/with}}
+        <With props=targetType>
+            {{__partials__ type}}
+        </With>
     {{/if}}
 {{/inline}}
 
 {{#*inline 'query'}}
     <span class="tsd-signature-symbol">typeof </span>
-    {{#with queryType}}
-        {{> type}}
-    {{/with}}
+    <With props=queryType>
+        {{__partials__ type}}
+    </With>
 {{/inline}}
 
 {{#*inline 'reference'}}
-    {{#with getReflection }}
+    <With props=getReflection >
         <a href="{{relativeURL url}}" class="tsd-signature-type" data-tsd-kind="{{kindString}}">
             {{name}}
         </a>
     {{else}}
         <span class="tsd-signature-type">{{name}}</span>
-    {{/with}}
+    </With>
     {{#if typeArguments}}
         <span class="tsd-signature-symbol">&lt;</span>
         {{#each typeArguments}}
             {{#unless @first}}
                 <span class="tsd-signature-symbol">, </span>
             {{/unless}}
-            {{> type}}
+            {{__partials__ type}}
         {{/each}}
         <span class="tsd-signature-symbol">&gt;</span>
     {{/if}}
@@ -177,20 +177,20 @@ if an inner type may result in invalid output without them. For example:
                 {{#if setSignature}}
                     {{name}}
                     <span class="tsd-signature-symbol">: </span>
-                    {{#with getSignature.type}}
-                        {{> type}}
+                    <With props=getSignature.type>
+                        {{__partials__ type}}
                     {{else}}
                         <span class="tsd-signature-type">any</span>
-                    {{/with}}
+                    </With>
                 {{else}}
                     <span class="tsd-signature-symbol">get </span>
                     {{name}}
                     <span class="tsd-signature-symbol">(): </span>
-                    {{#with getSignature.type}}
-                        {{> type}}
+                    <With props=getSignature.type>
+                        {{__partials__ type}}
                     {{else}}
                         <span class="tsd-signature-type">any</span>
-                    {{/with}}
+                    </With>
                 {{/if}}
             {{else}}
                 {{#if setSignature}}
@@ -201,11 +201,11 @@ if an inner type may result in invalid output without them. For example:
                     {{#each setSignature.parameters}}
                         {{name}}
                         <span class="tsd-signature-symbol">: </span>
-                        {{#with type}}
-                            {{> type}}
+                        <With props=type>
+                            {{__partials__ type}}
                         {{else}}
                             <span class="tsd-signature-type">any</span>
-                        {{/with}}
+                        </With>
                     {{/each}}
                     <span class="tsd-signature-symbol">)</span>
                 {{else}}
@@ -215,11 +215,11 @@ if an inner type may result in invalid output without them. For example:
                     {{else}}
                         <span class="tsd-signature-symbol">: </span>
                     {{/if}}
-                    {{#with type}}
-                        {{> type}}
+                    <With props=type>
+                        {{__partials__ type}}
                     {{else}}
                         <span class="tsd-signature-type">any</span>
-                    {{/with}}
+                    </With>
                 {{/if}}
             {{/if}}
         {{/each}}
@@ -228,7 +228,7 @@ if an inner type may result in invalid output without them. For example:
         {{#if (lookup declaration.signatures 1) }} {{! more than one signature}}
             <span class="tsd-signature-symbol">{ </span>
             {{#each declaration.signatures}}
-                {{> member.signature.title hideName=true}}
+                {{__partials__ member.signature.title hideName=true}}
                 {{#unless @last}}
                     <span class="tsd-signature-symbol">; </span>
                 {{/unless}}
@@ -238,9 +238,9 @@ if an inner type may result in invalid output without them. For example:
             {{#if needsParens}}
                 <span class="tsd-signature-symbol">(</span>
             {{/if}}
-            {{#with (lookup declaration.signatures '0') }}
-                {{> member.signature.title hideName=true arrowStyle=true}}
-            {{/with}}
+            <With props=(lookup declaration.signatures '0') >
+                {{__partials__ member.signature.title hideName=true arrowStyle=true}}
+            </With>
             {{#if needsParens}}
                 <span class="tsd-signature-symbol">)</span>
             {{/if}}
@@ -252,9 +252,9 @@ if an inner type may result in invalid output without them. For example:
 
 {{#*inline 'rest'}}
     <span class="tsd-signature-symbol">...</span>
-    {{#with elementType}}
-        {{> type}}
-    {{/with}}
+    <With props=elementType>
+        {{__partials__ type}}
+    </With>
 {{/inline}}
 
 {{#*inline 'tuple'}}
@@ -263,7 +263,7 @@ if an inner type may result in invalid output without them. For example:
         {{#unless @first}}
             <span class="tsd-signature-symbol">, </span>
         {{/unless}}
-        {{> type}}
+        {{__partials__ type}}
     {{/each}}
     <span class="tsd-signature-symbol">]</span>
 {{/inline}}
@@ -275,9 +275,9 @@ if an inner type may result in invalid output without them. For example:
     {{/if}}
     {{#each tail}}
         <span class="tsd-signature-symbol">${</span>
-        {{#with this.[0]}}
-            {{>type}}
-        {{/with}}
+        <With props=this.[0]>
+            {{__partials__ type}}
+        </With>
         <span class="tsd-signature-symbol">}</span>
         {{#if this.[1]}}
             <span class="tsd-signature-type">{{this.[1]}}</span>
@@ -288,9 +288,9 @@ if an inner type may result in invalid output without them. For example:
 
 {{#*inline 'typeOperator'}}
     <span class="tsd-signature-symbol">{{operator}} </span>
-    {{#with target}}
-        {{> type}}
-    {{/with}}
+    <With props=target>
+        {{__partials__ type}}
+    </With>
 {{/inline}}
 
 {{#*inline 'typeParameter'}}
@@ -305,7 +305,7 @@ if an inner type may result in invalid output without them. For example:
         {{#unless @first}}
             <span class="tsd-signature-symbol"> | </span>
         {{/unless}}
-        {{> type needsParens=true}}
+        {{__partials__ type needsParens=true}}
     {{/each}}
     {{#if needsParens}}
         <span class="tsd-signature-symbol">)</span>
@@ -323,13 +323,13 @@ if an inner type may result in invalid output without them. For example:
     {{else}}
         <span class="tsd-signature-symbol">: </span>
     {{/if}}
-    {{#with element}}
-        {{> type}}
-    {{/with}}
+    <With props=element>
+        {{__partials__ type}}
+    </With>
 {{/inline}}
 
 {{#if this}}
-    {{> (lookup . 'type') }}
+    {{__partials__ (lookup . 'type') }}
 {{else}}
     <span class="tsd-signature-type">void</span>
 {{/if}}

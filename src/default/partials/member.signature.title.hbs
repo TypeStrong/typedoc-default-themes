@@ -26,7 +26,7 @@
         {{#if defaultValue}}?{{/if}}
         :&nbsp;
     </span>
-    {{#with type}}{{>type}}{{/with}}
+    <With props=type>{{__partials__ type}}</With>
 {{/each}}
 <span class="tsd-signature-symbol">)</span>
 {{#if type}}
@@ -35,7 +35,7 @@
     {{else}}
         <span class="tsd-signature-symbol">: </span>
     {{/if}}
-    {{#with type}}
-        {{>type}}
-    {{/with}}
+    <With props=type>
+        {{__partials__ type}}
+    </With>
 {{/if}}
