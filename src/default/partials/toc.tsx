@@ -1,3 +1,4 @@
+import {With, IfCond, IfNotCond, Markdown} from '../../lib';
 import React from 'react';
 export const component = props => <><li className={"#if isInPath current /if " + props.cssClasses}>
     <a href={props.relativeURL} className="tsd-kind-icon">{props.wbr}</a>

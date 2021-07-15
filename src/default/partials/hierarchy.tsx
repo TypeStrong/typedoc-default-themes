@@ -1,3 +1,4 @@
+import {With, IfCond, IfNotCond, Markdown} from '../../lib';
 import React from 'react';
 export const component = props => <><ul className="tsd-hierarchy">
     {props.types.map((item, i) => <>        <li>

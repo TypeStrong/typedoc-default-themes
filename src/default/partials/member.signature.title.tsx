@@ -1,3 +1,4 @@
+import {With, IfCond, IfNotCond, Markdown} from '../../lib';
 import React from 'react';
 export const component = props => <>{!Boolean(props.hideName) ? <>    {props.wbr}
   </> : <>    <IfCond cond="kindString '===' 'Constructor signature'">

@@ -1,3 +1,4 @@
+import {With, IfCond, IfNotCond, Markdown} from '../../lib';
 import React from 'react';
 export const component = props => <><section className={"tsd-panel tsd-member " + props.cssClasses}>
     <a name={props.anchor} className="tsd-anchor"></a>
