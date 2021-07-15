@@ -1,9 +1,9 @@
 import {With, IfCond, IfNotCond, Markdown} from '../../lib';
 import React from 'react';
-export const component = props => <><Compact>
-    {Boolean(props) ? Boolean(props.elementType) ? <>            <With superProps="props" props="elementType">
+export const component = (props, item = props) => <><Compact>
+    {Boolean(props) ? Boolean(props.elementType) ? <>            { With(item || props, (item || props).elementType, (superProps, props, item) => (<>
                 {props.__partials__.typeAndParent}
-            </With>
+            </>)) }
             []
     </> : Boolean(props.reflection) ? <>                <IfSignature cond="reflection">
         {Boolean(props.reflection.parent.parent.url) ? <>                        <a href={props.relativeURL}>{props.reflection.parent.parent.name}</a>

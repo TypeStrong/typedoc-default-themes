@@ -1,6 +1,6 @@
 import {With, IfCond, IfNotCond, Markdown} from '../../lib';
 import React from 'react';
-export const component = props => <>
+export const component = (props, item = props) => <>
   <html className="default no-js">
     <head>
     <meta charSet="utf-8" />

@@ -1,6 +1,6 @@
 import {With, IfCond, IfNotCond, Markdown} from '../../lib';
 import React from 'react';
-export const component = props => <>
+export const component = (props, item = props) => <>
   <footer conditional="#unless settings.hideGenerator class=with-border-bottom /unless">
     <div className="container">
         <h2>Legend</h2>

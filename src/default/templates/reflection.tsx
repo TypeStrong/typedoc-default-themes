@@ -1,19 +1,19 @@
 import {With, IfCond, IfNotCond, Markdown} from '../../lib';
 import React from 'react';
-export const component = props => <><With superProps="props" props="model">
+export const component = (props, item = props) => <>{ With(item || props, (item || props).model, (superProps, props, item) => (<>
     {Boolean(props.hasComment) && <>        <section className="tsd-panel tsd-comment">
             {props.__partials__.comment}
         </section>
-    </>}</With>
+    </>}</>)) }
 
   {Boolean(props.model.typeParameters) && <>    <section className="tsd-panel tsd-type-parameters">
         <h3>Type parameters</h3>
-        <With superProps="props" props="model">{props.__partials__.typeParameters}</With>
+        { With(item || props, (item || props).model, (superProps, props, item) => (<>{props.__partials__.typeParameters}</>)) }
     </section>
   </>}
   {Boolean(props.model.typeHierarchy) && <>    <section className="tsd-panel tsd-hierarchy">
         <h3>Hierarchy</h3>
-        <With superProps="props" props="model.typeHierarchy">{props.__partials__.hierarchy}</With>
+        { With(item || props, (item || props).model.typeHierarchy, (superProps, props, item) => (<>{props.__partials__.hierarchy}</>)) }
     </section>
   </>}
   {Boolean(props.model.implementedTypes) && <>    <section className="tsd-panel">
@@ -32,29 +32,29 @@ export const component = props => <><With superProps="props" props="model">
   </>}
   {Boolean(props.model.signatures) && <>    <section className="tsd-panel">
         <h3 className="tsd-before-signature">Callable</h3>
-        <With superProps="props" props="model">{props.__partials__.member.signatures}</With>
+        { With(item || props, (item || props).model, (superProps, props, item) => (<>{props.__partials__.member.signatures}</>)) }
     </section>
   </>}
   {Boolean(props.model.indexSignature) && <>    <section className={"tsd-panel " + props.model.cssClasses}>
         <h3 className="tsd-before-signature">Indexable</h3>
         <div className="tsd-signature tsd-kind-icon"><Compact>
             <span className="tsd-signature-symbol">[</span>
-          {props.model.indexSignature.parameters.map((item, i) => <>                {item.name}: <With superProps="props" props="type">{item.__partials__.type}</With>
+          {props.model.indexSignature.parameters.map((item, i) => <>                {item.name}: { With(item || props, (item || props).type, (superProps, props, item) => (<>{item.__partials__.type}</>)) }
           </>)}            <span className="tsd-signature-symbol">]: </span>
-            <With superProps="props" props="model.indexSignature.type">{props.__partials__.type}</With>
+            { With(item || props, (item || props).model.indexSignature.type, (superProps, props, item) => (<>{props.__partials__.type}</>)) }
         </Compact></div>
 
-        <With superProps="props" props="model.indexSignature">
+        { With(item || props, (item || props).model.indexSignature, (superProps, props, item) => (<>
             {props.__partials__.comment}
-        </With>
+        </>)) }
 
-      {Boolean(props.model.indexSignature.type.declaration) && <>            <With superProps="props" props="model.indexSignature.type.declaration">
+      {Boolean(props.model.indexSignature.type.declaration) && <>            { With(item || props, (item || props).model.indexSignature.type.declaration, (superProps, props, item) => (<>
                 {props.__partials__.parameter}
-            </With>
+            </>)) }
       </>}    </section>
   </>}
-  <With superProps="props" props="model">
+  { With(item || props, (item || props).model, (superProps, props, item) => (<>
     {props.__partials__.index}
     {props.__partials__.members}
-  </With>
+  </>)) }
 </>;

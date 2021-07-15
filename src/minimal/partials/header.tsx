@@ -1,6 +1,6 @@
 import {With, IfCond, IfNotCond, Markdown} from '../../lib';
 import React from 'react';
-export const component = props => <header>
+export const component = (props, item = props) => <header>
     <div className="tsd-page-toolbar">
         <div className="container">
             <div className="table-wrap">

@@ -1,6 +1,6 @@
 import {With, IfCond, IfNotCond, Markdown} from '../../lib';
 import React from 'react';
-export const component = props => <>{
+export const component = (props, item = props) => <>{
     /* Each type gets its own inline helper to determine how it is rendered. */
   }{
     /* The name of the helper is the value of the 'type' property on the type.*/

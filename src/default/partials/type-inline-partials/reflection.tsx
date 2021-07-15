@@ -1,6 +1,6 @@
 import {With, IfCond, IfNotCond, Markdown} from '../../lib';
 import React from 'react';
-export const component = props => <>
+export const component = (props, item = props) => <>
     {Boolean(props.declaration.children) ? <> {
         /* object literal */
     }
@@ -9,16 +9,16 @@ export const component = props => <>
         </>}
             {Boolean(item.getSignature) ? Boolean(item.setSignature) ? <>                {item.name}
                 <span className="tsd-signature-symbol">: </span>
-                {Boolean(item.getSignature.type) ? <>                <With superProps="props" props="getSignature.type">
+                {Boolean(item.getSignature.type) ? <>                { With(item || props, (item || props).getSignature.type, (superProps, props, item) => (<>
                     {item.__partials__.type}
-                </With>
+                </>)) }
                 </> : <>                    <span className="tsd-signature-type">any</span>
                 </>}</> : <>                <span className="tsd-signature-symbol">get </span>
                 {item.name}
                 <span className="tsd-signature-symbol">(): </span>
-                {Boolean(item.getSignature.type) ? <>                    <With superProps="props" props="getSignature.type">
+                {Boolean(item.getSignature.type) ? <>                    { With(item || props, (item || props).getSignature.type, (superProps, props, item) => (<>
                     {item.__partials__.type}
-                </With>
+                </>)) }
                 </> : <>                    <span className="tsd-signature-type">any</span>
                 </>}</> : Boolean(item.setSignature) ? <>                <span className="tsd-signature-symbol">set </span>
                     {item.name}
@@ -27,17 +27,17 @@ export const component = props => <>
                         /* Rather hacky to use each here... but we know there is exactly one. */
                     }{item.setSignature.parameters.map((item, i) => <>                    {item.name}
                         <span className="tsd-signature-symbol">: </span>
-                        {Boolean(item.type) ? <>                        <With superProps="props" props="type">
+                        {Boolean(item.type) ? <>                        { With(item || props, (item || props).type, (superProps, props, item) => (<>
                             {item.__partials__.type}
-                        </With>
+                        </>)) }
                         </> : <>                        <span className="tsd-signature-type">any</span>
                         </>}</>)}                <span className="tsd-signature-symbol">)</span>
                 </> : <>                {item.name}
                 {Boolean(item.flags.isOptional) ? <>                    <span className="tsd-signature-symbol">?: </span>
                 </> : <>                    <span className="tsd-signature-symbol">: </span>
-                </>}{Boolean(item.type) ? <>                <With superProps="props" props="type">
+                </>}{Boolean(item.type) ? <>                { With(item || props, (item || props).type, (superProps, props, item) => (<>
                     {item.__partials__.type}
-                </With>
+                </>)) }
                 </> : <>                    <span className="tsd-signature-type">any</span>
                 </>}</>}</>)}    <span className="tsd-signature-symbol"> {"}"}</span>
     </> : Boolean(props.declaration.signatures) ? <>    {Boolean("(lookup declaration.signatures 1)") ? <> {
@@ -48,9 +48,9 @@ export const component = props => <>
             {!Boolean(item.last) && <>                <span className="tsd-signature-symbol">; </span>
             </>}</>)}        <span className="tsd-signature-symbol"> {"}"}</span>
     </> : <>{Boolean(props.needsParens) && <>            <span className="tsd-signature-symbol">(</span>
-    </>}        <With superProps="props" props="(lookup declaration.signatures '0')">
+    </>}        { With(item || props, (item || props).(lookup declaration.signatures '0'), (superProps, props, item) => (<>
             {props.__partials__.member.signature.title}
-        </With>
+        </>)) }
         {Boolean(props.needsParens) && <>            <span className="tsd-signature-symbol">)</span>
         </>}</>}</> : <>    <span className="tsd-signature-symbol">{"{"}{"}"}</span>
     </>}</>;

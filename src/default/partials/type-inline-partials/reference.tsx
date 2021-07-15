@@ -1,11 +1,11 @@
 import {With, IfCond, IfNotCond, Markdown} from '../../lib';
 import React from 'react';
-export const component = props => <>
-  {Boolean(props.getReflection) ? <>    <With superProps="props" props="getReflection">
+export const component = (props, item = props) => <>
+  {Boolean(props.getReflection) ? <>    { With(item || props, (item || props).getReflection, (superProps, props, item) => (<>
         <a href={props.relativeURL} className="tsd-signature-type" data-tsd-kind={props.kindString}>
             {props.name}
         </a>
-    </With>
+    </>)) }
   </> : <>        <span className="tsd-signature-type">{props.name}</span>
   </>}{Boolean(props.typeArguments) && <>        <span className="tsd-signature-symbol"><</span>
     {props.typeArguments.map((item, i) => <>{!Boolean(item.first) && <>                <span className="tsd-signature-symbol">, </span>

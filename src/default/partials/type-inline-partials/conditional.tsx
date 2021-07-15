@@ -1,21 +1,21 @@
 import {With, IfCond, IfNotCond, Markdown} from '../../lib';
 import React from 'react';
-export const component = props => <>
+export const component = (props, item = props) => <>
   {Boolean(props.needsParens) && <>        <span className="tsd-signature-symbol">(</span>
-  </>}    <With superProps="props" props="checkType">
+  </>}    { With(item || props, (item || props).checkType, (superProps, props, item) => (<>
         {props.__partials__.type}
-    </With>
+    </>)) }
     <span className="tsd-signature-symbol"> extends </span>
-    <With superProps="props" props="extendsType">
+    { With(item || props, (item || props).extendsType, (superProps, props, item) => (<>
         {props.__partials__.type}
-    </With>
+    </>)) }
     <span className="tsd-signature-symbol"> ? </span>
-    <With superProps="props" props="trueType">
+    { With(item || props, (item || props).trueType, (superProps, props, item) => (<>
         {props.__partials__.type}
-    </With>
+    </>)) }
     <span className="tsd-signature-symbol"> : </span>
-    <With superProps="props" props="falseType">
+    { With(item || props, (item || props).falseType, (superProps, props, item) => (<>
         {props.__partials__.type}
-    </With>
+    </>)) }
   {Boolean(props.needsParens) && <>        <span className="tsd-signature-symbol">)</span>
   </>}</>;

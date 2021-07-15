@@ -1,6 +1,6 @@
 import {With, IfCond, IfNotCond, Markdown} from '../../lib';
 import React from 'react';
-export const component = props => <>
+export const component = (props, item = props) => <>
     <span className="tsd-signature-symbol">{"{"}</span>
     <IfCond cond="readonlyModifier '===' '+'">
         <span className="tsd-signature-symbol">readonly </span>
@@ -15,14 +15,14 @@ export const component = props => <>
     <span className="tsd-signature-type">{props.parameter}</span>
     <span className="tsd-signature-symbol"> in </span>
 
-    <With superProps="props" props="parameterType">
+    { With(item || props, (item || props).parameterType, (superProps, props, item) => (<>
         {props.__partials__.type}
-    </With>
+    </>)) }
 
-    <With superProps="props" props="nameType">
+    { With(item || props, (item || props).nameType, (superProps, props, item) => (<>
         <span className="tsd-signature-symbol"> as </span>
         {props.__partials__.type}
-    </With>
+    </>)) }
 
     <span className="tsd-signature-symbol">]</span>
     <IfCond cond="readonlyModifier '===' '+'">
@@ -37,9 +37,9 @@ export const component = props => <>
         </IfNotCond>
     </IfNotCond>
 
-    <With superProps="props" props="templateType">
+    { With(item || props, (item || props).templateType, (superProps, props, item) => (<>
         {props.__partials__.type}
-    </With>
+    </>)) }
 
     <span className="tsd-signature-symbol"> {"}"}</span>
 </>;
