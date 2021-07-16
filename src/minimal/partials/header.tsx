@@ -20,10 +20,10 @@ export const component = (props, item = props) => <header>
                                 </ul>
                             </div>
 
-                            <input type="checkbox" id="tsd-filter-inherited" checked="" />
+                            <input type="checkbox" id="tsd-filter-inherited" checked={true} />
                             <label className="tsd-widget" htmlFor="tsd-filter-inherited">Inherited</label>
 
-              {!Boolean(props.settings.excludeExternals) && <>                                <input type="checkbox" id="tsd-filter-externals" checked="" />
+              {!Boolean(props.settings.excludeExternals) && <>                                <input type="checkbox" id="tsd-filter-externals" checked={true} />
                                 <label className="tsd-widget" htmlFor="tsd-filter-externals">Externals</label>
               </>}
                             <input type="checkbox" id="tsd-filter-only-exported" />

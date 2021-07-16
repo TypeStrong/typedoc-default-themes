@@ -15,16 +15,16 @@ export const component = (props, item = props) => <><ul className="tsd-parameter
     </>}{Boolean(props.indexSignature) && <>        <li className="tsd-parameter-index-signature">
             <h5><Compact>
                 <span className="tsd-signature-symbol">[</span>
-            {props.indexSignature.parameters.map((item, i) => <>                    {Boolean(item.flags.isRest) && <span className="tsd-signature-symbol">...</span>}{item.name}: { With(item || props, (item || props).type, (superProps, props, item) => (<>{item.__partials__.type}</>)) }
+            {props.indexSignature.parameters.map((item, i) => <>                    {Boolean(item.flags.isRest) && <span className="tsd-signature-symbol">...</span>}{item.name}: { With(item, item.type, (superProps, props, item) => (<>{item.__partials__.type}</>)) }
             </>)}                <span className="tsd-signature-symbol">]: </span>
-                { With(item || props, (item || props).indexSignature.type, (superProps, props, item) => (<>{props.__partials__.type}</>)) }
+                { With(item, item.indexSignature.type, (superProps, props, item) => (<>{props.__partials__.type}</>)) }
             </Compact></h5>
 
-            { With(item || props, (item || props).indexSignature, (superProps, props, item) => (<>
+            { With(item, item.indexSignature, (superProps, props, item) => (<>
                 {props.__partials__.comment}
             </>)) }
 
-        {Boolean(props.indexSignature.type.declaration) && <>                { With(item || props, (item || props).indexSignature.type.declaration, (superProps, props, item) => (<>
+        {Boolean(props.indexSignature.type.declaration) && <>                { With(item, item.indexSignature.type.declaration, (superProps, props, item) => (<>
                     {props.__partials__.parameter}
                 </>)) }
         </>}        </li>
@@ -48,7 +48,7 @@ export const component = (props, item = props) => <><ul className="tsd-parameter
                 <h5><Compact>
               {item.flags.map((item, i) => <>                        <span className={"tsd-flag ts-flag" + item}>{item}</span>
               </>)}                    {Boolean(item.flags.isRest) && <span className="tsd-signature-symbol">...</span>}
-                    { With(item || props, (item || props).type, (superProps, props, item) => (<>
+                    { With(item, item.type, (superProps, props, item) => (<>
                         {item.wbr}
                         <span className="tsd-signature-symbol">
                             {Boolean(item.superProps.flags.isOptional) && "?"}
@@ -62,14 +62,14 @@ export const component = (props, item = props) => <><ul className="tsd-parameter
 
           {Boolean(item.children) && <>                    {item.__partials__.parameter}
           </>}
-          {Boolean(item.type.declaration) && <>                    { With(item || props, (item || props).type.declaration, (superProps, props, item) => (<>
+          {Boolean(item.type.declaration) && <>                    { With(item, item.type.declaration, (superProps, props, item) => (<>
                         {item.__partials__.parameter}
                     </>)) }
           </>}            </li>
         </> : <> {
           /* getter/setter */
         }
-            { With(item || props, (item || props).getSignature, (superProps, props, item) => (<> {
+            { With(item, item.getSignature, (superProps, props, item) => (<> {
             /* getter */
           }
                 <li className="tsd-parameter">
@@ -78,7 +78,7 @@ export const component = (props, item = props) => <><ul className="tsd-parameter
                 </>)}                        <span className="tsd-signature-symbol">get </span>
                         {item.wbr}
                         <span className="tsd-signature-symbol">(): </span>
-                        { With(item || props, (item || props).type, (superProps, props, item) => (<>
+                        { With(item, item.type, (superProps, props, item) => (<>
                             {item.__partials__.type}
                         </>)) }
                     </Compact></h5>
@@ -86,7 +86,7 @@ export const component = (props, item = props) => <><ul className="tsd-parameter
                     {item.__partials__.comment}
                 </li>
             </>)) }
-            { With(item || props, (item || props).setSignature, (superProps, props, item) => (<> {
+            { With(item, item.setSignature, (superProps, props, item) => (<> {
             /* setter */
           }
                 <li className="tsd-parameter">
@@ -97,12 +97,12 @@ export const component = (props, item = props) => <><ul className="tsd-parameter
                         <span className="tsd-signature-symbol">(</span>
                 {item.parameters.map((item, i) => <>                            {item.name}
                             <span className="tsd-signature-symbol">: </span>
-                  {Boolean(item.type) ? <>                                { With(item || props, (item || props).type, (superProps, props, item) => (<>
+                  {Boolean(item.type) ? <>                                { With(item, item.type, (superProps, props, item) => (<>
                                     {item.__partials__.type}
                                 </>)) }
                   </> : <>                                <span className="tsd-signature-type">any</span>
                   </>}</>)}                        <span className="tsd-signature-symbol">): </span>
-                        { With(item || props, (item || props).type, (superProps, props, item) => (<>
+                        { With(item, item.type, (superProps, props, item) => (<>
                             {item.__partials__.type}
                         </>)) }
                     </Compact></h5>

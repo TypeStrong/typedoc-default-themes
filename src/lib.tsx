@@ -20,6 +20,7 @@ export class IfNotCond extends React.Component<{cond: string}> {
     }
 }
 
+export {IfCond as IfSignature, IfNotCond as IfNotSignature};
 declare global {
     namespace JSX {
         interface IntrinsicElements {

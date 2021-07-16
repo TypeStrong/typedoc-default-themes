@@ -31,10 +31,10 @@ export const component = (props, item = props) => <><header>
                                 </ul>
                             </div>
 
-                            <input type="checkbox" id="tsd-filter-inherited" checked="" />
+                            <input type="checkbox" id="tsd-filter-inherited" checked={true} />
                             <label className="tsd-widget" htmlFor="tsd-filter-inherited">Inherited</label>
 
-                {!Boolean(props.settings.excludeExternals) && <>                                <input type="checkbox" id="tsd-filter-externals" checked="" />
+                {!Boolean(props.settings.excludeExternals) && <>                                <input type="checkbox" id="tsd-filter-externals" checked={true} />
                                 <label className="tsd-widget" htmlFor="tsd-filter-externals">Externals</label>
                 </>}                        </div>
                     </div>
@@ -50,7 +50,7 @@ export const component = (props, item = props) => <><header>
             /* Don't show breadcrumbs on main project page, it is the root page. !*/
           }
                 <ul className="tsd-breadcrumb">
-                    { With(item || props, (item || props).model, (superProps, props, item) => (<>{props.__partials__.breadcrumb}</>)) }
+                    { With(item, item.model, (superProps, props, item) => (<>{props.__partials__.breadcrumb}</>)) }
                 </ul>
         </>}            <h1><Compact>
                 <IfCond cond="model.kindString '!==' 'Project' ">

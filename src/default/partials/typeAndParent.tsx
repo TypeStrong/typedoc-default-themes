@@ -1,7 +1,7 @@
-import {With, Compact, IfCond, IfNotCond, Markdown} from '../../lib';
+import {With, Compact, IfCond, IfNotCond, Markdown, IfSignature, IfNotSignature} from '../../lib';
 import React from 'react';
 export const component = (props, item = props) => <><Compact>
-    {Boolean(props) ? Boolean(props.elementType) ? <>            { With(item || props, (item || props).elementType, (superProps, props, item) => (<>
+    {Boolean(props) ? Boolean(props.elementType) ? <>            { With(item, item.elementType, (superProps, props, item) => (<>
                 {props.__partials__.typeAndParent}
             </>)) }
             []

@@ -18,11 +18,11 @@ export const component = (props, item = props) => <>{!Boolean(props.hideName) ? 
             {Boolean(item.defaultValue) && "?"}
             :
         </span>
-        {With(item || props, (item || props).type, (superProps, props, item) => (<>{item.__partials__.type}</>))}
+        {With(item, item.type, (superProps, props, item) => (<>{item.__partials__.type}</>))}
     </>)}<span className="tsd-signature-symbol">)</span>
     {Boolean(props.type) && <>{Boolean(props.arrowStyle) ? <>        <span className="tsd-signature-symbol"> ={'>'} </span>
     </> : <>        <span className="tsd-signature-symbol">: </span>
-    </>}    {With(item || props, (item || props).type, (superProps, props, item) => (<>
+    </>}    {With(item, item.type, (superProps, props, item) => (<>
         {props.__partials__.type}
     </>))}
     </>}</>;

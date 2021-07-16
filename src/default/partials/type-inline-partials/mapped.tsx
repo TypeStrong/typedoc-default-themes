@@ -15,11 +15,11 @@ export const component = (props, item = props) => <>
     <span className="tsd-signature-type">{props.parameter}</span>
     <span className="tsd-signature-symbol"> in </span>
 
-    { With(item || props, (item || props).parameterType, (superProps, props, item) => (<>
+    { With(item, item.parameterType, (superProps, props, item) => (<>
         {props.__partials__.type}
     </>)) }
 
-    { With(item || props, (item || props).nameType, (superProps, props, item) => (<>
+    { With(item, item.nameType, (superProps, props, item) => (<>
         <span className="tsd-signature-symbol"> as </span>
         {props.__partials__.type}
     </>)) }
@@ -37,7 +37,7 @@ export const component = (props, item = props) => <>
         </IfNotCond>
     </IfNotCond>
 
-    { With(item || props, (item || props).templateType, (superProps, props, item) => (<>
+    { With(item, item.templateType, (superProps, props, item) => (<>
         {props.__partials__.type}
     </>)) }
 

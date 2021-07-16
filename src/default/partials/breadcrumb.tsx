@@ -1,6 +1,6 @@
 import {With, Compact, IfCond, IfNotCond, Markdown} from '../../lib';
 import React from 'react';
-export const component = (props, item = props) => Boolean(props.parent) ? <>    { With(item || props, (item || props).parent, (superProps, props, item) => (<>{props.__partials__.breadcrumb}</>)) }
+export const component = (props, item = props) => Boolean(props.parent) ? <>    { With(item, item.parent, (superProps, props, item) => (<>{props.__partials__.breadcrumb}</>)) }
     <li>
     {Boolean(props.url) ? <>            <a href={props.relativeURL}>{props.name}</a>
     </> : <>            <span>{props.name}</span>

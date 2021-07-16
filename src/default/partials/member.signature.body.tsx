@@ -14,7 +14,7 @@ export const component = (props, item = props) => <>{!Boolean(props.hideSources)
               {item.flags.map((item, i) => <>                        <span className={"tsd-flag ts-flag" + item}>{item}</span>
               </>)}                    {Boolean(item.flags.isRest) && <span className="tsd-signature-symbol">...</span>}
                     {item.name}:
-                    { With(item || props, (item || props).type, (superProps, props, item) => (<>{item.__partials__.type}</>)) }
+                    { With(item, item.type, (superProps, props, item) => (<>{item.__partials__.type}</>)) }
               {Boolean(item.defaultValue) && <>                        <span className="tsd-signature-symbol">
                          =
                         {item.defaultValue}
@@ -23,17 +23,17 @@ export const component = (props, item = props) => <>{!Boolean(props.hideSources)
 
                 {item.__partials__.comment}
 
-          {Boolean(item.type.declaration) && <>                    { With(item || props, (item || props).type.declaration, (superProps, props, item) => (<>
+          {Boolean(item.type.declaration) && <>                    { With(item, item.type.declaration, (superProps, props, item) => (<>
                         {item.__partials__.parameter}
                     </>)) }
           </>}            </li>
       </>)}    </ul>
   </>}
-  {Boolean(props.type) && <>    <h4 className="tsd-returns-title">Returns <Compact>{ With(item || props, (item || props).type, (superProps, props, item) => (<>{props.__partials__.type}</>)) }</Compact></h4>
+  {Boolean(props.type) && <>    <h4 className="tsd-returns-title">Returns <Compact>{ With(item, item.type, (superProps, props, item) => (<>{props.__partials__.type}</>)) }</Compact></h4>
 
     {Boolean(props.comment.returns) && <>        <Markdown>{props.comment.returns}</Markdown>
     </>}
-    {Boolean(props.type.declaration) && <>        { With(item || props, (item || props).type.declaration, (superProps, props, item) => (<>
+    {Boolean(props.type.declaration) && <>        { With(item, item.type.declaration, (superProps, props, item) => (<>
             {props.__partials__.parameter}
         </>)) }
     </>}</>}</>;

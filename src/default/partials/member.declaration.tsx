@@ -6,7 +6,7 @@ export const component = (props, item = props) => <><div className="tsd-signatur
         {props.typeParameters.map((item, i) => <>            {Boolean(item.index) && ",\xA0"}
             {item.name}
         </>)}        {'>'}
-      </>}    <span className="tsd-signature-symbol">{Boolean(props.isOptional) && "?"}:</span> { With(item || props, (item || props).type, (superProps, props, item) => (<>{props.__partials__.type}</>)) }
+      </>}    <span className="tsd-signature-symbol">{Boolean(props.isOptional) && "?"}:</span> { With(item, item.type, (superProps, props, item) => (<>{props.__partials__.type}</>)) }
       {Boolean(props.defaultValue) && <>        <span className="tsd-signature-symbol">
          =
         {props.defaultValue}
@@ -22,7 +22,7 @@ export const component = (props, item = props) => <><div className="tsd-signatur
   </>}
   {Boolean(props.type.declaration) && <>    <div className="tsd-type-declaration">
         <h4>Type declaration</h4>
-        { With(item || props, (item || props).type.declaration, (superProps, props, item) => (<>
+        { With(item, item.type.declaration, (superProps, props, item) => (<>
             {props.__partials__.parameter}
         </>)) }
     </div>

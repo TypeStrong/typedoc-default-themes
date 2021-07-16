@@ -10,7 +10,7 @@ export const component = (props, item = props) => <>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <link rel="stylesheet" href={props.relativeURL} />
-    <script async="" src={props.relativeURL} id="search-script"></script>
+    <script async={true} src={props.relativeURL} id="search-script"></script>
     </head>
     <body>
 

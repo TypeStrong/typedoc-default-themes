@@ -1,6 +1,6 @@
 import {With, Compact, IfCond, IfNotCond, Markdown} from '../../lib';
 import React from 'react';
-export const component = (props, item = props) => Boolean(props.tryGetTargetReflectionDeep) ? <>    { With(item || props, (item || props).tryGetTargetReflectionDeep, (superProps, props, item) => (<>
+export const component = (props, item = props) => Boolean(props.tryGetTargetReflectionDeep) ? <>    { With(item, item.tryGetTargetReflectionDeep, (superProps, props, item) => (<>
         <IfCond cond="superProps.name '===' name">
             Re-exports <a href={props.relativeURL}>{props.name}</a>
         </IfCond>
