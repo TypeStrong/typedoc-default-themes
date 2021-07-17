@@ -1,4 +1,4 @@
-import {With, Compact, IfCond, IfNotCond, Markdown} from '../../lib';
+import {With, __partials__, Compact, IfCond, IfNotCond, Markdown} from '../../lib';
 import React from 'react';
 export const component = (props, item = props) => <><header>
     <div className="tsd-page-toolbar">
@@ -50,7 +50,7 @@ export const component = (props, item = props) => <><header>
             /* Don't show breadcrumbs on main project page, it is the root page. !*/
           }
                 <ul className="tsd-breadcrumb">
-                    { With(item, item.model, (superProps, props, item) => (<>{props.__partials__.breadcrumb}</>)) }
+                    { With(item, item.model, (superProps, props, item) => (<>{__partials__.breadcrumb(props)}</>)) }
                 </ul>
         </>}            <h1><Compact>
                 <IfCond cond={props.model.kindString !== props.Project}>

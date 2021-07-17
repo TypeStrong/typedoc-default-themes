@@ -1,4 +1,4 @@
-import {With, Compact, IfCond, IfNotCond, Markdown} from '../../lib';
+import {With, __partials__, Compact, IfCond, IfNotCond, Markdown} from '../../lib';
 import React from 'react';
 export const component = (props, item = props) => Boolean(props.categories) ? props.categories.map((item, i) => <>        <section className={"tsd-panel-group tsd-member-group " + item.cssClasses}>
             <h2>{Boolean(item.title) && <>{item.title} </>}{item.superProps.title}</h2>

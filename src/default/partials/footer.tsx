@@ -1,4 +1,4 @@
-import {With, Compact, IfCond, IfNotCond, Markdown} from '../../lib';
+import {With, __partials__, Compact, IfCond, IfNotCond, Markdown} from '../../lib';
 import React from 'react';
 export const component = (props, item = props) => <>
   <footer conditional="#unless settings.hideGenerator class=with-border-bottom /unless">

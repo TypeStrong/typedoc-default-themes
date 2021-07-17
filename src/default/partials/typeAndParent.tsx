@@ -1,8 +1,8 @@
-import {With, Compact, IfCond, IfNotCond, Markdown, isSignature} from '../../lib';
+import {With, __partials__, Compact, IfCond, IfNotCond, Markdown, isSignature} from '../../lib';
 import React from 'react';
 export const component = (props, item = props) => <><Compact>
     {Boolean(props) ? Boolean(props.elementType) ? <>            { With(item, item.elementType, (superProps, props, item) => (<>
-                {props.__partials__.typeAndParent}
+                {__partials__.typeAndParent(props)}
             </>)) }
             []
     </> : Boolean(props.reflection) ? <>                <IfCond cond={isSignature(props.reflection)}>

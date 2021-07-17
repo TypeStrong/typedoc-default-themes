@@ -1,4 +1,4 @@
-import {With, Compact, IfCond, IfNotCond, Markdown} from '../../../lib';
+import {With, __partials__, Compact, IfCond, IfNotCond, Markdown} from '../../../lib';
 import React from 'react';
 export const component = (props, item = props) => <>
     {Boolean(props.declaration.children) ? <> {
@@ -44,12 +44,12 @@ export const component = (props, item = props) => <>
         /* more than one signature*/
     }
         <span className="tsd-signature-symbol">{"{"} </span>
-        {props.declaration.signatures.map((item, i) => <>            {item.__partials__.member.signature.title}
+        {props.declaration.signatures.map((item, i) => <>            {__partials__['member.signature.title'](item, {hideName: true})}
             {!Boolean(item.last) && <>                <span className="tsd-signature-symbol">; </span>
             </>}</>)}        <span className="tsd-signature-symbol"> {"}"}</span>
     </> : <>{Boolean(props.needsParens) && <>            <span className="tsd-signature-symbol">(</span>
     </>}        { With(item, item.declaration.signatures[0], (superProps, props, item) => (<>
-            {props.__partials__.member.signature.title}
+            {__partials__['member.signature.title'](props, {hideName: true, arrowStyle: true})}
         </>)) }
         {Boolean(props.needsParens) && <>            <span className="tsd-signature-symbol">)</span>
         </>}</>}</> : <>    <span className="tsd-signature-symbol">{"{"}{"}"}</span>

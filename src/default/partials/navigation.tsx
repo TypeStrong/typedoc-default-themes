@@ -1,4 +1,4 @@
-import {With, Compact, IfCond, IfNotCond, Markdown} from '../../lib';
+import {With, __partials__, Compact, IfCond, IfNotCond, Markdown} from '../../lib';
 import React from 'react';
 export const component = (props, item = props) => Boolean(props.isVisible) && (Boolean(props.isLabel) ? <>        <li className={"label " + props.cssClasses}>
             <span>{props.wbr}</span>

@@ -1,15 +1,15 @@
-import {With, Compact, IfCond, IfNotCond, Markdown} from '../../lib';
+import {With, __partials__, Compact, IfCond, IfNotCond, Markdown} from '../../lib';
 import React from 'react';
 export const component = (props, item = props) => <><ul className="tsd-parameters">
     {Boolean(props.signatures) && <>        <li className="tsd-parameter-signature">
             <ul className={"tsd-signatures " + props.cssClasses}>
           {props.signatures.map((item, i) => <>                    <li className="tsd-signature tsd-kind-icon"><Compact>
-                        {item.__partials__.member.signature.title}
+                        {__partials__['member.signature.title'](item, {hideName: true})}
                     </Compact></li>
           </>)}            </ul>
 
             <ul className="tsd-descriptions">
-          {props.signatures.map((item, i) => <>                    <li className="tsd-description">{item.__partials__.member.signature.body}</li>
+          {props.signatures.map((item, i) => <>                    <li className="tsd-description">{__partials__['member.signature.body'](item, {hideSources: true})}</li>
           </>)}            </ul>
         </li>
     </>}{Boolean(props.indexSignature) && <>        <li className="tsd-parameter-index-signature">
@@ -17,15 +17,15 @@ export const component = (props, item = props) => <><ul className="tsd-parameter
                 <span className="tsd-signature-symbol">[</span>
             {props.indexSignature.parameters.map((item, i) => <>                    {Boolean(item.flags.isRest) && <span className="tsd-signature-symbol">...</span>}{item.name}: { With(item, item.type, (superProps, props, item) => (<>{item.__partials__.type}</>)) }
             </>)}                <span className="tsd-signature-symbol">]: </span>
-                { With(item, item.indexSignature.type, (superProps, props, item) => (<>{props.__partials__.type}</>)) }
+                { With(item, item.indexSignature.type, (superProps, props, item) => (<>{__partials__.type(props)}</>)) }
             </Compact></h5>
 
             { With(item, item.indexSignature, (superProps, props, item) => (<>
-                {props.__partials__.comment}
+                {__partials__.comment(props)}
             </>)) }
 
         {Boolean(props.indexSignature.type.declaration) && <>                { With(item, item.indexSignature.type.declaration, (superProps, props, item) => (<>
-                    {props.__partials__.parameter}
+                    {__partials__.parameter(props)}
                 </>)) }
         </>}        </li>
     </>}{props.children.map((item, i) => <>{Boolean(item.signatures) ? <>            <li className="tsd-parameter">

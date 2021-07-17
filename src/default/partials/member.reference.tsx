@@ -1,4 +1,4 @@
-import {With, Compact, IfCond, IfNotCond, Markdown} from '../../lib';
+import {With, __partials__, Compact, IfCond, IfNotCond, Markdown} from '../../lib';
 import React from 'react';
 export const component = (props, item = props) => Boolean(props.tryGetTargetReflectionDeep) ? <>    { With(item, item.tryGetTargetReflectionDeep, (superProps, props, item) => (<>
         <IfCond cond={superProps.name === name}>

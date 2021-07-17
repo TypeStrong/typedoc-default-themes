@@ -1,11 +1,11 @@
-import {With, Compact, IfCond, IfNotCond, Markdown} from '../../lib';
+import {With, __partials__, Compact, IfCond, IfNotCond, Markdown} from '../../lib';
 import React from 'react';
-export const component = (props, item = props) => <>{!Boolean(props.hideSources) && <>    {props.__partials__.member.sources}
+export const component = (props, item = props) => <>{!Boolean(props.hideSources) && <>    {__partials__['member.sources'](props)}
   </>}
-  {props.__partials__.comment}
+  {__partials__.comment(props)}
 
   {Boolean(props.typeParameters) && <>    <h4 className="tsd-type-parameters-title">Type parameters</h4>
-    {props.__partials__.typeParameters}
+    {__partials__.typeParameters(props)}
   </>}
   {Boolean(props.parameters) && <>    <h4 className="tsd-parameters-title">Parameters</h4>
     <ul className="tsd-parameters">
@@ -29,11 +29,11 @@ export const component = (props, item = props) => <>{!Boolean(props.hideSources)
           </>}            </li>
       </>)}    </ul>
   </>}
-  {Boolean(props.type) && <>    <h4 className="tsd-returns-title">Returns <Compact>{ With(item, item.type, (superProps, props, item) => (<>{props.__partials__.type}</>)) }</Compact></h4>
+  {Boolean(props.type) && <>    <h4 className="tsd-returns-title">Returns <Compact>{ With(item, item.type, (superProps, props, item) => (<>{__partials__.type(props)}</>)) }</Compact></h4>
 
     {Boolean(props.comment.returns) && <>        <Markdown>{props.comment.returns}</Markdown>
     </>}
     {Boolean(props.type.declaration) && <>        { With(item, item.type.declaration, (superProps, props, item) => (<>
-            {props.__partials__.parameter}
+            {__partials__.parameter(props)}
         </>)) }
     </>}</>}</>;

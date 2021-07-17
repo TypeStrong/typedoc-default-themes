@@ -1,4 +1,4 @@
-import {With, Compact, IfCond, IfNotCond, Markdown} from '../../lib';
+import {With, __partials__, Compact, IfCond, IfNotCond, Markdown} from '../../lib';
 import React from 'react';
 export const component = (props, item = props) => <>
   <html className="default no-js">
@@ -14,7 +14,7 @@ export const component = (props, item = props) => <>
     </head>
     <body>
 
-      {props.__partials__.header}
+      {__partials__.header(props)}
 
       <div className="container container-main">
     <div className="row">
@@ -37,12 +37,12 @@ export const component = (props, item = props) => <>
     </div>
       </div>
 
-      {props.__partials__.footer}
+      {__partials__.footer(props)}
 
       <div className="overlay"></div>
       <script src={props.relativeURL}></script>
 
-      {props.__partials__.analytics}
+      {__partials__.analytics(props)}
 
     </body>
   </html>

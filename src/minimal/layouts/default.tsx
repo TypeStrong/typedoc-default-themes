@@ -1,4 +1,4 @@
-import {With, Compact, IfCond, IfNotCond, Markdown} from '../../lib';
+import {With, __partials__, Compact, IfCond, IfNotCond, Markdown} from '../../lib';
 import React from 'react';
 export const component = (props, item = props) => <>
   <html className="minimal no-js">
@@ -12,7 +12,7 @@ export const component = (props, item = props) => <>
     </head>
     <body>
 
-      {props.__partials__.header}
+      {__partials__.header(props)}
 
       <nav className="tsd-navigation secondary">
     <ul>
@@ -27,7 +27,7 @@ export const component = (props, item = props) => <>
                 </div>
           </>}
         {props.contents}
-        {props.__partials__.footer}
+        {__partials__.footer(props)}
     </div>
       </div>
 
@@ -35,7 +35,7 @@ export const component = (props, item = props) => <>
         {props.JS}
       </script>
 
-      {props.__partials__.analytics}
+      {__partials__.analytics(props)}
 
     </body>
   </html>

@@ -41,3 +41,7 @@ export function Compact<T>(props: {children: T}) {
 export function isSignature(reflection: Reflection): reflection is SignatureReflection {
     return !!(reflection.kind & ReflectionKind.SomeSignature);
 }
+
+export const __partials__ = {
+
+};

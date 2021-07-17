@@ -23,6 +23,6 @@ export const component = (props, item = props) => <>{!Boolean(props.hideName) ? 
     {Boolean(props.type) && <>{Boolean(props.arrowStyle) ? <>        <span className="tsd-signature-symbol"> ={'>'} </span>
     </> : <>        <span className="tsd-signature-symbol">: </span>
     </>}    {With(item, item.type, (superProps, props, item) => (<>
-        {props.__partials__.type}
+        {__partials__.type(props)}
     </>))}
     </>}</>;
