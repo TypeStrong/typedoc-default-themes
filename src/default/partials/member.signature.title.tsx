@@ -1,7 +1,7 @@
 import { With, IfCond, IfNotCond, Markdown } from '../../lib';
 import React from 'react';
 export const component = (props, item = props) => <>{!Boolean(props.hideName) ? <>    {props.wbr}
-</> : <>    <IfCond cond="kindString '===' 'Constructor signature'">
+</> : <>    <IfCond cond={props.kindString === 'Constructor signature'}>
     {Boolean(props.flags.isAbstract) && <>            <span className="tsd-signature-symbol">abstract </span>
     </>}        <span className="tsd-signature-symbol">new </span>
 </IfCond>

@@ -53,7 +53,7 @@ export const component = (props, item = props) => <><header>
                     { With(item, item.model, (superProps, props, item) => (<>{props.__partials__.breadcrumb}</>)) }
                 </ul>
         </>}            <h1><Compact>
-                <IfCond cond="model.kindString '!==' 'Project' ">
+                <IfCond cond={props.model.kindString !== props.Project}>
                     {props.model.kindString}
                 </IfCond>
                 {props.model.name}

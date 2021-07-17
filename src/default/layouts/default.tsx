@@ -5,7 +5,7 @@ export const component = (props, item = props) => <>
     <head>
     <meta charSet="utf-8" />
     <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
-    <title><IfCond cond="model.name '==' project.name">{props.project.name}</IfCond><IfNotCond cond="model.name '==' project.name">{props.model.name} | {props.project.name}</IfNotCond></title>
+    <title><IfCond cond={props.model.name === props.project.name}>{props.project.name}</IfCond><IfNotCond cond={props.model.name === props.project.name}>{props.model.name} | {props.project.name}</IfNotCond></title>
     <meta name="description" content={"Documentation for " + props.project.name} />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 

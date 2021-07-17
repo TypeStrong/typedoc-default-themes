@@ -1,12 +1,12 @@
-import {With, Compact, IfCond, IfNotCond, Markdown} from '../../lib';
+import {With, Compact, IfCond, IfNotCond, Markdown} from '../../../lib';
 import React from 'react';
 export const component = (props, item = props) => <>
     <span className="tsd-signature-symbol">{"{"}</span>
-    <IfCond cond="readonlyModifier '===' '+'">
+    <IfCond cond={props.readonlyModifier === '+'}>
         <span className="tsd-signature-symbol">readonly </span>
     </IfCond>
-    <IfNotCond cond="readonlyModifier '===' '+'">
-        <IfCond cond="readonlyModifier '===' '-'">
+    <IfNotCond cond={props.readonlyModifier === '+'}>
+        <IfCond cond={props.readonlyModifier === '-'}>
             <span className="tsd-signature-symbol">-readonly </span>
         </IfCond>
     </IfNotCond>
@@ -25,14 +25,14 @@ export const component = (props, item = props) => <>
     </>)) }
 
     <span className="tsd-signature-symbol">]</span>
-    <IfCond cond="readonlyModifier '===' '+'">
+    <IfCond cond={props.readonlyModifier === '+'}>
         <span className="tsd-signature-symbol">?: </span>
     </IfCond>
-    <IfNotCond cond="readonlyModifier '===' '+'">
-        <IfCond cond="readonlyModifier '===' '-'">
+    <IfNotCond cond={props.readonlyModifier === '+'}>
+        <IfCond cond={props.readonlyModifier === '-'}>
             <span className="tsd-signature-symbol">-?: </span>
         </IfCond>
-        <IfNotCond cond="readonlyModifier '===' '-'">
+        <IfNotCond cond={props.readonlyModifier === '-'}>
             <span className="tsd-signature-symbol">: </span>
         </IfNotCond>
     </IfNotCond>
