@@ -1,17 +1,17 @@
 import { With, __partials__, Compact, IfCond, IfNotCond, Markdown } from "../../lib";
 import React from "react";
-export const membersGroup = (props, item = props) =>
-    Boolean(props.categories) ? (
+export const membersGroup = (props) =>
+    props.categories ? (
         props.categories.map((item, i) => (
             <>
                 {" "}
                 <section className={"tsd-panel-group tsd-member-group " + item.cssClasses}>
                     <h2>
-                        {Boolean(item.title) && <>{item.title} </>}
+                        {!!item.title && <>{item.title} </>}
                         {item.superProps.title}
                     </h2>
                     {item.children.map((item, i) => (
-                        <>{!Boolean(item.hasOwnDocument) && <> {__partials__.member(item)}</>}</>
+                        <>{!item.hasOwnDocument && <> {__partials__.member(item)}</>}</>
                     ))}{" "}
                 </section>
             </>
@@ -22,7 +22,7 @@ export const membersGroup = (props, item = props) =>
             <section className={"tsd-panel-group tsd-member-group " + props.cssClasses}>
                 <h2>{props.title}</h2>
                 {props.children.map((item, i) => (
-                    <>{!Boolean(item.hasOwnDocument) && <> {__partials__.member(item)}</>}</>
+                    <>{!item.hasOwnDocument && <> {__partials__.member(item)}</>}</>
                 ))}{" "}
             </section>
         </>

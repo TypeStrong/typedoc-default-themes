@@ -1,14 +1,14 @@
 import { With, __partials__, Compact, IfCond, IfNotCond, Markdown } from "../../lib";
 import React from "react";
-export const breadcrumb = (props, item = props) =>
-    Boolean(props.parent) ? (
+export const breadcrumb = (props) =>
+    props.parent ? (
         <>
             {" "}
-            {With(item, item.parent, (superProps, props, item = props) => (
+            {With(props, props.parent, (superProps, props) => (
                 <>{__partials__.breadcrumb(props)}</>
             ))}
             <li>
-                {Boolean(props.url) ? (
+                {!!props.url ? (
                     <>
                         {" "}
                         <a href={props.relativeURL}>{props.name}</a>
@@ -22,7 +22,7 @@ export const breadcrumb = (props, item = props) =>
             </li>
         </>
     ) : (
-        Boolean(props.url) && (
+        !!props.url && (
             <>
                 {" "}
                 <li>

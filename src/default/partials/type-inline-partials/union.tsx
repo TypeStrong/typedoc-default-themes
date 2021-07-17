@@ -1,8 +1,10 @@
-import { With, Compact, IfCond, IfNotCond, Markdown } from "../../../lib";
+import { TypeInlinePartialsOptions } from "./options";
+import { With, Compact, IfCond, IfNotCond, Markdown, __partials__ } from "../../../lib";
 import React from "react";
-export const component = (props, item = props) => (
+import { UnionType } from "../../../../typedoc/src/lib/models";
+export const union = (props: UnionType, { needsParens = false }: TypeInlinePartialsOptions = {}) => (
     <>
-        {Boolean(props.needsParens) && (
+        {!!needsParens && (
             <>
                 {" "}
                 <span className="tsd-signature-symbol">(</span>
@@ -10,16 +12,16 @@ export const component = (props, item = props) => (
         )}
         {props.types.map((item, i) => (
             <>
-                {!Boolean(item.first) && (
+                {!item.first && (
                     <>
                         {" "}
                         <span className="tsd-signature-symbol"> | </span>
                     </>
                 )}{" "}
-                {__partials__.type(item, {needsParens: true})}
+                {__partials__.type(item, { needsParens: true })}
             </>
         ))}
-        {Boolean(props.needsParens) && (
+        {!!needsParens && (
             <>
                 {" "}
                 <span className="tsd-signature-symbol">)</span>

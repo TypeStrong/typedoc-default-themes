@@ -1,12 +1,12 @@
 import { With, __partials__, Compact, IfCond, IfNotCond, Markdown } from "../../lib";
 import React from "react";
-export const toc = (props, item = props) => (
+export const toc = (props) => (
     <>
         <li className={"#if isInPath current /if " + props.cssClasses}>
             <a href={props.relativeURL} className="tsd-kind-icon">
                 {props.wbr}
             </a>
-            {Boolean(props.children) && (
+            {!!props.children && (
                 <>
                     {" "}
                     <ul>

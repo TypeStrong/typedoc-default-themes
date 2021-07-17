@@ -1,6 +1,6 @@
-import { With, __partials__, Compact, IfCond, IfNotCond, Markdown } from "../../lib";
+import { With, __partials__, IfCond, IfNotCond, Markdown } from "../../lib";
 import React from "react";
-export const component = (props, item = props) => (
+export const defaultLayout = (props) => (
     <>
         <html className="default no-js">
             <head>

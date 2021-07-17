@@ -1,4 +1,5 @@
 import React from "react";
+import { renderToStaticMarkup } from "react-dom/server";
 import { SignatureReflection, Reflection, ReflectionKind } from "../typedoc/src";
 
 /**
@@ -44,9 +45,15 @@ declare global {
 export function markdown(text: string) {
     return <>{text}</>;
 }
+export function Markdown(props: { children: string | undefined }) {
+    return <>{props.children}</>;
+}
 
 export function Compact<T>(props: { children: T }) {
-    return <compact>{props.children}</compact>;
+    // TODO should be implemented to remove all newlines from the input
+    return <>{props.children}</>;
+    // const markup = renderToStaticMarkup(<>{props.children}</>);
+    // return <React.Fragment dangerouslySetInnerHtml={{ __html: markup.replace(/\r|\n/g, "") }}></React.Fragment>;
 }
 
 export function isSignature(reflection: Reflection): reflection is SignatureReflection {

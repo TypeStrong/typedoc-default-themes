@@ -1,19 +1,21 @@
+import { TypeInlinePartialsOptions } from "./options";
 import { With, __partials__, Compact, IfCond, IfNotCond, Markdown } from "../../../lib";
 import React from "react";
-export const component = (props, item = props) => (
+import { PredicateType } from "../../../../typedoc/src/lib/models";
+export const predicate = (props: PredicateType) => (
     <>
-        {Boolean(props.asserts) && (
+        {!!props.asserts && (
             <>
                 {" "}
                 <span className="tsd-signature-symbol">asserts </span>
             </>
         )}{" "}
         <span className="tsd-signature-type">{props.name}</span>
-        {Boolean(props.targetType) && (
+        {!!props.targetType && (
             <>
                 {" "}
                 <span className="tsd-signature-symbol"> is </span>
-                {With(item, item.targetType, (superProps, props, item = props) => (
+                {With(props, props.targetType, (superProps, props) => (
                     <>{__partials__.type(props)}</>
                 ))}
             </>

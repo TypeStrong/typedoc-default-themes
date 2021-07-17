@@ -1,6 +1,8 @@
+import { TypeInlinePartialsOptions } from "./options";
 import { With, __partials__, Compact, IfCond, IfNotCond, Markdown } from "../../../lib";
 import React from "react";
-export const component = (props, item = props) => (
+import { MappedType } from "../../../../typedoc/src/lib/models";
+export const mapped = (props: MappedType) => (
     <>
         <span className="tsd-signature-symbol">{"{"}</span>
         <IfCond cond={props.readonlyModifier === "+"}>
@@ -16,11 +18,11 @@ export const component = (props, item = props) => (
         <span className="tsd-signature-type">{props.parameter}</span>
         <span className="tsd-signature-symbol"> in </span>
 
-        {With(item, item.parameterType, (superProps, props, item = props) => (
+        {With(props, props.parameterType, (superProps, props) => (
             <>{__partials__.type(props)}</>
         ))}
 
-        {With(item, item.nameType, (superProps, props, item = props) => (
+        {With(props, props.nameType, (superProps, props) => (
             <>
                 <span className="tsd-signature-symbol"> as </span>
                 {__partials__.type(props)}
@@ -40,7 +42,7 @@ export const component = (props, item = props) => (
             </IfNotCond>
         </IfNotCond>
 
-        {With(item, item.templateType, (superProps, props, item = props) => (
+        {With(props, props.templateType, (superProps, props) => (
             <>{__partials__.type(props)}</>
         ))}
 

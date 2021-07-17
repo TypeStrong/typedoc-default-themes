@@ -1,7 +1,8 @@
 import { With, __partials__, Compact, IfCond, IfNotCond, Markdown } from "../../lib";
 import React from "react";
-export const index = (props, item = props) =>
-    Boolean(props.categories) ? (
+import { DeclarationReflection } from "../../../typedoc/src";
+export const index = (props: DeclarationReflection) =>
+    props.categories ? (
         <>
             {" "}
             <section className="tsd-panel-group tsd-index-group">
@@ -19,7 +20,7 @@ export const index = (props, item = props) =>
                                                 {" "}
                                                 <li className={item.cssClasses}>
                                                     <a href={item.relativeURL} className="tsd-kind-icon">
-                                                        {Boolean(item.name) ? item.wbr : <em>{item.wbr}</em>}
+                                                        {!!item.name ? item.wbr : <em>{item.wbr}</em>}
                                                     </a>
                                                 </li>
                                             </>
@@ -33,7 +34,7 @@ export const index = (props, item = props) =>
             </section>
         </>
     ) : (
-        Boolean(props.groups) && (
+        !!props.groups && (
             <>
                 {" "}
                 <section className="tsd-panel-group tsd-index-group">
@@ -44,12 +45,12 @@ export const index = (props, item = props) =>
                                 <>
                                     {" "}
                                     <section className={"tsd-index-section " + item.cssClasses}>
-                                        {Boolean(item.categories) ? (
+                                        {!!item.categories ? (
                                             item.categories.map((item, i) => (
                                                 <>
                                                     {" "}
                                                     <h3>
-                                                        {Boolean(item.title) && <>{item.title} </>}
+                                                        {!!item.title && <>{item.title} </>}
                                                         {item.superProps.title}
                                                     </h3>
                                                     <ul className="tsd-index-list">
@@ -61,11 +62,7 @@ export const index = (props, item = props) =>
                                                                         href={item.relativeURL}
                                                                         className="tsd-kind-icon"
                                                                     >
-                                                                        {Boolean(item.name) ? (
-                                                                            item.wbr
-                                                                        ) : (
-                                                                            <em>{item.wbr}</em>
-                                                                        )}
+                                                                        {!!item.name ? item.wbr : <em>{item.wbr}</em>}
                                                                     </a>
                                                                 </li>
                                                             </>
@@ -83,11 +80,7 @@ export const index = (props, item = props) =>
                                                             {" "}
                                                             <li className={item.cssClasses}>
                                                                 <a href={item.relativeURL} className="tsd-kind-icon">
-                                                                    {Boolean(item.name) ? (
-                                                                        item.wbr
-                                                                    ) : (
-                                                                        <em>{item.wbr}</em>
-                                                                    )}
+                                                                    {!!item.name ? item.wbr : <em>{item.wbr}</em>}
                                                                 </a>
                                                             </li>
                                                         </>

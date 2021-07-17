@@ -1,6 +1,6 @@
 import { With, __partials__, Compact, IfCond, IfNotCond, Markdown } from "../../lib";
 import React from "react";
-export const memberSignatures = (props, item = props) => (
+export const memberSignatures = (props) => (
     <>
         <ul className={"tsd-signatures " + props.cssClasses}>
             {props.signatures.map((item, i) => (

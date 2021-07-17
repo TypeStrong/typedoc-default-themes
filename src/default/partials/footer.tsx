@@ -1,6 +1,6 @@
 import { With, __partials__, Compact, IfCond, IfNotCond, Markdown } from "../../lib";
 import React from "react";
-export const footer = (props, item = props) => (
+export const footer = (props) => (
     <>
         <footer conditional="#unless settings.hideGenerator class=with-border-bottom /unless">
             <div className="container">
@@ -25,7 +25,7 @@ export const footer = (props, item = props) => (
             </div>
         </footer>
 
-        {!Boolean(props.settings.hideGenerator) && (
+        {!props.settings.hideGenerator && (
             <>
                 {" "}
                 <div className="container tsd-generator">

@@ -1,9 +1,11 @@
+import { TypeInlinePartialsOptions } from "./options";
 import { With, __partials__, Compact, IfCond, IfNotCond, Markdown } from "../../../lib";
 import React from "react";
-export const component = (props, item = props) => (
+import { NamedTupleMember } from "../../../../typedoc/src/lib/models";
+export const namedTupleMember = (props: NamedTupleMember) => (
     <>
         {props.name}
-        {Boolean(props.isOptional) ? (
+        {!!props.isOptional ? (
             <>
                 {" "}
                 <span className="tsd-signature-symbol">?: </span>
@@ -14,7 +16,7 @@ export const component = (props, item = props) => (
                 <span className="tsd-signature-symbol">: </span>
             </>
         )}{" "}
-        {With(item, item.element, (superProps, props, item = props) => (
+        {With(props, props.element, (superProps, props) => (
             <>{__partials__.type(props)}</>
         ))}
     </>

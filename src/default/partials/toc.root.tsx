@@ -1,6 +1,6 @@
 import { With, __partials__, Compact, IfCond, IfNotCond, Markdown } from "../../lib";
 import React from "react";
-export const tocRoot = (props, item = props) => (
+export const tocRoot = (props) => (
     <>
         {/* {{#if isInPath*/}
         {/*    </ul> */}
@@ -10,7 +10,7 @@ export const tocRoot = (props, item = props) => (
             <a href={props.relativeURL} className="tsd-kind-icon">
                 {props.wbr}
             </a>
-            {Boolean(props.children) && (
+            {!!props.children && (
                 <>
                     {" "}
                     <ul>

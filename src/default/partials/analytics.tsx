@@ -1,7 +1,7 @@
-import { With, __partials__, Compact, IfCond, IfNotCond, Markdown } from "../../lib";
+import { With, __partials__ } from "../../lib";
 import React from "react";
-export const analytics = (props, item = props) =>
-    Boolean(props.settings.gaID) && (
+export const analytics = (props) =>
+    !!props.settings.gaID && (
         <>
             {" "}
             <script>

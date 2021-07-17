@@ -1,24 +1,24 @@
-import { component as array } from "./array";
-import { component as conditional } from "./conditional";
-import { component as indexedAccess } from "./indexedAccess";
-import { component as inferred } from "./inferred";
-import { component as intersection } from "./intersection";
-import { component as intrinsic } from "./intrinsic";
-import { component as literal } from "./literal";
-import { component as mapped } from "./mapped";
-import { component as namedTupleMember } from "./named-tuple-member";
-import { component as optional } from "./optional";
-import { component as predicate } from "./predicate";
-import { component as query } from "./query";
-import { component as reference } from "./reference";
-import { component as reflection } from "./reflection";
-import { component as rest } from "./rest";
-import { component as templateLiteral } from "./template-literal";
-import { component as tuple } from "./tuple";
-import { component as typeOperator } from "./typeOperator";
-import { component as typeParameter } from "./typeParameter";
-import { component as union } from "./union";
-import { component as unknown } from "./unknown";
+import { array } from "./array";
+import { conditional } from "./conditional";
+import { indexedAccess } from "./indexedAccess";
+import { inferred } from "./inferred";
+import { intersection } from "./intersection";
+import { intrinsic } from "./intrinsic";
+import { literal } from "./literal";
+import { mapped } from "./mapped";
+import { namedTupleMember } from "./named-tuple-member";
+import { optional } from "./optional";
+import { predicate } from "./predicate";
+import { query } from "./query";
+import { reference } from "./reference";
+import { reflection } from "./reflection";
+import { rest } from "./rest";
+import { templateLiteral } from "./template-literal";
+import { tuple } from "./tuple";
+import { typeOperator } from "./typeOperator";
+import { typeParameter } from "./typeParameter";
+import { union } from "./union";
+import { unknown } from "./unknown";
 
 export const typePartials = {
     array,
@@ -29,14 +29,14 @@ export const typePartials = {
     intrinsic,
     literal,
     mapped,
-    'named-tuple-member': namedTupleMember,
+    "named-tuple-member": namedTupleMember,
     optional,
     predicate,
     query,
     reference,
     reflection,
     rest,
-    'template-literal': templateLiteral,
+    "template-literal": templateLiteral,
     tuple,
     typeOperator,
     typeParameter,

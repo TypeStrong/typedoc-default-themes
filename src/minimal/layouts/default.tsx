@@ -1,6 +1,6 @@
 import { With, __partials__, Compact, IfCond, IfNotCond, Markdown } from "../../lib";
 import React from "react";
-export const component = (props, item = props) => (
+export const component = (props) => (
     <>
         <html className="minimal no-js">
             <head>
@@ -26,7 +26,7 @@ export const component = (props, item = props) => (
 
                 <div className="container container-main">
                     <div className="content-wrap">
-                        {Boolean(props.model.readme) && (
+                        {!!props.model.readme && (
                             <>
                                 {" "}
                                 <div className="tsd-panel tsd-typography">

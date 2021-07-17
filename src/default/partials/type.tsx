@@ -1,6 +1,8 @@
 import { With, Compact, IfCond, IfNotCond, Markdown, __partials__ } from "../../lib";
 import React from "react";
-export const type = (props, item = props) => (
+import { TypeInlinePartialsOptions } from "./type-inline-partials/options";
+import { Type } from "../../../typedoc/src/lib/models";
+export const type = (props: Type, options?: TypeInlinePartialsOptions) => (
     <>
         {/* Each type gets its own inline helper to determine how it is rendered. */}
         {/* The name of the helper is the value of the 'type' property on the type.*/}

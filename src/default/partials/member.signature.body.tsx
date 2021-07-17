@@ -1,18 +1,18 @@
 import { With, __partials__, Compact, IfCond, IfNotCond, Markdown } from "../../lib";
 import React from "react";
-export const memberSignatureBody = (props, item = props) => (
+export const memberSignatureBody = (props) => (
     <>
-        {!Boolean(props.hideSources) && <> {__partials__["memberSources"](props)}</>}
+        {!props.hideSources && <> {__partials__["memberSources"](props)}</>}
         {__partials__.comment(props)}
 
-        {Boolean(props.typeParameters) && (
+        {!!props.typeParameters && (
             <>
                 {" "}
                 <h4 className="tsd-type-parameters-title">Type parameters</h4>
                 {__partials__.typeParameters(props)}
             </>
         )}
-        {Boolean(props.parameters) && (
+        {!!props.parameters && (
             <>
                 {" "}
                 <h4 className="tsd-parameters-title">Parameters</h4>
@@ -29,14 +29,12 @@ export const memberSignatureBody = (props, item = props) => (
                                                 <span className={"tsd-flag ts-flag" + item}>{item}</span>
                                             </>
                                         ))}{" "}
-                                        {Boolean(item.flags.isRest) && (
-                                            <span className="tsd-signature-symbol">...</span>
-                                        )}
+                                        {!!item.flags.isRest && <span className="tsd-signature-symbol">...</span>}
                                         {item.name}:
-                                        {With(item, item.type, (superProps, props, item = props) => (
-                                            <>{__partials__.type(item)}</>
+                                        {With(item, item.type, (superProps, props) => (
+                                            <>{__partials__.type(props)}</>
                                         ))}
-                                        {Boolean(item.defaultValue) && (
+                                        {!!item.defaultValue && (
                                             <>
                                                 {" "}
                                                 <span className="tsd-signature-symbol">
@@ -48,11 +46,11 @@ export const memberSignatureBody = (props, item = props) => (
                                     </Compact>
                                 </h5>
                                 {__partials__.comment(item)}
-                                {Boolean(item.type.declaration) && (
+                                {!!item.type.declaration && (
                                     <>
                                         {" "}
-                                        {With(item, item.type.declaration, (superProps, props, item = props) => (
-                                            <>{__partials__.parameter(item)}</>
+                                        {With(item, item.type.declaration, (superProps, props) => (
+                                            <>{__partials__.parameter(props)}</>
                                         ))}
                                     </>
                                 )}{" "}
@@ -62,27 +60,27 @@ export const memberSignatureBody = (props, item = props) => (
                 </ul>
             </>
         )}
-        {Boolean(props.type) && (
+        {!!props.type && (
             <>
                 {" "}
                 <h4 className="tsd-returns-title">
                     Returns{" "}
                     <Compact>
-                        {With(item, item.type, (superProps, props, item = props) => (
+                        {With(props, props.type, (superProps, props) => (
                             <>{__partials__.type(props)}</>
                         ))}
                     </Compact>
                 </h4>
-                {Boolean(props.comment.returns) && (
+                {!!props.comment.returns && (
                     <>
                         {" "}
                         <Markdown>{props.comment.returns}</Markdown>
                     </>
                 )}
-                {Boolean(props.type.declaration) && (
+                {!!props.type.declaration && (
                     <>
                         {" "}
-                        {With(item, item.type.declaration, (superProps, props, item = props) => (
+                        {With(props, props.type.declaration, (superProps, props) => (
                             <>{__partials__.parameter(props)}</>
                         ))}
                     </>

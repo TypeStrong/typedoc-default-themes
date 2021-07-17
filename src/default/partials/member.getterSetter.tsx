@@ -1,12 +1,12 @@
 import { With, __partials__, Compact, IfCond, IfNotCond, Markdown } from "../../lib";
 import React from "react";
-export const memberGetterSetter = (props, item = props) => (
+export const memberGetterSetter = (props) => (
     <>
         <ul className={"tsd-signatures " + props.cssClasses}>
-            {Boolean(props.getSignature) && (
+            {!!props.getSignature && (
                 <>
                     {" "}
-                    {With(item, item.getSignature, (superProps, props, item = props) => (
+                    {With(props, props.getSignature, (superProps, props) => (
                         <>
                             <li className="tsd-signature tsd-kind-icon">
                                 <Compact>
@@ -19,10 +19,10 @@ export const memberGetterSetter = (props, item = props) => (
                     ))}
                 </>
             )}
-            {Boolean(props.setSignature) && (
+            {!!props.setSignature && (
                 <>
                     {" "}
-                    {With(item, item.setSignature, (superProps, props, item = props) => (
+                    {With(props, props.setSignature, (superProps, props) => (
                         <>
                             <li className="tsd-signature tsd-kind-icon">
                                 <Compact>
@@ -38,20 +38,20 @@ export const memberGetterSetter = (props, item = props) => (
         </ul>
 
         <ul className="tsd-descriptions">
-            {Boolean(props.getSignature) && (
+            {!!props.getSignature && (
                 <>
                     {" "}
-                    {With(item, item.getSignature, (superProps, props, item = props) => (
+                    {With(props, props.getSignature, (superProps, props) => (
                         <>
                             <li className="tsd-description">{__partials__["memberSignatureBody"](props)}</li>
                         </>
                     ))}
                 </>
             )}
-            {Boolean(props.setSignature) && (
+            {!!props.setSignature && (
                 <>
                     {" "}
-                    {With(item, item.setSignature, (superProps, props, item = props) => (
+                    {With(props, props.setSignature, (superProps, props) => (
                         <>
                             <li className="tsd-description">{__partials__["memberSignatureBody"](props)}</li>
                         </>

@@ -1,11 +1,13 @@
+import { TypeInlinePartialsOptions } from "./options";
 import { With, __partials__, Compact, IfCond, IfNotCond, Markdown } from "../../../lib";
 import React from "react";
-export const component = (props, item = props) => (
+import { TupleType } from "../../../../typedoc/src/lib/models";
+export const tuple = (props: TupleType) => (
     <>
         <span className="tsd-signature-symbol">[</span>
         {props.elements.map((item, i) => (
             <>
-                {!Boolean(item.first) && (
+                {!item.first && (
                     <>
                         {" "}
                         <span className="tsd-signature-symbol">, </span>

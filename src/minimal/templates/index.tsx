@@ -1,23 +1,23 @@
 import { With, __partials__, Compact, IfCond, IfNotCond, Markdown } from "../../lib";
 import React from "react";
-export const component = (props, item = props) => (
+export const component = (props) => (
     <>
-        {With(item, item.model, (superProps, props, item = props) => (
+        {With(props, props.model, (superProps, props) => (
             <>{__partials__.comment(props)}</>
         ))}
 
-        {Boolean(props.model.typeHierarchy) && (
+        {!!props.model.typeHierarchy && (
             <>
                 {" "}
                 <section className="tsd-hierarchy">
                     <h2>Hierarchy</h2>
-                    {With(item, item.model.typeHierarchy, (superProps, props, item = props) => (
+                    {With(props, props.model.typeHierarchy, (superProps, props) => (
                         <>{__partials__.hierarchy(props)}</>
                     ))}
                 </section>
             </>
         )}
-        {With(item, item.model, (superProps, props, item = props) => (
+        {With(props, props.model, (superProps, props) => (
             <>
                 <div
                     style={{

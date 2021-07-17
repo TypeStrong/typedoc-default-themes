@@ -1,9 +1,11 @@
+import { TypeInlinePartialsOptions } from "./options";
 import { With, __partials__, Compact, IfCond, IfNotCond, Markdown } from "../../../lib";
 import React from "react";
-export const component = (props, item = props) => (
+import { TypeOperatorType } from "../../../../typedoc/src/lib/models";
+export const typeOperator = (props: TypeOperatorType) => (
     <>
         <span className="tsd-signature-symbol">{props.operator} </span>
-        {With(item, item.target, (superProps, props, item = props) => (
+        {With(props, props.target, (superProps, props) => (
             <>{__partials__.type(props)}</>
         ))}
     </>

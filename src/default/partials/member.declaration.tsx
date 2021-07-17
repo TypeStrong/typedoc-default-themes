@@ -1,29 +1,29 @@
 import { With, __partials__, Compact, IfCond, IfNotCond, Markdown } from "../../lib";
 import React from "react";
-export const memberDeclaration = (props, item = props) => (
+export const memberDeclaration = (props) => (
     <>
         <div className="tsd-signature tsd-kind-icon">
             <Compact>
                 {props.wbr}
-                {Boolean(props.typeParameters) && (
+                {!!props.typeParameters && (
                     <>
                         {" "}
                         {"<"}
                         {props.typeParameters.map((item, i) => (
                             <>
                                 {" "}
-                                {Boolean(item.index) && ",\xA0"}
+                                {!!item.index && ",\xA0"}
                                 {item.name}
                             </>
                         ))}{" "}
                         {">"}
                     </>
                 )}{" "}
-                <span className="tsd-signature-symbol">{Boolean(props.isOptional) && "?"}:</span>
-                {With(item, item.type, (superProps, props, item = props) => (
+                <span className="tsd-signature-symbol">{!!props.isOptional && "?"}:</span>
+                {With(props, props.type, (superProps, props) => (
                     <>{__partials__.type(props)}</>
                 ))}
-                {Boolean(props.defaultValue) && (
+                {!!props.defaultValue && (
                     <>
                         {" "}
                         <span className="tsd-signature-symbol">
@@ -39,19 +39,19 @@ export const memberDeclaration = (props, item = props) => (
 
         {__partials__.comment(props)}
 
-        {Boolean(props.typeParameters) && (
+        {!!props.typeParameters && (
             <>
                 {" "}
                 <h4 className="tsd-type-parameters-title">Type parameters</h4>
                 {__partials__.typeParameters(props)}
             </>
         )}
-        {Boolean(props.type.declaration) && (
+        {!!props.type.declaration && (
             <>
                 {" "}
                 <div className="tsd-type-declaration">
                     <h4>Type declaration</h4>
-                    {With(item, item.type.declaration, (superProps, props, item = props) => (
+                    {With(props, props.type.declaration, (superProps, props) => (
                         <>{__partials__.parameter(props)}</>
                     ))}
                 </div>

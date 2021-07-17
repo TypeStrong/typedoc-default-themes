@@ -1,14 +1,14 @@
 import { With, __partials__, Compact, IfCond, IfNotCond, Markdown } from "../../lib";
 import React from "react";
-export const comment = (props, item = props) => (
+export const comment = (props) => (
     <>
-        {With(item, item.comment, (superProps, props, item = props) => (
+        {With(props, props.comment, (superProps, props) => (
             <>
-                {Boolean(props.hasVisibleComponent) && (
+                {!!props.hasVisibleComponent && (
                     <>
                         {" "}
                         <div className="tsd-comment tsd-typography">
-                            {Boolean(props.shortText) && (
+                            {!!props.shortText && (
                                 <>
                                     {" "}
                                     <div className="lead">
@@ -16,13 +16,13 @@ export const comment = (props, item = props) => (
                                     </div>
                                 </>
                             )}
-                            {Boolean(props.text) && (
+                            {!!props.text && (
                                 <>
                                     {" "}
                                     <Markdown>{props.text}</Markdown>
                                 </>
                             )}
-                            {Boolean(props.tags) && (
+                            {!!props.tags && (
                                 <>
                                     {" "}
                                     <dl className="tsd-comment-tags">

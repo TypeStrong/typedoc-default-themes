@@ -1,6 +1,6 @@
 import { With, __partials__, Compact, IfCond, IfNotCond, Markdown } from "../../lib";
 import React from "react";
-export const header = (props, item = props) => (
+export const header = (props) => (
     <>
         <header>
             <div className="tsd-page-toolbar">
@@ -49,7 +49,7 @@ export const header = (props, item = props) => (
                                     <label className="tsd-widget" htmlFor="tsd-filter-inherited">
                                         Inherited
                                     </label>
-                                    {!Boolean(props.settings.excludeExternals) && (
+                                    {!props.settings.excludeExternals && (
                                         <>
                                             {" "}
                                             <input type="checkbox" id="tsd-filter-externals" checked={true} />
@@ -70,12 +70,12 @@ export const header = (props, item = props) => (
             </div>
             <div className="tsd-page-title">
                 <div className="container">
-                    {Boolean(props.model.parent) && (
+                    {!!props.model.parent && (
                         <>
                             {" "}
                             {/* Don't show breadcrumbs on main project page, it is the root page. !*/}
                             <ul className="tsd-breadcrumb">
-                                {With(item, item.model, (superProps, props, item = props) => (
+                                {With(props, props.model, (superProps, props) => (
                                     <>{__partials__.breadcrumb(props)}</>
                                 ))}
                             </ul>
@@ -85,14 +85,14 @@ export const header = (props, item = props) => (
                         <Compact>
                             <IfCond cond={props.model.kindString !== props.Project}>{props.model.kindString}</IfCond>
                             {props.model.name}
-                            {Boolean(props.model.typeParameters) && (
+                            {!!props.model.typeParameters && (
                                 <>
                                     {" "}
                                     {"<"}
                                     {props.model.typeParameters.map((item, i) => (
                                         <>
                                             {" "}
-                                            {Boolean(item.index) && ",\xA0"}
+                                            {!!item.index && ",\xA0"}
                                             {item.name}
                                         </>
                                     ))}{" "}

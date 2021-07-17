@@ -1,48 +1,48 @@
 import { With, __partials__, Compact, IfCond, IfNotCond, Markdown } from "../../lib";
 import React from "react";
-export const memberSources = (props, item = props) => (
+export const memberSources = (props) => (
     <>
         <aside className="tsd-sources">
-            {Boolean(props.implementationOf) && (
+            {!!props.implementationOf && (
                 <>
                     {" "}
                     <p>
                         Implementation of{" "}
-                        {With(item, item.implementationOf, (superProps, props, item = props) => (
+                        {With(props, props.implementationOf, (superProps, props) => (
                             <>{__partials__.typeAndParent(props)}</>
                         ))}
                     </p>
                 </>
             )}
-            {Boolean(props.inheritedFrom) && (
+            {!!props.inheritedFrom && (
                 <>
                     {" "}
                     <p>
                         Inherited from{" "}
-                        {With(item, item.inheritedFrom, (superProps, props, item = props) => (
+                        {With(props, props.inheritedFrom, (superProps, props) => (
                             <>{__partials__.typeAndParent(props)}</>
                         ))}
                     </p>
                 </>
             )}
-            {Boolean(props.overwrites) && (
+            {!!props.overwrites && (
                 <>
                     {" "}
                     <p>
                         Overrides{" "}
-                        {With(item, item.overwrites, (superProps, props, item = props) => (
+                        {With(props, props.overwrites, (superProps, props) => (
                             <>{__partials__.typeAndParent(props)}</>
                         ))}
                     </p>
                 </>
             )}
-            {Boolean(props.sources) && (
+            {!!props.sources && (
                 <>
                     {" "}
                     <ul>
                         {props.sources.map((item, i) => (
                             <>
-                                {Boolean(item.url) ? (
+                                {!!item.url ? (
                                     <>
                                         {" "}
                                         <li>

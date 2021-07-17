@@ -1,14 +1,14 @@
 import { With, IfCond, IfNotCond, Markdown } from "../../lib";
 import React from "react";
-export const memberSignatureTitle = (props, item = props) => (
+export const memberSignatureTitle = (props) => (
     <>
-        {!Boolean(props.hideName) ? (
+        {!props.hideName ? (
             <> {props.wbr}</>
         ) : (
             <>
                 {" "}
                 <IfCond cond={props.kindString === "Constructor signature"}>
-                    {Boolean(props.flags.isAbstract) && (
+                    {!!props.flags.isAbstract && (
                         <>
                             {" "}
                             <span className="tsd-signature-symbol">abstract </span>
@@ -18,14 +18,14 @@ export const memberSignatureTitle = (props, item = props) => (
                 </IfCond>
             </>
         )}
-        {Boolean(props.typeParameters) && (
+        {!!props.typeParameters && (
             <>
                 {" "}
                 {"<"}
                 {props.typeParameters.map((item, i) => (
                     <>
                         {" "}
-                        {Boolean(item.index) && ",\xA0"}
+                        {!!item.index && ",\xA0"}
                         {item.name}
                     </>
                 ))}{" "}
@@ -36,22 +36,22 @@ export const memberSignatureTitle = (props, item = props) => (
         {props.parameters.map((item, i) => (
             <>
                 {" "}
-                {Boolean(item.index) && ",\xA0"}
-                {Boolean(item.flags.isRest) && <span className="tsd-signature-symbol">...</span>}
+                {!!item.index && ",\xA0"}
+                {!!item.flags.isRest && <span className="tsd-signature-symbol">...</span>}
                 {item.name}
                 <span className="tsd-signature-symbol">
-                    {Boolean(item.flags.isOptional) && "?"}
-                    {Boolean(item.defaultValue) && "?"}:
+                    {!!item.flags.isOptional && "?"}
+                    {!!item.defaultValue && "?"}:
                 </span>
-                {With(item, item.type, (superProps, props, item = props) => (
-                    <>{__partials__.type(item)}</>
+                {With(item, item.type, (superProps, props) => (
+                    <>{__partials__.type(props)}</>
                 ))}
             </>
         ))}
         <span className="tsd-signature-symbol">)</span>
-        {Boolean(props.type) && (
+        {!!props.type && (
             <>
-                {Boolean(props.arrowStyle) ? (
+                {!!props.arrowStyle ? (
                     <>
                         {" "}
                         <span className="tsd-signature-symbol"> ={">"} </span>
@@ -62,7 +62,7 @@ export const memberSignatureTitle = (props, item = props) => (
                         <span className="tsd-signature-symbol">: </span>
                     </>
                 )}{" "}
-                {With(item, item.type, (superProps, props, item = props) => (
+                {With(props, props.type, (superProps, props) => (
                     <>{__partials__.type(props)}</>
                 ))}
             </>
