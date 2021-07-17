@@ -1,7 +1,7 @@
 import {With, __partials__, Compact, IfCond, IfNotCond, Markdown} from '../../../lib';
 import React from 'react';
 export const component = (props, item = props) => <>
-  {Boolean(props.getReflection) ? <>    { With(item, item.getReflection, (superProps, props, item) => (<>
+  {Boolean(props.getReflection) ? <>    { With(item, item.getReflection, (superProps, props, item = props) => (<>
         <a href={props.relativeURL} className="tsd-signature-type" data-tsd-kind={props.kindString}>
             {props.name}
         </a>
