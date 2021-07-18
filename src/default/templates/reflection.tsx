@@ -1,4 +1,4 @@
-import { With, __partials__, Compact, IfCond, IfNotCond, Markdown } from "../../lib";
+import { With, relativeURL, wbr, __partials__, Compact, IfCond, IfNotCond, Markdown } from "../../lib";
 import React from "react";
 import { DeclarationReflection } from "../../../typedoc/src";
 export const component = (props: { model: DeclarationReflection }) => (

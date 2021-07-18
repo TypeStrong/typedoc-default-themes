@@ -1,4 +1,4 @@
-import { With, __partials__, Compact, IfCond, IfNotCond, Markdown } from "../../lib";
+import { With, relativeURL, wbr, __partials__, Compact, IfCond, IfNotCond, Markdown } from "../../lib";
 import React from "react";
 export const member = (props) => (
     <>
@@ -13,7 +13,7 @@ export const member = (props) => (
                                 <span className={"tsd-flag ts-flag" + item}>{item}</span>{" "}
                             </>
                         ))}
-                        {props.wbr}
+                        {wbr(TODO)}
                     </h3>
                 </>
             )}

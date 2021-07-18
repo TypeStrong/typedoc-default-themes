@@ -1,4 +1,4 @@
-import { With, __partials__, Compact, IfCond, IfNotCond, Markdown, isSignature } from "../../lib";
+import { With, relativeURL, wbr, __partials__, Compact, IfCond, IfNotCond, Markdown, isSignature } from "../../lib";
 import React from "react";
 export const typeAndParent = (props) => (
     <>
@@ -19,7 +19,7 @@ export const typeAndParent = (props) => (
                             {!!props.reflection.parent.parent.url ? (
                                 <>
                                     {" "}
-                                    <a href={props.relativeURL}>{props.reflection.parent.parent.name}</a>
+                                    <a href={relativeURL(TODO)}>{props.reflection.parent.parent.name}</a>
                                 </>
                             ) : (
                                 <> {props.reflection.parent.parent.name}</>
@@ -28,7 +28,7 @@ export const typeAndParent = (props) => (
                             {!!props.reflection.parent.url ? (
                                 <>
                                     {" "}
-                                    <a href={props.relativeURL}>{props.reflection.parent.name}</a>
+                                    <a href={relativeURL(TODO)}>{props.reflection.parent.name}</a>
                                 </>
                             ) : (
                                 <> {props.reflection.parent.name}</>
@@ -38,7 +38,7 @@ export const typeAndParent = (props) => (
                             {!!props.reflection.parent.url ? (
                                 <>
                                     {" "}
-                                    <a href={props.relativeURL}>{props.reflection.parent.name}</a>
+                                    <a href={relativeURL(TODO)}>{props.reflection.parent.name}</a>
                                 </>
                             ) : (
                                 <> {props.reflection.parent.name}</>
@@ -47,7 +47,7 @@ export const typeAndParent = (props) => (
                             {!!props.reflection.url ? (
                                 <>
                                     {" "}
-                                    <a href={props.relativeURL}>{props.reflection.name}</a>
+                                    <a href={relativeURL(TODO)}>{props.reflection.name}</a>
                                 </>
                             ) : (
                                 <> {props.reflection.name}</>

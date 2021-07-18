@@ -1,4 +1,4 @@
-import { With, __partials__, Compact, IfCond, IfNotCond, Markdown } from "../../lib";
+import { With, relativeURL, wbr, __partials__, Compact, IfCond, IfNotCond, Markdown } from "../../lib";
 import React from "react";
 export const tocRoot = (props) => (
     <>
@@ -7,8 +7,8 @@ export const tocRoot = (props) => (
         {/*    <ul class="current"> */}
         {/* {{/if*/}
         <li className={"#if isInPath current /if " + props.cssClasses}>
-            <a href={props.relativeURL} className="tsd-kind-icon">
-                {props.wbr}
+            <a href={relativeURL(TODO)} className="tsd-kind-icon">
+                {wbr(TODO)}
             </a>
             {!!props.children && (
                 <>

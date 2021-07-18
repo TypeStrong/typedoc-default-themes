@@ -1,4 +1,4 @@
-import { With, __partials__, Compact, IfCond, IfNotCond, Markdown } from "../../lib";
+import { With, relativeURL, wbr, __partials__, Compact, IfCond, IfNotCond, Markdown } from "../../lib";
 import React from "react";
 export const header = (props) => (
     <>
@@ -9,8 +9,8 @@ export const header = (props) => (
                         <div
                             className="table-cell"
                             id="tsd-search"
-                            data-index={props.relativeURL}
-                            data-base={props.relativeURL}
+                            data-index={relativeURL(TODO)}
+                            data-base={relativeURL(TODO)}
                         >
                             <div className="field">
                                 <label htmlFor="tsd-search-field" className="tsd-widget search no-caption">
@@ -24,7 +24,7 @@ export const header = (props) => (
                                 <li className="state failure">The search index is not available</li>
                             </ul>
 
-                            <a href={props.relativeURL} className="title">
+                            <a href={relativeURL(TODO)} className="title">
                                 {props.project.name}
                             </a>
                         </div>

@@ -1,9 +1,9 @@
-import { With, IfCond, IfNotCond, Markdown } from "../../lib";
+import { With, relativeURL, wbr, IfCond, IfNotCond, Markdown } from "../../lib";
 import React from "react";
 export const memberSignatureTitle = (props) => (
     <>
         {!props.hideName ? (
-            <> {props.wbr}</>
+            <> {wbr(TODO)}</>
         ) : (
             <>
                 {" "}

@@ -1,4 +1,4 @@
-import { With, __partials__, IfCond, IfNotCond, Markdown } from "../../lib";
+import { With, relativeURL, wbr, __partials__, IfCond, IfNotCond, Markdown } from "../../lib";
 import React from "react";
 export const defaultLayout = (props) => (
     <>
@@ -15,8 +15,8 @@ export const defaultLayout = (props) => (
                 <meta name="description" content={"Documentation for " + props.project.name} />
                 <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-                <link rel="stylesheet" href={props.relativeURL} />
-                <script async={true} src={props.relativeURL} id="search-script"></script>
+                <link rel="stylesheet" href={relativeURL(TODO)} />
+                <script async={true} src={relativeURL(TODO)} id="search-script"></script>
             </head>
             <body>
                 {__partials__.header(props)}
@@ -47,7 +47,7 @@ export const defaultLayout = (props) => (
                 {__partials__.footer(props)}
 
                 <div className="overlay"></div>
-                <script src={props.relativeURL}></script>
+                <script src={relativeURL(TODO)}></script>
 
                 {__partials__.analytics(props)}
             </body>

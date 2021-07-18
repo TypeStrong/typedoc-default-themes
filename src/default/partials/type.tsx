@@ -1,4 +1,4 @@
-import { With, Compact, IfCond, IfNotCond, Markdown, __partials__ } from "../../lib";
+import { With, relativeURL, wbr, Compact, IfCond, IfNotCond, Markdown, __partials__ } from "../../lib";
 import React from "react";
 import { TypeInlinePartialsOptions } from "./type-inline-partials/options";
 import { Type } from "../../../typedoc/src/lib/models";

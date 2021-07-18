@@ -1,4 +1,4 @@
-import { With, __partials__, Compact, IfCond, IfNotCond, Markdown } from "../../lib";
+import { With, relativeURL, wbr, __partials__, Compact, IfCond, IfNotCond, Markdown } from "../../lib";
 import React from "react";
 export const navigation = (props) =>
     Boolean(props.isVisible) &&
@@ -6,15 +6,15 @@ export const navigation = (props) =>
         <>
             {" "}
             <li className={"label " + props.cssClasses}>
-                <span>{props.wbr}</span>
+                <span>{wbr(TODO)}</span>
             </li>
         </>
     ) : props.isGlobals ? (
         <>
             {" "}
             <li className={"globals #if isInPath current /if " + props.cssClasses}>
-                <a href={props.relativeURL}>
-                    <em>{props.wbr}</em>
+                <a href={relativeURL(TODO)}>
+                    <em>{wbr(TODO)}</em>
                 </a>
             </li>
         </>
@@ -22,7 +22,7 @@ export const navigation = (props) =>
         <>
             {" "}
             <li className={"#if isInPath current /if " + props.cssClasses}>
-                <a href={props.relativeURL}>{props.wbr}</a>
+                <a href={relativeURL(TODO)}>{wbr(TODO)}</a>
                 {!!props.isInPath && !!props.children && (
                     <>
                         {" "}

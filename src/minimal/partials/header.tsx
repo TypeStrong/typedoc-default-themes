@@ -1,4 +1,4 @@
-import { With, __partials__, Compact, IfCond, IfNotCond, Markdown } from "../../lib";
+import { With, relativeURL, wbr, __partials__, Compact, IfCond, IfNotCond, Markdown } from "../../lib";
 import React from "react";
 export const component = (props) => (
     <header>
@@ -7,7 +7,7 @@ export const component = (props) => (
                 <div className="table-wrap">
                     <div className="table-cell">
                         <strong>
-                            <a href={props.relativeURL}>{props.project.name}</a>
+                            <a href={relativeURL(TODO)}>{props.project.name}</a>
                         </strong>
                     </div>
                     <div className="table-cell" id="tsd-widgets">

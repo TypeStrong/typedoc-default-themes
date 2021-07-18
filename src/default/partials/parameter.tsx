@@ -1,4 +1,4 @@
-import { With, __partials__, Compact, IfCond, IfNotCond, Markdown } from "../../lib";
+import { With, relativeURL, wbr, __partials__, Compact, IfCond, IfNotCond, Markdown } from "../../lib";
 import React from "react";
 export const parameter = (props) => (
     <>
@@ -79,7 +79,7 @@ export const parameter = (props) => (
                                 <h5>
                                     <Compact>
                                         {!!item.flags.isRest && <span className="tsd-signature-symbol">...</span>}
-                                        {item.wbr}
+                                        {wbr(TODO)}
                                         <span className="tsd-signature-symbol">{!!item.isOptional && "?"}:</span>
                                         function
                                     </Compact>
@@ -104,7 +104,7 @@ export const parameter = (props) => (
                                         {!!item.flags.isRest && <span className="tsd-signature-symbol">...</span>}
                                         {With(item, item.type, (superProps, props) => (
                                             <>
-                                                {props.wbr}
+                                                {wbr(TODO)}
                                                 <span className="tsd-signature-symbol">
                                                     {!!props.superProps.flags.isOptional && "?"}:
                                                 </span>
@@ -143,7 +143,7 @@ export const parameter = (props) => (
                                                     </>
                                                 ))}{" "}
                                                 <span className="tsd-signature-symbol">get </span>
-                                                {props.wbr}
+                                                {wbr(TODO)}
                                                 <span className="tsd-signature-symbol">(): </span>
                                                 {With(props, props.type, (superProps, props) => (
                                                     <>{__partials__.type(props)}</>
@@ -169,7 +169,7 @@ export const parameter = (props) => (
                                                     </>
                                                 ))}{" "}
                                                 <span className="tsd-signature-symbol">set </span>
-                                                {props.wbr}
+                                                {wbr(TODO)}
                                                 <span className="tsd-signature-symbol">(</span>
                                                 {props.parameters.map((item, i) => (
                                                     <>

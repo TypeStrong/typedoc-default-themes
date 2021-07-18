@@ -1,5 +1,5 @@
 import { TypeInlinePartialsOptions } from "./options";
-import { With, __partials__, Compact, IfCond, IfNotCond, Markdown } from "../../../lib";
+import { With, relativeURL, wbr, __partials__, Compact, IfCond, IfNotCond, Markdown } from "../../../lib";
 import React from "react";
 import { IntersectionType } from "../../../../typedoc/src/lib/models";
 export const intersection = (props: IntersectionType) => (

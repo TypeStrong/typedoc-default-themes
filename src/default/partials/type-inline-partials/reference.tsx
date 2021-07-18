@@ -3,7 +3,7 @@ import React from 'react';
 import { ReferenceType } from '../../../../typedoc/src/lib/models';
 export const reference = (props: ReferenceType) => <>
   {!!props.getReflection ? <>    { With(props, props.getReflection, (superProps, props) => (<>
-        <a href={props.relativeURL} className="tsd-signature-type" data-tsd-kind={props.kindString}>
+        <a href={relativeURL(TODO)} className="tsd-signature-type" data-tsd-kind={props.kindString}>
             {props.name}
         </a>
     </>)) }

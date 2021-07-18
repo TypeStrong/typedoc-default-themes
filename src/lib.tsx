@@ -63,5 +63,8 @@ export function isSignature(reflection: Reflection): reflection is SignatureRefl
 export function relativeURL(url: string) {
     return url ? this.getRelativeUrl(url) : url;
 }
+export function wbr(TODO) {
+    return TODO;
+}
 
 export { __partials__ } from "./partials";

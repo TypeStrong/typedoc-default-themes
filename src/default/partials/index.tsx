@@ -1,4 +1,4 @@
-import { With, __partials__, Compact, IfCond, IfNotCond, Markdown } from "../../lib";
+import { With, relativeURL, wbr, __partials__, Compact, IfCond, IfNotCond, Markdown } from "../../lib";
 import React from "react";
 import { DeclarationReflection } from "../../../typedoc/src";
 export const index = (props: DeclarationReflection) =>
@@ -19,8 +19,8 @@ export const index = (props: DeclarationReflection) =>
                                             <>
                                                 {" "}
                                                 <li className={item.cssClasses}>
-                                                    <a href={item.relativeURL} className="tsd-kind-icon">
-                                                        {!!item.name ? item.wbr : <em>{item.wbr}</em>}
+                                                    <a href={relativeURL(TODO)} className="tsd-kind-icon">
+                                                        {!!item.name ? wbr(TODO) : <em>{wbr(TODO)}</em>}
                                                     </a>
                                                 </li>
                                             </>
@@ -59,10 +59,10 @@ export const index = (props: DeclarationReflection) =>
                                                                 {" "}
                                                                 <li className={item.cssClasses}>
                                                                     <a
-                                                                        href={item.relativeURL}
+                                                                        href={relativeURL(TODO)}
                                                                         className="tsd-kind-icon"
                                                                     >
-                                                                        {!!item.name ? item.wbr : <em>{item.wbr}</em>}
+                                                                        {!!item.name ? wbr(TODO) : <em>{wbr(TODO)}</em>}
                                                                     </a>
                                                                 </li>
                                                             </>
@@ -79,8 +79,8 @@ export const index = (props: DeclarationReflection) =>
                                                         <>
                                                             {" "}
                                                             <li className={item.cssClasses}>
-                                                                <a href={item.relativeURL} className="tsd-kind-icon">
-                                                                    {!!item.name ? item.wbr : <em>{item.wbr}</em>}
+                                                                <a href={relativeURL(TODO)} className="tsd-kind-icon">
+                                                                    {!!item.name ? wbr(TODO) : <em>{wbr(TODO)}</em>}
                                                                 </a>
                                                             </li>
                                                         </>

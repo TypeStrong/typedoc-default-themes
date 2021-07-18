@@ -1,4 +1,4 @@
-import { With, __partials__, Compact, IfCond, IfNotCond, Markdown } from "../../lib";
+import { With, relativeURL, wbr, __partials__, Compact, IfCond, IfNotCond, Markdown } from "../../lib";
 import React from "react";
 export const breadcrumb = (props) =>
     props.parent ? (
@@ -11,7 +11,7 @@ export const breadcrumb = (props) =>
                 {!!props.url ? (
                     <>
                         {" "}
-                        <a href={props.relativeURL}>{props.name}</a>
+                        <a href={relativeURL(TODO)}>{props.name}</a>
                     </>
                 ) : (
                     <>
@@ -26,7 +26,7 @@ export const breadcrumb = (props) =>
             <>
                 {" "}
                 <li>
-                    <a href={props.relativeURL}>{props.name}</a>
+                    <a href={relativeURL(TODO)}>{props.name}</a>
                 </li>
             </>
         )
