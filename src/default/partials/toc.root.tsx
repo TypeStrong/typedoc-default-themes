@@ -15,7 +15,7 @@ export const tocRoot = (props, item = props) => (
                     {" "}
                     <ul>
                         {props.children.map((item, i) => (
-                            <> {item.__partials__.toc}</>
+                            <> {__partials__.toc(item)}</>
                         ))}{" "}
                     </ul>
                 </>

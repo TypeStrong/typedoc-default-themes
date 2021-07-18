@@ -30,7 +30,7 @@ export const member = (props, item = props) => (
             {props.groups.map((item, i) => (
                 <>
                     {item.children.map((item, i) => (
-                        <>{!Boolean(item.hasOwnDocument) && <> {item.__partials__.member}</>}</>
+                        <>{!Boolean(item.hasOwnDocument) && <> {__partials__.member(item)}</>}</>
                     ))}
                 </>
             ))}

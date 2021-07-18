@@ -34,7 +34,7 @@ export const memberSignatureBody = (props, item = props) => (
                                         )}
                                         {item.name}:
                                         {With(item, item.type, (superProps, props, item = props) => (
-                                            <>{item.__partials__.type}</>
+                                            <>{__partials__.type(item)}</>
                                         ))}
                                         {Boolean(item.defaultValue) && (
                                             <>
@@ -47,12 +47,12 @@ export const memberSignatureBody = (props, item = props) => (
                                         )}{" "}
                                     </Compact>
                                 </h5>
-                                {item.__partials__.comment}
+                                {__partials__.comment(item)}
                                 {Boolean(item.type.declaration) && (
                                     <>
                                         {" "}
                                         {With(item, item.type.declaration, (superProps, props, item = props) => (
-                                            <>{item.__partials__.parameter}</>
+                                            <>{__partials__.parameter(item)}</>
                                         ))}
                                     </>
                                 )}{" "}

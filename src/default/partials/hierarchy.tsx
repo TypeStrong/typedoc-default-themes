@@ -15,14 +15,14 @@ export const hierarchy = (props, item = props) => (
                         ) : (
                             <>
                                 {" "}
-                                <Compact>{item.__partials__.type}</Compact>
+                                <Compact>{__partials__.type(item)}</Compact>
                             </>
                         )}
                         {Boolean(item.last) && (
                             <>
                                 {" "}
                                 {With(item, item.superProps.next, (superProps, props, item = props) => (
-                                    <>{item.__partials__.hierarchy}</>
+                                    <>{__partials__.hierarchy(item)}</>
                                 ))}
                             </>
                         )}{" "}

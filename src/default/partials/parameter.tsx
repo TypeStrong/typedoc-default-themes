@@ -48,7 +48,7 @@ export const parameter = (props, item = props) => (
                                         )}
                                         {item.name}:
                                         {With(item, item.type, (superProps, props, item = props) => (
-                                            <>{item.__partials__.type}</>
+                                            <>{__partials__.type(item)}</>
                                         ))}
                                     </>
                                 ))}{" "}
@@ -89,7 +89,7 @@ export const parameter = (props, item = props) => (
                                     </Compact>
                                 </h5>
 
-                                {item.__partials__.member.signatures}
+                                {__partials__.memberSignatures(item)}
                             </li>
                         </>
                     ) : Boolean(item.type) ? (
@@ -114,18 +114,18 @@ export const parameter = (props, item = props) => (
                                                 <span className="tsd-signature-symbol">
                                                     {Boolean(item.superProps.flags.isOptional) && "?"}:
                                                 </span>
-                                                {item.__partials__.type}
+                                                {__partials__.type(item)}
                                             </>
                                         ))}
                                     </Compact>
                                 </h5>
-                                {item.__partials__.comment}
-                                {Boolean(item.children) && <> {item.__partials__.parameter}</>}
+                                {__partials__.comment(item)}
+                                {Boolean(item.children) && <> {__partials__.parameter(item)}</>}
                                 {Boolean(item.type.declaration) && (
                                     <>
                                         {" "}
                                         {With(item, item.type.declaration, (superProps, props, item = props) => (
-                                            <>{item.__partials__.parameter}</>
+                                            <>{__partials__.parameter(item)}</>
                                         ))}
                                     </>
                                 )}{" "}
@@ -152,12 +152,12 @@ export const parameter = (props, item = props) => (
                                                 {item.wbr}
                                                 <span className="tsd-signature-symbol">(): </span>
                                                 {With(item, item.type, (superProps, props, item = props) => (
-                                                    <>{item.__partials__.type}</>
+                                                    <>{__partials__.type(item)}</>
                                                 ))}
                                             </Compact>
                                         </h5>
 
-                                        {item.__partials__.comment}
+                                        {__partials__.comment(item)}
                                     </li>
                                 </>
                             ))}
@@ -189,7 +189,7 @@ export const parameter = (props, item = props) => (
                                                                     item,
                                                                     item.type,
                                                                     (superProps, props, item = props) => (
-                                                                        <>{item.__partials__.type}</>
+                                                                        <>{__partials__.type(item)}</>
                                                                     )
                                                                 )}
                                                             </>
@@ -203,12 +203,12 @@ export const parameter = (props, item = props) => (
                                                 ))}{" "}
                                                 <span className="tsd-signature-symbol">): </span>
                                                 {With(item, item.type, (superProps, props, item = props) => (
-                                                    <>{item.__partials__.type}</>
+                                                    <>{__partials__.type(item)}</>
                                                 ))}
                                             </Compact>
                                         </h5>
 
-                                        {item.__partials__.comment}
+                                        {__partials__.comment(item)}
                                     </li>
                                 </>
                             ))}

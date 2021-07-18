@@ -44,7 +44,7 @@ export const memberSignatureTitle = (props, item = props) => (
                     {Boolean(item.defaultValue) && "?"}:
                 </span>
                 {With(item, item.type, (superProps, props, item = props) => (
-                    <>{item.__partials__.type}</>
+                    <>{__partials__.type(item)}</>
                 ))}
             </>
         ))}

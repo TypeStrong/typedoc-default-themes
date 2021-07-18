@@ -41,8 +41,8 @@ declare global {
         }
     }
 }
-export function Markdown<T>(props: { children: T }) {
-    return <markdown>{props.children}</markdown>;
+export function markdown(text: string) {
+    return <>{text}</>;
 }
 
 export function Compact<T>(props: { children: T }) {
@@ -51,6 +51,10 @@ export function Compact<T>(props: { children: T }) {
 
 export function isSignature(reflection: Reflection): reflection is SignatureReflection {
     return !!(reflection.kind & ReflectionKind.SomeSignature);
+}
+
+export function relativeURL(url: string) {
+    return url ? this.getRelativeUrl(url) : url;
 }
 
 export { __partials__ } from "./partials";

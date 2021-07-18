@@ -9,6 +9,6 @@ export const component = (props, item = props) => <>
   </> : <>        <span className="tsd-signature-type">{props.name}</span>
   </>}{Boolean(props.typeArguments) && <>        <span className="tsd-signature-symbol"><</span>
     {props.typeArguments.map((item, i) => <>{!Boolean(item.first) && <>                <span className="tsd-signature-symbol">, </span>
-      </>}            {item.__partials__.type}
+      </>}            {__partials__.type(item)}
     </>)}        <span className="tsd-signature-symbol">></span>
   </>}</>;

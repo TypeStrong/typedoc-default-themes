@@ -28,7 +28,7 @@ export const navigation = (props, item = props) =>
                         {" "}
                         <ul>
                             {props.children.map((item, i) => (
-                                <> {item.__partials__.navigation}</>
+                                <> {__partials__.navigation(item)}</>
                             ))}{" "}
                         </ul>
                     </>

@@ -25,7 +25,7 @@ export const component = (props, item = props) => (
                                         <>
                                             {" "}
                                             {With(item, item.getSignature.type, (superProps, props, item = props) => (
-                                                <>{item.__partials__.type}</>
+                                                <>{__partials__.type(item)}</>
                                             ))}
                                         </>
                                     ) : (
@@ -45,7 +45,7 @@ export const component = (props, item = props) => (
                                         <>
                                             {" "}
                                             {With(item, item.getSignature.type, (superProps, props, item = props) => (
-                                                <>{item.__partials__.type}</>
+                                                <>{__partials__.type(item)}</>
                                             ))}
                                         </>
                                     ) : (
@@ -72,7 +72,7 @@ export const component = (props, item = props) => (
                                             <>
                                                 {" "}
                                                 {With(item, item.type, (superProps, props, item = props) => (
-                                                    <>{item.__partials__.type}</>
+                                                    <>{__partials__.type(item)}</>
                                                 ))}
                                             </>
                                         ) : (
@@ -104,7 +104,7 @@ export const component = (props, item = props) => (
                                     <>
                                         {" "}
                                         {With(item, item.type, (superProps, props, item = props) => (
-                                            <>{item.__partials__.type}</>
+                                            <>{__partials__.type(item)}</>
                                         ))}
                                     </>
                                 ) : (

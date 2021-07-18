@@ -45,7 +45,7 @@ export const component = (props, item = props) => (
                             <>
                                 {" "}
                                 <li>
-                                    <Compact>{item.__partials__.type}</Compact>
+                                    <Compact>{__partials__.type(item)}</Compact>
                                 </li>
                             </>
                         ))}{" "}
@@ -63,7 +63,7 @@ export const component = (props, item = props) => (
                             <>
                                 {" "}
                                 <li>
-                                    <Compact>{item.__partials__.type}</Compact>
+                                    <Compact>{__partials__.type(item)}</Compact>
                                 </li>
                             </>
                         ))}{" "}
@@ -95,7 +95,7 @@ export const component = (props, item = props) => (
                                     {" "}
                                     {item.name}:
                                     {With(item, item.type, (superProps, props, item = props) => (
-                                        <>{item.__partials__.type}</>
+                                        <>{__partials__.type(item)}</>
                                     ))}
                                 </>
                             ))}{" "}

@@ -10,7 +10,7 @@ export const members = (props, item = props) =>
                           <section className={"tsd-panel-group tsd-member-group " + item.cssClasses}>
                               <h2>{item.title}</h2>
                               {item.children.map((item, i) => (
-                                  <>{!Boolean(item.hasOwnDocument) && <> {item.__partials__.member}</>}</>
+                                  <>{!Boolean(item.hasOwnDocument) && <> {__partials__.member(item)}</>}</>
                               ))}{" "}
                           </section>
                       </>
@@ -18,5 +18,5 @@ export const members = (props, item = props) =>
               </>
           ))
         : props.groups.map((item, i) => (
-              <>{!Boolean(item.allChildrenHaveOwnDocument) && <> {item.__partials__.members.group}</>}</>
+              <>{!Boolean(item.allChildrenHaveOwnDocument) && <> {__partials__.membersGroup(item)}</>}</>
           ));

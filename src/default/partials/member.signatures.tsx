@@ -7,7 +7,7 @@ export const memberSignatures = (props, item = props) => (
                 <>
                     {" "}
                     <li className="tsd-signature tsd-kind-icon">
-                        <Compact>{item.__partials__.member.signature.title}</Compact>
+                        <Compact>{__partials__.memberSignatureTitle(item)}</Compact>
                     </li>
                 </>
             ))}
@@ -17,7 +17,7 @@ export const memberSignatures = (props, item = props) => (
             {props.signatures.map((item, i) => (
                 <>
                     {" "}
-                    <li className="tsd-description">{item.__partials__.member.signature.body}</li>
+                    <li className="tsd-description">{__partials__.memberSignatureBody(item)}</li>
                 </>
             ))}
         </ul>
