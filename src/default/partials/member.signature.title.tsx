@@ -1,6 +1,6 @@
 import { With, IfCond, IfNotCond, Markdown } from "../../lib";
 import React from "react";
-export const memberSignatureTitle\ = (props, item = props) => (
+export const memberSignatureTitle = (props, item = props) => (
     <>
         {!Boolean(props.hideName) ? (
             <> {props.wbr}</>
