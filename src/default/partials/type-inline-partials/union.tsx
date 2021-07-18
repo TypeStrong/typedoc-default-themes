@@ -12,7 +12,7 @@ export const union = (props: UnionType, { needsParens = false }: TypeInlineParti
         )}
         {props.types.map((item, i) => (
             <>
-                {!item.first && (
+                {i !== 0 && (
                     <>
                         {" "}
                         <span className="tsd-signature-symbol"> | </span>
