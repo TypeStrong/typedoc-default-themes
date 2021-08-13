@@ -1,3 +1,7 @@
+# Deprecated
+
+As of TypeDoc 0.22, themes are created with JSX templates. Handlebars templates are no longer supported.
+
 # Default themes for TypeDoc
 
 This module contains the default themes of TypeDoc.
